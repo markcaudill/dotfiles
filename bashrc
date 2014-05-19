@@ -20,37 +20,41 @@ nfl() {
     curl -s http://www.nfl.com/liveupdate/scorestrip/ss.xml > $xml
 
     for i in ${teams[@]}; do
-        home_city=`cat $xml | grep ${i} | sed -e 's/.*h="\([^"]*\)".*/\1/'`
-        visiting_city=`cat $xml | grep ${i} | sed -e 's/.*v="\([^"]*\)".*/\1/'`
-        home_team=`cat $xml | grep ${i} | sed -e 's/.*hnn="\([^"]*\)".*/\1/'`
-        visiting_team=`cat $xml | grep ${i} | sed -e 's/.*vnn="\([^"]*\)".*/\1/'`
-        first=`echo ${home_team} | sed 's/\(.\).*/\1/'`
-        last=`echo ${home_team} | sed 's/.\(.*\)/\1/'`
-        upper=`echo ${first} | tr '[a-z]' '[A-Z]'`
+        if ! echo $xml | grep $i; then
+            echo "No games for $i."
+            continue
+        fi
+        home_city=$(cat $xml | grep ${i} | sed -e 's/.*h="\([^"]*\)".*/\1/')
+        visiting_city=$(cat $xml | grep ${i} | sed -e 's/.*v="\([^"]*\)".*/\1/')
+        home_team=$(cat $xml | grep ${i} | sed -e 's/.*hnn="\([^"]*\)".*/\1/')
+        visiting_team=$(cat $xml | grep ${i} | sed -e 's/.*vnn="\([^"]*\)".*/\1/')
+        first=$(echo ${home_team} | sed 's/\(.\).*/\1/')
+        last=$(echo ${home_team} | sed 's/.\(.*\)/\1/')
+        upper=$(echo ${first} | tr '[a-z]' '[A-Z]')
         home_team="$upper$last"
-        first=`echo ${visiting_team} | sed 's/\(.\).*/\1/'`
-        last=`echo ${visiting_team} | sed 's/.\(.*\)/\1/'`
-        upper=`echo ${first} | tr '[a-z]' '[A-Z]'`
+        first=$(echo ${visiting_team} | sed 's/\(.\).*/\1/')
+        last=$(echo ${visiting_team} | sed 's/.\(.*\)/\1/')
+        upper=$(echo ${first} | tr '[a-z]' '[A-Z]')
         visiting_team="$upper$last"
-        home_score=`cat $xml | grep ${i} | sed -e 's/.*hs="\([^"]*\)".*/\1/'`
-        visiting_score=`cat $xml | grep ${i} | sed -e 's/.*vs="\([^"]*\)".*/\1/'`
-        quarter=`cat $xml | grep ${i} | sed -e 's/.*q="\([^"]*\)".*/\1/'`
-        time_left=`cat $xml | grep ${i} | sed -e 's/.*k="\([^"]*\)".*/\1/'`
-        day=`cat $xml | grep ${i} | sed -e 's/.*d="\([^"]*\)".*/\1/'`
-        time=`cat $xml | grep ${i} | sed -e 's/.* t="\([^"]*\)".*/\1/'`
+        home_score=$(cat $xml | grep ${i} | sed -e 's/.*hs="\([^"]*\)".*/\1/')
+        visiting_score=$(cat $xml | grep ${i} | sed -e 's/.*vs="\([^"]*\)".*/\1/')
+        quarter=$(cat $xml | grep ${i} | sed -e 's/.*q="\([^"]*\)".*/\1/')
+        time_left=$(cat $xml | grep ${i} | sed -e 's/.*k="\([^"]*\)".*/\1/')
+        day=$(cat $xml | grep ${i} | sed -e 's/.*d="\([^"]*\)".*/\1/')
+        time=$(cat $xml | grep ${i} | sed -e 's/.* t="\([^"]*\)".*/\1/')
     
-        if [ $quarter = "F" ]; then
+        if [[ $quarter == "F" ]]; then
             echo ${visiting_city} ${visiting_team} ${visiting_score} ${home_city} ${home_team} ${home_score} FINAL 
-        elif [ $quarter = "P" ]; then
+        elif [[ $quarter == "P" ]]; then
             echo ${visiting_city} ${visiting_team} at ${home_city} ${home_team} on $day at $time Eastern
-        elif [ $quarter = "H" ]; then
+        elif [[ $quarter == "H" ]]; then
             echo ${visiting_city} ${visiting_team} ${visiting_score} ${home_city} ${home_team} ${home_score} HALFTIME
         else
-            if [ $quarter = "1" ]; then
+            if [[ $quarter == "1" ]]; then
                 echo ${visiting_city} ${visiting_team} ${visiting_score} ${home_city} ${home_team} ${home_score} with ${time_left} in the ${quarter}st
-            elif [ $quarter = "2" ]; then
+            elif [[ $quarter == "2" ]]; then
                 echo ${visiting_city} ${visiting_team} ${visiting_score} ${home_city} ${home_team} ${home_score} with ${time_left} in the ${quarter}nd
-            elif [ $quarter = "3" ]; then
+            elif [[ $quarter == "3" ]]; then
                 echo ${visiting_city} ${visiting_team} ${visiting_score} ${home_city} ${home_team} ${home_score} with ${time_left} in the ${quarter}rd
             else
                 echo ${visiting_city} ${visiting_team} ${visiting_score} ${home_city} ${home_team} ${home_score} with ${time_left} in the ${quarter}th
