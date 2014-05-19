@@ -1,7 +1,7 @@
-export PS1="[\u@\h:\w]\$ "
+export PS1="\u@\h:\w\$ "
 umask 0077
 export PATH=$HOME/perl5/bin:/bin:/usr/bin:/usr/pkg/bin:/usr/local/bin:$HOME/bin
-EDITOR="vim"
+export EDITOR="vim"
 
 # Aliases
 alias ls='ls --color=auto'
@@ -13,6 +13,7 @@ alias mount='mount | column -t'
 alias path='echo -e ${PATH//:/\\n}'
 alias nowtime='date +"%T"'
 alias nowdate='date +"%Y-%m-%d"'
+alias timestamp='date +"%Y%m%d%H%M%S"'
 alias ping='ping -c 5'
 alias ports='netstat -ltunep'
 alias chown='chown --preserve-root'
@@ -25,6 +26,8 @@ alias ln='ln -i'
 alias wget='wget -c'
 alias du='du -shx'
 alias df='df -h'
+alias psg='ps ax | head -n1; ps ax | grep -v grep | grep '
+alias ps='ps fax | grep -v "ps fax" | less'
 
 # Functions
 mkcd() {
