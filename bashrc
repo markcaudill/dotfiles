@@ -1,6 +1,37 @@
 export PS1="[\u@\h:\w]\$ "
 umask 0077
 export PATH=$HOME/perl5/bin:/bin:/usr/bin:/usr/pkg/bin:/usr/local/bin:$HOME/bin
+EDITOR="vim"
+
+# Aliases
+alias ls='ls --color=auto'
+alias ll='ls -la'
+alias l.='ls -d .* --color=auto'
+alias grep='grep --color=auto'
+alias mkdir='mkdir -pv'
+alias mount='mount | column -t'
+alias path='echo -e ${PATH//:/\\n}'
+alias nowtime='date +"%T"'
+alias nowdate='date +"%Y-%m-%d"'
+alias ping='ping -c 5'
+alias ports='netstat -ltunep'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+alias rm='rm -I --preserve-root'
+alias mv='mv -i'
+alias cp='cp -i'
+alias ln='ln -i'
+alias wget='wget -c'
+alias du='du -shx'
+alias df='df -h'
+
+# Functions
+mkcd() {
+    # Make a directory and cd into it.
+    mkdir "$1"
+    cd "$1"
+}
 
 weather() {
     # Check the weather. Source: https://coderwall.com/p/uhj-2a
