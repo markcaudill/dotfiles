@@ -1,7 +1,10 @@
 set nocompatible
-set backspace=indent,eol,start
-syntax on
-filetype indent plugin on
-set shiftwidth=4
-set tabstop=4
-set expandtab
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+
+" plugins go here
+
+call vundle#end()            " required
+filetype plugin indent on    " required
