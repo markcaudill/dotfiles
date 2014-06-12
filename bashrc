@@ -1,12 +1,36 @@
+_os="$(uname)"
+
 export PS1="\u@\h:\w\$ "
 umask 0077
 export PATH=$HOME/perl5/bin:/bin:/usr/bin:/usr/pkg/bin:/usr/local/bin:$HOME/bin
 export EDITOR="vim"
 
 # Aliases
-alias ls='ls --color=auto'
-alias ll='ls -la'
-alias l.='ls -d .* --color=auto'
+## GNU vs non-GNU
+case $_os in
+    Linux)
+        alias ls='ls --color=auto'
+        alias ll='ls -la --color=auto'
+        alias l.='ls -d .* --color=auto'
+        alias la='ls -a --color=auto'
+        alias chown='chown --preserve-root'
+        alias chmod='chmod --preserve-root'
+        alias chgrp='chgrp --preserve-root'
+        alias nstat='netstat -ltunep'
+        alias rm='rm -I --preserve-root'
+        alias ps='ps fax | grep -v "ps fax" | less'
+        ;;
+    Darwin)
+        alias ll='ls -la'
+        alias l.='ls -d .*'
+        alias la='ls -a'
+        alias nstat='netstat -lnp'
+        alias rm='rm -i'
+        alias ps='ps aux | grep -v "ps aux" | less'
+        ;;
+    *)
+        ;;
+esac
 alias grep='grep --color=auto'
 alias mkdir='mkdir -pv'
 alias mount='mount | column -t'
@@ -15,19 +39,13 @@ alias nowtime='date +"%T"'
 alias nowdate='date +"%Y-%m-%d"'
 alias timestamp='date +"%Y%m%d%H%M%S"'
 alias ping='ping -c 5'
-alias ports='netstat -ltunep'
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
-alias rm='rm -I --preserve-root'
 alias mv='mv -i'
 alias cp='cp -i'
 alias ln='ln -i'
 alias wget='wget -c'
 alias du='du -shx'
 alias df='df -h'
-alias psg='ps ax | head -n1; ps ax | grep -v grep | grep '
-alias ps='ps fax | grep -v "ps fax" | less'
+alias psg='ps aux | head -n1; ps aux | grep -v grep | grep '
 
 # Functions
 mkcd() {
