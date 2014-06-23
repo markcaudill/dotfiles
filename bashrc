@@ -2,7 +2,7 @@ _os="$(uname)"
 
 export PS1="\u@\h:\w\$ "
 umask 0077
-export PATH=$HOME/perl5/bin:/bin:/usr/bin:/usr/pkg/bin:/usr/local/bin:$HOME/bin
+export PATH=$HOME/bin:$HOME/perl5/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/pkg/bin:/usr/local/bin
 export EDITOR="vim"
 
 # Aliases
