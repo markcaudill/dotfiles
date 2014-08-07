@@ -31,6 +31,7 @@ case $_os in
     *)
         ;;
 esac
+## Generic
 alias grep='grep --color=auto'
 alias mkdir='mkdir -pv'
 alias mount='mount | column -t'
