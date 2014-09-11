@@ -48,7 +48,8 @@ alias ln='ln -i'
 alias wget='wget -c'
 alias du='du -shx'
 alias df='df -h'
-alias psg='ps aux | head -n1; ps aux | grep -v grep | grep '
+alias psg='/bin/ps aux | head -n1; /bin/ps aux | grep -v grep | grep '
+alias clock='watch --no-title -n 1 "date '+%Y-%m-%d' | figlet -w 69 -f slant -c; date '+%H:%M:%S' | figlet -w 69 -f slant -c"'
 
 # Functions
 mkcd() {
