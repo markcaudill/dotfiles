@@ -61,6 +61,13 @@ weather() {
     curl -s "http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=${@:-"$1"}" | perl -ne '/<title>([^<]+)/&&printf "\x1B[0;34m%s\x1B[0m: ",$1;/<fcttext>([^<]+)/&&print $1,"\n"';
 }
 
+totaco() {
+    # Add a todo item to a text file in Dropbox that tacoapp.com can see.
+    local textfile=$HOME/Dropbox/Documents/todo.txt
+    local message="$*"
+    echo "$message" >> $textfile
+}
+
 nfl() {
     # Original script by Kyle R. Jones (kr.jones@me.com)
     # Modified to minimize network requests and for clarity.
