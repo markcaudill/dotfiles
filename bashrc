@@ -1,8 +1,8 @@
 _os="$(uname)"
 
-export PS1="\u@\h:\w\$ "
+export PS1="\$ "
 umask 0077
-export PATH=$HOME/bin:$HOME/perl5/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/pkg/bin:/usr/local/bin
+export PATH=$PATH:$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.rvm/bin
 export EDITOR="vim"
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
@@ -20,7 +20,6 @@ case $_os in
         alias chgrp='chgrp --preserve-root'
         alias nstat='netstat -ltunep'
         alias rm='rm -I --preserve-root'
-        alias ps='ps fax | grep -v "ps fax" | less'
         ;;
     Darwin)
         alias ll='ls -la'
@@ -28,7 +27,6 @@ case $_os in
         alias la='ls -a'
         alias nstat='netstat -lnp'
         alias rm='rm -i'
-        alias ps='ps aux | grep -v "ps aux" | less'
         ;;
     *)
         ;;
