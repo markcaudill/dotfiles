@@ -72,8 +72,12 @@ nfl() {
     # Original script by Kyle R. Jones (kr.jones@me.com)
     # Modified to minimize network requests and for clarity.
 
-    # teams=(WAS BUF DAL)
-    teams=(WAS)
+    if [ "$#" -lt 1 ]; then
+        echo "Usage: nfl [TEAM]..."
+        echo "Example: nfl WAS DAL"
+        return
+    fi
+    teams=($@)
     xml=`mktemp`
     # Cleanup on exit (not sure if this works as expected within a BASH function; zsh does though, I think).
     trap "{ rm -f $xml; exit 255; }" EXIT SIGINT SIGTERM
@@ -81,7 +85,7 @@ nfl() {
     curl -s http://www.nfl.com/liveupdate/scorestrip/ss.xml > $xml
 
     for i in ${teams[@]}; do
-        if ! echo $xml | grep $i; then
+        if ! grep $i $xml &>/dev/null; then
             echo "No games for $i."
             continue
         fi
