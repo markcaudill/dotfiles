@@ -57,8 +57,9 @@ mkcd() {
 }
 
 weather() {
-    # Check the weather. Source: https://coderwall.com/p/uhj-2a
-    curl -s "http://api.wunderground.com/auto/wui/geo/ForecastXML/index.xml?query=${@:-"$1"}" | perl -ne '/<title>([^<]+)/&&printf "\x1B[0;34m%s\x1B[0m: ",$1;/<fcttext>([^<]+)/&&print $1,"\n"';
+    # Geolocates on public IP.
+    source ~/.forecast.io # Provides API_KEY
+    echo $(curl -s https://api.forecast.io/forecast/$API_KEY/$(curl -s ip-api.com/csv | awk -F',' '{print $8","$9}'),$(date '+%s') | grep -Eo 'apparentTemperature":[0-9\.]+|summary":"[A-Za-z\ ]+' | head -n2 | sed 's/summary":"//g' | sed 's/apparentTemperature\"://g' | xargs)F
 }
 
 totaco() {
