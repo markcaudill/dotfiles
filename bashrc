@@ -8,30 +8,15 @@ export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
 # Aliases
-## GNU vs non-GNU
-case $_os in
-    Linux)
-        alias ls='ls --color=auto'
-        alias ll='ls -la --color=auto'
-        alias l.='ls -d .* --color=auto'
-        alias la='ls -a --color=auto'
-        alias chown='chown --preserve-root'
-        alias chmod='chmod --preserve-root'
-        alias chgrp='chgrp --preserve-root'
-        alias nstat='netstat -ltunep'
-        alias rm='rm -I --preserve-root'
-        ;;
-    Darwin)
-        alias ll='ls -la'
-        alias l.='ls -d .*'
-        alias la='ls -a'
-        alias nstat='netstat -lnp'
-        alias rm='rm -i'
-        ;;
-    *)
-        ;;
-esac
-## Generic
+alias ls='ls --color=auto'
+alias ll='ls -la --color=auto'
+alias l.='ls -d .* --color=auto'
+alias la='ls -a --color=auto'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+alias nstat='netstat -ltunep'
+alias rm='rm -I --preserve-root'
 alias grep='grep --color=auto'
 alias mkdir='mkdir -pv'
 alias mount='mount | column -t'
