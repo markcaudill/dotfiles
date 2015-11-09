@@ -103,13 +103,6 @@ nfl() {
     rm -f $xml
 }
 
-totaco() {
-    # Add a todo item to a text file in Dropbox that tacoapp.com can see.
-    local textfile=$HOME/Dropbox/Documents/todo.txt
-    local message="$*"
-    echo "$message" >> $textfile
-}
-
 weather() {
     # Geolocates on public IP.
     source ~/.forecast.io # Provides API_KEY
