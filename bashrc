@@ -8,50 +8,37 @@ export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
 # Aliases
-alias ls='ls --color=auto'
+alias chgrp='chgrp --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chown='chown --preserve-root'
+alias clock='watch --no-title -n 1 "date '+%Y-%m-%d' | figlet -w 69 -f slant -c; date '+%H:%M:%S' | figlet -w 69 -f slant -c"'
+alias cp='cp -i'
+alias df='df -h'
+alias du='du -shx'
+alias grep='grep --color=auto'
+alias la='ls -a --color=auto'
 alias ll='ls -la --color=auto'
 alias l.='ls -d .* --color=auto'
-alias la='ls -a --color=auto'
-alias chown='chown --preserve-root'
-alias chmod='chmod --preserve-root'
-alias chgrp='chgrp --preserve-root'
-alias nstat='netstat -ltunep'
-alias rm='rm -I --preserve-root'
-alias grep='grep --color=auto'
+alias ln='ln -i'
+alias ls='ls --color=auto'
 alias mkdir='mkdir -pv'
 alias mount='mount | column -t'
-alias path='echo -e ${PATH//:/\\n}'
-alias nowtime='date +"%T"'
-alias nowdate='date +"%Y-%m-%d"'
-alias timestamp='date +"%Y%m%d%H%M%S"'
-alias ping='ping -c 5'
 alias mv='mv -i'
-alias cp='cp -i'
-alias ln='ln -i'
-alias wget='wget -c'
-alias du='du -shx'
-alias df='df -h'
+alias nowdate='date +"%Y-%m-%d"'
+alias nowtime='date +"%T"'
+alias nstat='netstat -ltunep'
+alias path='echo -e ${PATH//:/\\n}'
+alias ping='ping -c 5'
 alias psg='/bin/ps aux | head -n1; /bin/ps aux | grep -v grep | grep '
-alias clock='watch --no-title -n 1 "date '+%Y-%m-%d' | figlet -w 69 -f slant -c; date '+%H:%M:%S' | figlet -w 69 -f slant -c"'
+alias rm='rm -I --preserve-root'
+alias timestamp='date +"%Y%m%d%H%M%S"'
+alias wget='wget -c'
 
 # Functions
 mkcd() {
     # Make a directory and cd into it.
     mkdir "$1"
     cd "$1"
-}
-
-weather() {
-    # Geolocates on public IP.
-    source ~/.forecast.io # Provides API_KEY
-    echo $(curl -s https://api.forecast.io/forecast/$API_KEY/$(curl -s ip-api.com/csv | awk -F',' '{print $8","$9}'),$(date '+%s') | grep -Eo 'apparentTemperature":[0-9\.]+|summary":"[A-Za-z\ ]+' | head -n2 | sed 's/summary":"//g' | sed 's/apparentTemperature\"://g' | xargs)F
-}
-
-totaco() {
-    # Add a todo item to a text file in Dropbox that tacoapp.com can see.
-    local textfile=$HOME/Dropbox/Documents/todo.txt
-    local message="$*"
-    echo "$message" >> $textfile
 }
 
 nfl() {
@@ -114,4 +101,17 @@ nfl() {
     done
     # Delete the cached scores.
     rm -f $xml
+}
+
+totaco() {
+    # Add a todo item to a text file in Dropbox that tacoapp.com can see.
+    local textfile=$HOME/Dropbox/Documents/todo.txt
+    local message="$*"
+    echo "$message" >> $textfile
+}
+
+weather() {
+    # Geolocates on public IP.
+    source ~/.forecast.io # Provides API_KEY
+    echo $(curl -s https://api.forecast.io/forecast/$API_KEY/$(curl -s ip-api.com/csv | awk -F',' '{print $8","$9}'),$(date '+%s') | grep -Eo 'apparentTemperature":[0-9\.]+|summary":"[A-Za-z\ ]+' | head -n2 | sed 's/summary":"//g' | sed 's/apparentTemperature\"://g' | xargs)F
 }
