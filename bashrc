@@ -132,8 +132,7 @@ weather() {
     # Geolocates on public IP.
     source ~/.forecast.io # Provides API_KEY
     local coordinates=$(curl -s ip-api.com/csv | awk -F',' '{print $8","$9}')
-    local timestamp=$(date '+%s')
-    echo $(curl -s https://api.forecast.io/forecast/$API_KEY/$coordinates,$timestamp | \
+    echo $(curl -s https://api.forecast.io/forecast/$API_KEY/$coordinates | \
         grep -Eo 'apparentTemperature":[0-9\.]+|summary":"[A-Za-z\ ]+' | \
         head -n2 | \
         sed 's/summary":"//g' | \
