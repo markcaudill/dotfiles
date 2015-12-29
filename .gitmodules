@@ -1,0 +1,3 @@
+[submodule "modules/Dockerfile.vim"]
+	path = modules/Dockerfile.vim
+	url = https://github.com/ekalinin/Dockerfile.vim.git
