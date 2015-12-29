@@ -2,7 +2,7 @@ _os="$(uname)"
 
 export PS1="\$ "
 umask 0077
-export PATH=$PATH:$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.rvm/bin
+export PATH=$PATH:$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.rvm/bin:/usr/local/heroku/bin
 export EDITOR="vim"
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
@@ -131,5 +131,11 @@ nfl() {
 weather() {
     # Geolocates on public IP.
     source ~/.forecast.io # Provides API_KEY
-    echo $(curl -s https://api.forecast.io/forecast/$API_KEY/$(curl -s ip-api.com/csv | awk -F',' '{print $8","$9}'),$(date '+%s') | grep -Eo 'apparentTemperature":[0-9\.]+|summary":"[A-Za-z\ ]+' | head -n2 | sed 's/summary":"//g' | sed 's/apparentTemperature\"://g' | xargs)F
+    local coordinates=$(curl -s ip-api.com/csv | awk -F',' '{print $8","$9}')
+    echo $(curl -s https://api.forecast.io/forecast/$API_KEY/$coordinates | \
+        grep -Eo 'apparentTemperature":[0-9\.]+|summary":"[A-Za-z\ ]+' | \
+        head -n2 | \
+        sed 's/summary":"//g' | \
+        sed 's/apparentTemperature\"://g' | \
+        xargs)F
 }
