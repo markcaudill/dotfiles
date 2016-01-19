@@ -133,9 +133,9 @@ weather() {
     source ~/.forecast.io # Provides API_KEY
     local coordinates=$(curl -s ip-api.com/csv | awk -F',' '{print $8","$9}')
     echo $(curl -s https://api.forecast.io/forecast/$API_KEY/$coordinates | \
-        grep -Eo 'apparentTemperature":[0-9\.]+|summary":"[A-Za-z\ ]+' | \
+        grep -Eo '"temperature":[0-9\.]+|"summary":"[A-Za-z\ ]+' | \
         head -n2 | \
-        sed 's/summary":"//g' | \
-        sed 's/apparentTemperature\"://g' | \
+        sed 's/"summary":"//g' | \
+        sed 's/"temperature"://g' | \
         xargs)F
 }
