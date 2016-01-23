@@ -139,3 +139,7 @@ weather() {
         sed 's/"temperature"://g' | \
         xargs)F
 }
+
+torrent() {
+    xdg-open "https://duckduckgo.com/?q=filetype%3Atorrent+${*}"
+}
