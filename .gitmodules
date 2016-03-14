@@ -1,9 +1,3 @@
 [submodule "modules/Dockerfile.vim"]
 	path = modules/Dockerfile.vim
 	url = https://github.com/ekalinin/Dockerfile.vim.git
-[submodule "modules/871107"]
-	path = modules/871107
-	url = git@gist.github.com:871107.git
-[submodule "modules/yaml.vim"]
-	path = modules/yaml.vim
-	url = git@gist.github.com:871107.git
