@@ -107,7 +107,7 @@ nfl() {
         time_left=$(cat $xml | grep -i ${i} | sed -e 's/.*k="\([^"]*\)".*/\1/')
         day=$(cat $xml | grep -i ${i} | sed -e 's/.*d="\([^"]*\)".*/\1/')
         time=$(cat $xml | grep -i ${i} | sed -e 's/.* t="\([^"]*\)".*/\1/')
-    
+
         if [[ $quarter == "F" ]]; then
             echo ${visiting_city} ${visiting_team} ${visiting_score} ${home_city} ${home_team} ${home_score} FINAL 
         elif [[ $quarter == "P" ]]; then
