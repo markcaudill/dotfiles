@@ -32,6 +32,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias ping='ping -c 5'
 alias psg='/bin/ps aux | head -n1; /bin/ps aux | grep -v grep | grep '
 alias rm='rm -I --preserve-root'
+alias t='todo'
 alias timestamp='date +"%Y%m%d%H%M%S"'
 alias wget='wget -c'
 
