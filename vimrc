@@ -1,15 +1,6 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'Vundle/Vundle.vim'
-Plugin 'editorconfig/editorconfig-vim'
-
-call vundle#end()
-
-
 syntax on
 set t_Co=256
 colorscheme slate
