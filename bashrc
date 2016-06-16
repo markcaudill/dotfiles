@@ -4,6 +4,7 @@ export PS1="\u@\h\$ "
 umask 0077
 export GOPATH=$HOME/src/gocode
 export PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:$GOPATH/bin:$PATH
+export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export EDITOR="vim"
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
