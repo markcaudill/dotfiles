@@ -1,1 +1,0 @@
-../../modules/Dockerfile.vim/ftdetect/Dockerfile.vim
