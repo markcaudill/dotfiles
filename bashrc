@@ -133,7 +133,3 @@ nfl() {
     # Delete the cached scores.
     rm -f $xml
 }
-
-torrent() {
-    xdg-open "https://duckduckgo.com/?q=filetype%3Atorrent+${*}"
-}
