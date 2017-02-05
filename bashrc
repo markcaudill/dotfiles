@@ -6,6 +6,7 @@ export GOPATH=$HOME/src/gocode
 export PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:$GOPATH/bin:$PATH
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export EDITOR="vim"
+export JOURNAL=$HOME/OneDrive/Documents/Journal
 export LESSOPEN="| /usr/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
@@ -132,4 +133,27 @@ nfl() {
     done
     # Delete the cached scores.
     rm -f $xml
+}
+
+jn() {
+    JOURNAL=${JOURNAL-"$HOME/.journal"}
+    mkdir -p ${JOURNAL}
+    case ${1} in
+        "new")
+            vim ${JOURNAL}/$(date '+%Y-%m-%d-%H%M%S').txt
+            ;;
+        "find")
+            egrep ${2-"."} ${JOURNAL}/*
+            ;;
+        "ls")
+            ls ${JOURNAL} | xargs -l1
+            ;;
+        *)
+            echo "Usage: ${0} [COMMAND...] [ARGS...]"
+            echo
+            echo " new             create a new entry"
+            echo " find REGEX      find REGEX matches"
+            echo " ls              list all entries"
+            ;;
+    esac
 }
