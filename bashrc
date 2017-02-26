@@ -143,7 +143,7 @@ jn() {
             vim ${JOURNAL}/$(date '+%Y-%m-%d-%H%M%S').md
             ;;
         "find")
-            egrep ${2-"."} ${JOURNAL}/*
+            egrep -i ${2-"."} ${JOURNAL}/*
             ;;
         "ls")
             ls ${JOURNAL} | xargs -l1
