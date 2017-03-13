@@ -6,7 +6,7 @@ export GOPATH=$HOME/src/gocode
 export PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:$GOPATH/bin:$PATH
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export EDITOR="vim"
-export JOURNAL=$HOME/OneDrive/Documents/Journal
+export JOURNAL=/cygdrive/k/private/mcaudill/journal
 
 # Aliases
 alias clock='watch --no-title -n 1 "date '+%Y-%m-%d' | figlet -w 69 -f slant -c; date '+%H:%M:%S' | figlet -w 69 -f slant -c"'
@@ -58,7 +58,7 @@ jn() {
     mkdir -p ${JOURNAL}
     case ${1} in
         "new")
-            vim ${JOURNAL}/$(date '+%Y-%m-%d-%H%M%S').txt
+            vim ${JOURNAL}/$(date '+%Y-%m-%d-%H%M%S').md
             ;;
         "find")
             egrep -i ${2-"."} ${JOURNAL}/*
