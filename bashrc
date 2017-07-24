@@ -68,10 +68,10 @@ if [ -f "${SSH_ENV}" ]; then
     . ${SSH_ENV} > /dev/null
     case `uname -s` in
         CYGWIN*)
-            ps -ef ${SSH_AGENT_PID} | grep ssh-agent > /dev/null && return
+            ps -ef ${SSH_AGENT_PID} | grep ssh-agent > /dev/null
             ;;
         *)
-            ps ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null && return
+            ps ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null
             ;;
     esac
 else
