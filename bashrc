@@ -35,9 +35,13 @@ start_agent() {
 jn() {
     JOURNAL=${JOURNAL-"$HOME/.journal"}
     mkdir -p ${JOURNAL}
+    chmod 0700 ${JOURNAL}
     case ${1} in
         "new")
-            vim ${JOURNAL}/$(date '+%Y-%m-%d-%H%M%S').md
+            filename=${JOURNAL}/$(date '+%Y-%m-%d-%H%M%S').md
+            touch ${filename}
+            chmod 0600 ${filename}
+            vim ${filename}
             ;;
         "find")
             egrep -i ${2-"."} ${JOURNAL}/*
