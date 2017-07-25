@@ -35,9 +35,13 @@ start_agent() {
 jn() {
     JOURNAL=${JOURNAL-"$HOME/.journal"}
     mkdir -p ${JOURNAL}
+    chmod 0700 ${JOURNAL}
     case ${1} in
         "new")
-            vim ${JOURNAL}/$(date '+%Y-%m-%d-%H%M%S').md
+            filename=${JOURNAL}/$(date '+%Y-%m-%d-%H%M%S').md
+            touch ${filename}
+            chmod 0600 ${filename}
+            vim ${filename}
             ;;
         "find")
             egrep -i ${2-"."} ${JOURNAL}/*
@@ -68,10 +72,10 @@ if [ -f "${SSH_ENV}" ]; then
     . ${SSH_ENV} > /dev/null
     case `uname -s` in
         CYGWIN*)
-            ps -ef ${SSH_AGENT_PID} | grep ssh-agent > /dev/null && return
+            ps -ef ${SSH_AGENT_PID} | grep ssh-agent > /dev/null
             ;;
         *)
-            ps ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null && return
+            ps ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null
             ;;
     esac
 else
