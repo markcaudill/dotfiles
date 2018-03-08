@@ -1,6 +1,6 @@
 export PS1="\$ "
 umask 0077
-export PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/heroku/bin:$PATH
+export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/heroku/bin
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export EDITOR="vim"
 export JOURNAL=/cygdrive/k/private/mcaudill/journal
@@ -70,14 +70,7 @@ sslf() {
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
     . ${SSH_ENV} > /dev/null
-    case `uname -s` in
-        CYGWIN*)
-            ps -ef ${SSH_AGENT_PID} | grep ssh-agent > /dev/null
-            ;;
-        *)
-            ps ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null
-            ;;
-    esac
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || start_agent
 else
      start_agent;
 fi
