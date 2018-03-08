@@ -3,7 +3,7 @@ umask 0077
 export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/heroku/bin
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export EDITOR="vim"
-export JOURNAL=/cygdrive/k/private/mcaudill/journal
+export JOURNAL=~/Documents/journal
 export SSH_ENV=$HOME/.ssh/environment
 
 # Aliases
