@@ -3,8 +3,12 @@ umask 0077
 export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/heroku/bin
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export EDITOR="vim"
-export JOURNAL=~/Documents/journal
 export SSH_ENV=$HOME/.ssh/environment
+export VIMCONFIG=~/.vim
+export VIMDATA=~/.vim
+
+source ~/todo_completion
+complete -F _todo t
 
 # Aliases
 alias clock='watch --no-title -n 1 "date '+%Y-%m-%d' | figlet -w 69 -f slant -c; date '+%H:%M:%S' | figlet -w 69 -f slant -c"'
@@ -18,6 +22,7 @@ alias nowdate='date +"%Y-%m-%d"'
 alias nowtime='date +"%T"'
 alias path='echo -e ${PATH//:/\\n}'
 alias ping='ping -c 5'
+alias t='todo.sh -Ant'
 alias timestamp='date +"%Y%m%d%H%M%S"'
 alias wget='wget -c'
 
@@ -30,33 +35,6 @@ start_agent() {
      chmod 600 ${SSH_ENV}
      . ${SSH_ENV} > /dev/null
      /usr/bin/ssh-add;
-}
-
-jn() {
-    JOURNAL=${JOURNAL-"$HOME/.journal"}
-    mkdir -p ${JOURNAL}
-    chmod 0700 ${JOURNAL}
-    case ${1} in
-        "new")
-            filename=${JOURNAL}/$(date '+%Y-%m-%d-%H%M%S').md
-            touch ${filename}
-            chmod 0600 ${filename}
-            vim ${filename}
-            ;;
-        "find")
-            egrep -i ${2-"."} ${JOURNAL}/*
-            ;;
-        "ls")
-            ls ${JOURNAL} | xargs -l1
-            ;;
-        *)
-            echo "Usage: ${0} [COMMAND...] [ARGS...]"
-            echo
-            echo " new             create a new entry"
-            echo " find REGEX      find REGEX matches"
-            echo " ls              list all entries"
-            ;;
-    esac
 }
 
 mp3() {
