@@ -9,7 +9,7 @@ backup:
 install:
 	mkdir -p ~/.vim/bundle; \
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim; \
-	for file in bash_profile bashrc editorconfig tmux.conf vim vimrc; do \
+	for file in bash_profile bashrc tmux.conf todo vim vimrc; do \
 		ln -sf $(shell pwd)/$$file ~/.$$file ; \
 	done;\
 	vim +PluginInstall +qall

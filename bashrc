@@ -1,11 +1,14 @@
-_os="$(uname)"
-
-export PS1="$ "
+export PS1="\$ "
 umask 0077
-export GOPATH=$HOME/src/gocode
-export PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:$GOPATH/bin:$HOME/Downloads/apache-maven-3.5.0-bin/apache-maven-3.5.0/bin:$HOME/src/ansible/bin:/cygdrive/c/HashiCorp/Vagrant/bin:$PATH
-export PYTHONPATH=$PYTHONPATH:$HOME/src/ansible/lib
+export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/heroku/bin
+export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export EDITOR="vim"
+export SSH_ENV=$HOME/.ssh/environment
+export VIMCONFIG=~/.vim
+export VIMDATA=~/.vim
+
+source ~/todo_completion
+complete -F _todo t
 
 # Aliases
 alias df='df -h'
@@ -18,14 +21,14 @@ alias nowdate='date +"%Y-%m-%d"'
 alias nowtime='date +"%T"'
 alias path='echo -e ${PATH//:/\\n}'
 alias ping='ping -c 5'
+alias src='cd ~/src'
+alias t='todo.sh -Ant'
 alias timestamp='date +"%Y%m%d%H%M%S"'
 alias wget='wget -c'
 
 
-# setup ssh-agent (from http://mah.everybody.org/docs/ssh)
-SSH_ENV=$HOME/.ssh/environment
-
-function start_agent {
+# Functions
+start_agent() {
      echo "Initialising new SSH agent..."
      /usr/bin/ssh-agent | sed 's/^echo/#echo/' > ${SSH_ENV}
      echo succeeded
@@ -34,23 +37,27 @@ function start_agent {
      /usr/bin/ssh-add;
 }
 
+mp3() {
+    youtube-dl --extract-audio --audio-format mp3 --audio-quality  0 --output "%(title)s.%(ext)s" ${1}
+}
+
+sslf() {
+    openssl s_client -connect ${1} </dev/null 2>/dev/null | openssl x509 -fingerprint -noout -in /dev/stdin
+}
+
 # Source SSH settings, if applicable
 if [ -f "${SSH_ENV}" ]; then
     . ${SSH_ENV} > /dev/null
-    case `uname -s` in
-        CYGWIN*)
-            ps -ef ${SSH_AGENT_PID} | grep ssh-agent > /dev/null && return
-            ;;
-        *)
-            ps ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null && return
-            ;;
-    esac
+    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || start_agent
 else
      start_agent;
 fi
+<<<<<<< HEAD
 
 
 # Functions
 mp3() {
     youtube-dl --extract-audio --audio-format mp3 --audio-quality  0 --output "%(title)s.%(ext)s" ${1}
 }
+=======
+>>>>>>> 085c7ca31ba7f3c43ad583700a41836a743fb6b3
