@@ -3,13 +3,11 @@ _os="$(uname)"
 export PS1="$ "
 umask 0077
 export GOPATH=$HOME/src/gocode
-export PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:$GOPATH/bin:$PATH
-export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
+export PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:$GOPATH/bin:$HOME/Downloads/apache-maven-3.5.0-bin/apache-maven-3.5.0/bin:$HOME/src/ansible/bin:/cygdrive/c/HashiCorp/Vagrant/bin:$PATH
+export PYTHONPATH=$PYTHONPATH:$HOME/src/ansible/lib
 export EDITOR="vim"
-export JOURNAL=/cygdrive/k/private/mcaudill/journal
 
 # Aliases
-alias clock='watch --no-title -n 1 "date '+%Y-%m-%d' | figlet -w 69 -f slant -c; date '+%H:%M:%S' | figlet -w 69 -f slant -c"'
 alias df='df -h'
 alias du='du -shx'
 alias la='ls -a'
@@ -53,29 +51,6 @@ fi
 
 
 # Functions
-jn() {
-    JOURNAL=${JOURNAL-"$HOME/.journal"}
-    mkdir -p ${JOURNAL}
-    case ${1} in
-        "new")
-            vim ${JOURNAL}/$(date '+%Y-%m-%d-%H%M%S').md
-            ;;
-        "find")
-            egrep -i ${2-"."} ${JOURNAL}/*
-            ;;
-        "ls")
-            ls ${JOURNAL} | xargs -l1
-            ;;
-        *)
-            echo "Usage: ${0} [COMMAND...] [ARGS...]"
-            echo
-            echo " new             create a new entry"
-            echo " find REGEX      find REGEX matches"
-            echo " ls              list all entries"
-            ;;
-    esac
-}
-
 mp3() {
     youtube-dl --extract-audio --audio-format mp3 --audio-quality  0 --output "%(title)s.%(ext)s" ${1}
 }
