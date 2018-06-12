@@ -7,7 +7,7 @@ export SSH_ENV=$HOME/.ssh/environment
 export VIMCONFIG=~/.vim
 export VIMDATA=~/.vim
 
-source ~/todo_completion
+source ~/.todo_completion
 complete -F _todo t
 
 # Aliases
@@ -52,12 +52,8 @@ if [ -f "${SSH_ENV}" ]; then
 else
      start_agent;
 fi
-<<<<<<< HEAD
-
 
 # Functions
 mp3() {
     youtube-dl --extract-audio --audio-format mp3 --audio-quality  0 --output "%(title)s.%(ext)s" ${1}
 }
-=======
->>>>>>> 085c7ca31ba7f3c43ad583700a41836a743fb6b3
