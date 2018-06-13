@@ -27,9 +27,9 @@ gen_prompt() {
         if [[ "$GIT_STATUS" =~ "*" ]]; then     # if repository is dirty
             GIT_COLOR="$Red"
         elif [[ "$GIT_STATUS" =~ "%" ]]; then   # if there is something stashed
-            GIT_COLOR="$Yellow"
-        elif [[ "$GIT_STATUS" =~ "+" ]]; then  # if there are staged files
             GIT_COLOR="$Cyan"
+        elif [[ "$GIT_STATUS" =~ "+" ]]; then  # if there are staged files
+            GIT_COLOR="$Yellow"
         fi
         PS1="$GIT_COLOR╭─$Color_Off\u@\h:\w$GIT_COLOR$GIT_STATUS$Color_Off\n$GIT_COLOR╰$Color_Off\\$\[$(tput sgr0)\] "
     else
