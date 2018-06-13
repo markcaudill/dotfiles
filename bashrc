@@ -1,15 +1,43 @@
 shopt -s histappend
-export PS1="\$ "
 umask 0077
 export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/heroku/bin
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export EDITOR="vim"
 export SSH_ENV=$HOME/.ssh/environment
-export VIMCONFIG=~/.vim
-export VIMDATA=~/.vim
 
 source ~/.todo_completion
 complete -F _todo t
+source ~/.colors
+
+# Prompt
+
+
+gen_prompt() {
+    ## Looks like (without Git stuff if .git-prompt.sh is missing):
+    ## ╭─mark@bender:~/src/dotfiles (master *%)
+    ## ╰$
+    local GIT_COLOR="$White"
+    if [[ -f ~/.git-prompt.sh ]]; then
+        GIT_PS1_HIDE_IF_PWD_IGNORED=true
+        GIT_PS1_SHOWCOLORHINTS=true
+        GIT_PS1_SHOWDIRTYSTATE=true
+        GIT_PS1_SHOWUNTRACKEDFILES=true
+        source ~/.git-prompt.sh
+        local GIT_STATUS=$(__git_ps1)
+        if [[ "$GIT_STATUS" =~ "*" ]]; then     # if repository is dirty
+            GIT_COLOR="$Red"
+        elif [[ "$GIT_STATUS" =~ "%" ]]; then   # if there is something stashed
+            GIT_COLOR="$Yellow"
+        elif [[ "$GIT_STATUS" =~ "+" ]]; then  # if there are staged files
+            GIT_COLOR="$Cyan"
+        fi
+        PS1="$GIT_COLOR╭─$Color_Off\u@\h:\w$GIT_COLOR$GIT_STATUS$Color_Off\n$GIT_COLOR╰$Color_Off\\$\[$(tput sgr0)\] "
+    else
+        PS1="$GIT_COLOR╭─$Color_Off\u@\h:\w\n$GIT_COLOR╰$Color_Off\\$\[$(tput sgr0)\] "
+    fi
+}
+export PROMPT_COMMAND=gen_prompt
+
 
 # Aliases
 alias df='df -h'
