@@ -6,9 +6,11 @@ export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/loca
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export SSH_ENV=$HOME/.ssh/environment
 
-source ~/.colors
-source ~/.todo_completion
-complete -F _todo t
+[[ -f ~/.colors ]] && source ~/.colors
+if [[ -f ~/.todo_completion ]]; then
+    source ~/.todo_completion
+    complete -F _todo t
+fi
 
 
 # Prompt
