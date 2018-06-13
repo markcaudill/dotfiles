@@ -1,17 +1,17 @@
 shopt -s histappend
 umask 0077
+
+export EDITOR="vim"
 export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/heroku/bin
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
-export EDITOR="vim"
 export SSH_ENV=$HOME/.ssh/environment
 
+source ~/.colors
 source ~/.todo_completion
 complete -F _todo t
-source ~/.colors
+
 
 # Prompt
-
-
 gen_prompt() {
     ## Looks like (without Git stuff if .git-prompt.sh is missing):
     ## ╭─mark@bender:~/src/dotfiles (master *%)
@@ -44,13 +44,9 @@ alias df='df -h'
 alias du='du -shx'
 alias la='ls -a'
 alias ll='ls -l'
-alias minecraft='java -jar ~/Downloads/Minecraft.jar'
 alias mount='mount | column -t'
-alias nowdate='date +"%Y-%m-%d"'
-alias nowtime='date +"%T"'
 alias path='echo -e ${PATH//:/\\n}'
 alias ping='ping -c 5'
-alias src='cd ~/src'
 alias t='todo.sh -Ant'
 alias timestamp='date +"%Y%m%d%H%M%S"'
 alias wget='wget -c'
@@ -81,8 +77,3 @@ if [ -f "${SSH_ENV}" ]; then
 else
      start_agent;
 fi
-
-# Functions
-mp3() {
-    youtube-dl --extract-audio --audio-format mp3 --audio-quality  0 --output "%(title)s.%(ext)s" ${1}
-}
