@@ -6,35 +6,27 @@ export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/loca
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export SSH_ENV=$HOME/.ssh/environment
 
-source ~/.colors
-source ~/.todo_completion
-complete -F _todo t
+[[ -f ~/.todo_completion ]] && source ~/.todo_completion && complete -F _todo t
 
 
 # Prompt
 gen_prompt() {
-    ## Looks like (without Git stuff if .git-prompt.sh is missing):
-    ## ╭─mark@bender:~/src/dotfiles (master *%)
-    ## ╰$
-    local GIT_COLOR="$White"
-    if [[ -f ~/.git-prompt.sh ]]; then
-        GIT_PS1_HIDE_IF_PWD_IGNORED=true
-        GIT_PS1_SHOWCOLORHINTS=true
-        GIT_PS1_SHOWDIRTYSTATE=true
-        GIT_PS1_SHOWUNTRACKEDFILES=true
-        source ~/.git-prompt.sh
-        local GIT_STATUS=$(__git_ps1)
-        if [[ "$GIT_STATUS" =~ "*" ]]; then     # if repository is dirty
-            GIT_COLOR="$Red"
-        elif [[ "$GIT_STATUS" =~ "%" ]]; then   # if there is something stashed
-            GIT_COLOR="$Cyan"
-        elif [[ "$GIT_STATUS" =~ "+" ]]; then  # if there are staged files
-            GIT_COLOR="$Yellow"
-        fi
-        PS1="$GIT_COLOR╭─$Color_Off\u@\h:\w$GIT_COLOR$GIT_STATUS$Color_Off\n$GIT_COLOR╰$Color_Off\\$\[$(tput sgr0)\] "
-    else
-        PS1="$GIT_COLOR╭─$Color_Off\u@\h:\w\n$GIT_COLOR╰$Color_Off\\$\[$(tput sgr0)\] "
-    fi
+    ## Looks like:
+    ## ╭─┤pty0├─╢mark@bender:~/src╟─┤ಠ‿ಠ├─╮
+    ## ╰>
+    local __last_exit=$?
+    [[ -f ~/.colors ]] && source ~/.colors
+    
+    local __line_color=${Red}
+    local __prompt_color=${White}
+    local __text_color=${White}
+    
+    local __success_string="${Green}ಠ‿ಠ"
+    local __failure_string="${Red}ಠ_ಠ"
+    local __exit_string=$(if [[ $__last_exit -ne 0 ]]; then echo $__failure_string; else echo $__success_string; fi)
+    local __prompt="> "
+
+    PS1="\n${__line_color}╭─┤${__text_color}\l${__line_color}├─╢${__text_color}\u@\h:\w${__line_color}╟─┤${__exit_string}${__line_color}├─╮\n╰${__prompt}\[$(tput sgr0)\]"
 }
 export PROMPT_COMMAND=gen_prompt
 
