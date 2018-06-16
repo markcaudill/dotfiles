@@ -16,7 +16,7 @@ gen_prompt() {
     ## ╰>
     local __last_exit=$?
     [[ -f ~/.colors ]] && source ~/.colors
-    
+
     local __line_color=${Red}
     local __prompt_color=${White}
     local __text_color=${White}
