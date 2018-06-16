@@ -20,7 +20,7 @@ gen_prompt() {
     local __line_color=${Red}
     local __prompt_color=${White}
     local __text_color=${White}
-    
+
     local __success_string="${Green}ಠ‿ಠ"
     local __failure_string="${Red}ಠ_ಠ"
     local __exit_string=$(if [[ $__last_exit -ne 0 ]]; then echo $__failure_string; else echo $__success_string; fi)
