@@ -16,21 +16,23 @@ clean:
 	rm -rf $(DESTINATION)/.vim
 	rm -f $(DESTINATION)/.vimrc
 
-bash: bash_profile bashrc
-	ln -sf $(shell pwd)/bash_profile $(DESTINATION)/.bash_profile
-	ln -sf $(shell pwd)/bashrc $(DESTINATION)/.bashrc
-	ln -sf $(shell pwd)/colors $(DESTINATION)/.colors
+bash: .bash_profile .bashrc
+	ln -sf $(shell pwd)/.bash_profile $(DESTINATION)/
+	ln -sf $(shell pwd)/.bashrc $(DESTINATION)/
 
-editorconfig: editorconfig
-	ln -sf $(shell pwd)/editorconfig $(DESTINATION)/.editorconfig
+colors: .colors
+	ln -sf $(shell pwd)/.colors $(DESTINATION)/
 
-tmux: tmux.conf
-	ln -sf $(shell pwd)/tmux.conf $(DESTINATION)/.tmux.conf
+editorconfig: .editorconfig
+	ln -sf $(shell pwd)/.editorconfig $(DESTINATION)/
 
-vim: vim vimrc
-	ln -sf $(shell pwd)/vim $(DESTINATION)/.vim
-	ln -sf $(shell pwd)/vimrc $(DESTINATION)/.vimrc
+tmux: .tmux.conf
+	ln -sf $(shell pwd)/.tmux.conf $(DESTINATION)/
+
+vim: .vimrc
 	mkdir -p $(DESTINATION)/.vim/bundle
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
+	ln -sf $(shell pwd)/.vimrc $(DESTINATION)/
 
 install: bash colors editorconfig tmux vim
