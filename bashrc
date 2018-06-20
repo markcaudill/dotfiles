@@ -5,6 +5,7 @@ export EDITOR="vim"
 export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/heroku/bin
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export SSH_ENV=$HOME/.ssh/environment
+export CLEANPROMPT=""
 
 [[ -f ~/.todo_completion ]] && source ~/.todo_completion && complete -F _todo t
 
@@ -21,12 +22,17 @@ gen_prompt() {
     local __prompt_color=${White}
     local __text_color=${White}
 
+    local __clean_prompt="\n\u@\h:\w\n\$ "
     local __success_string="${Green}(✿◠‿◠)"
     local __failure_string="${Red}(◡﹏◡✿)"
     local __exit_string=$(if [[ $__last_exit -ne 0 ]]; then echo $__failure_string; else echo $__success_string; fi)
     local __prompt="> "
 
-    PS1="\n${__line_color}╭─┤${__text_color}\l${__line_color}├─╢${__text_color}\u@\h:\w${__line_color}╟─┤${__exit_string}${__line_color}├─╮\n╰${__prompt}\[$(tput sgr0)\]"
+    if [[ -n ${CLEANPROMPT} ]]; then
+        PS1="${__clean_prompt}"
+    else
+        PS1="\n${__line_color}╭─┤${__text_color}\l${__line_color}├─╢${__text_color}\u@\h:\w${__line_color}╟─┤${__exit_string}${__line_color}├─╮\n╰${__prompt}\[$(tput sgr0)\]"
+    fi
 }
 export PROMPT_COMMAND=gen_prompt
 
