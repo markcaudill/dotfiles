@@ -1,3 +1,3 @@
 function t
-    todo -t $argv
+  todo -t $argv
 end
