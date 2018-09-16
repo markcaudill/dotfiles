@@ -1,3 +1,4 @@
+set shell=/bin/bash
 set nocompatible
 filetype off
 
@@ -12,6 +13,10 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'editorconfig/editorconfig-vim'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'guns/vim-clojure-static'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'tpope/vim-fireplace'
+Plugin 'dag/vim-fish'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
