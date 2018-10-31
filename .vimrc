@@ -17,6 +17,8 @@ Plugin 'guns/vim-clojure-static'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'tpope/vim-fireplace'
 Plugin 'dag/vim-fish'
+Plugin 'ambv/black'
+
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
