@@ -18,7 +18,7 @@ Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'tpope/vim-fireplace'
 Plugin 'dag/vim-fish'
 Plugin 'ambv/black'
-
+Plugin 'dracula/vim'
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -26,7 +26,7 @@ filetype plugin indent on    " required
 
 syntax on
 set t_Co=256
-colorscheme slate
+colorscheme dracula
 
 set number
 set ruler

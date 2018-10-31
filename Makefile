@@ -26,6 +26,9 @@ colors: .colors
 editorconfig: .editorconfig
 	ln -sf $(shell pwd)/.editorconfig $(DESTINATION)/
 
+mintty: .minttyrc
+	ln -sf $(shell pwd)/.minttyrc $(DESTINATION)/
+
 tmux: .tmux.conf
 	ln -sf $(shell pwd)/.tmux.conf $(DESTINATION)/
 
