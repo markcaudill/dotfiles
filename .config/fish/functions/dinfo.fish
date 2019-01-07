@@ -8,7 +8,9 @@ function dinfo --description "Domain info"
     echo "SSL"
     echo "==="
     set ssl_expiration_date (openssl s_client -connect $domain:443 < /dev/null ^ /dev/null | openssl x509 -noout -enddate | awk -F'=' '{print $2}')
-    echo "SSL Expiration: $ssl_expiration_date"
+    set ssl_issuer (openssl s_client -connect $domain:443 < /dev/null ^ /dev/null | openssl x509 -noout -issuer)
+    echo "Issuer: $ssl_issuer"
+    echo "Expiration: $ssl_expiration_date"
     echo
 
     echo "DNS"
