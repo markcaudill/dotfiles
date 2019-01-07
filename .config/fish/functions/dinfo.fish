@@ -13,6 +13,12 @@ function dinfo --description "Domain info"
 
     echo "DNS"
     echo "==="
-    host $domain
+    set basedomain (echo $domain | awk -F'.' '{print $(NF-1)"."$NF}')
+    begin
+        if test $domain != $basedomain
+            host $basedomain
+        end
+        host $domain
+    end | sort | uniq
     echo
 end
