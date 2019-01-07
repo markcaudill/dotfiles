@@ -34,7 +34,8 @@ gen_prompt() {
         PS1="\n${__line_color}╭─┤${__text_color}\l${__line_color}├─╢${__text_color}\u@\h:\w${__line_color}╟─┤${__exit_string}${__line_color}├─╮\n╰${__prompt}\[$(tput sgr0)\]"
     fi
 }
-export PROMPT_COMMAND=gen_prompt
+#export PROMPT_COMMAND=gen_prompt
+export PS1="\u@\h:\w\$ "
 
 
 # Aliases
