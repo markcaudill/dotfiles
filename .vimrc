@@ -1,4 +1,4 @@
-set shell=/bin/bash
+set shell=/usr/bin/bash
 set nocompatible
 filetype off
 
@@ -10,16 +10,24 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
+" Dracula Theme
+Plugin 'dracula/vim'
+
+" EditorConfig
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'guns/vim-clojure-static'
+
+" Clojure Plugins
+Plugin 'guns/vim-clojure-highlight'
+Plugin 'guns/vim-sexp'
 Plugin 'kien/rainbow_parentheses.vim'
 Plugin 'tpope/vim-fireplace'
-Plugin 'dag/vim-fish'
-Plugin 'ambv/black'
-Plugin 'dracula/vim'
-Plugin 'vim-scripts/paredit.vim'
+Plugin 'tpope/vim-salve.git'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+
+" Ansible Plugins
+Plugin 'pearofducks/ansible-vim'
+
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
