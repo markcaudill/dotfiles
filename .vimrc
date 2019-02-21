@@ -1,4 +1,4 @@
-set shell=/usr/bin/bash
+set shell=bash
 set nocompatible
 filetype off
 
