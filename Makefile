@@ -13,6 +13,7 @@ clean:
 	rm -f $(DESTINATION)/.colors
 	rm -f $(DESTINATION)/.editorconfig
 	rm -f $(DESTINATION)/.tmux.conf
+	rm -f $(DESTINATION)/.todo
 	rm -rf $(DESTINATION)/.vim
 	rm -f $(DESTINATION)/.vimrc
 
@@ -31,6 +32,9 @@ mintty: .minttyrc
 
 tmux: .tmux.conf
 	ln -sf $(shell pwd)/.tmux.conf $(DESTINATION)/
+
+todo: .todo
+	ln -sf $(shell pwd)/.todo $(DESTINATION)/
 
 vim: .vimrc
 	mkdir -p $(DESTINATION)/.vim/bundle
