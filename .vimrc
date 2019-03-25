@@ -19,11 +19,13 @@ Plugin 'editorconfig/editorconfig-vim'
 
 " Clojure Plugins
 Plugin 'guns/vim-clojure-highlight'
-Plugin 'guns/vim-sexp'
 Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'tpope/vim-fireplace'
-Plugin 'tpope/vim-salve.git'
+Plugin 'guns/vim-sexp'
 Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+Plugin 'tpope/vim-salve'
+Plugin 'tpope/vim-projectionist'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-fireplace'
 
 " Ansible Plugins
 Plugin 'pearofducks/ansible-vim'
