@@ -1,4 +1,5 @@
 fbrun_history
 fishd.*
+.config/fish/fish_variables
 vim/.netrwhist
 *.swp
