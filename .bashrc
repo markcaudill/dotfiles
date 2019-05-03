@@ -11,30 +11,6 @@ export CLEANPROMPT=""
 
 
 # Prompt
-gen_prompt() {
-    ## Looks like:
-    ## ╭─┤pty0├─╢mark@bender:~/src╟─┤(✿◠‿◠)├─╮
-    ## ╰>
-    local __last_exit=$?
-    [[ -f ~/.colors ]] && source ~/.colors
-
-    local __line_color=${Red}
-    local __prompt_color=${White}
-    local __text_color=${White}
-
-    local __clean_prompt="\n\u@\h:\w\n\$ "
-    local __success_string="${Green}(✿◠‿◠)"
-    local __failure_string="${Red}(◡﹏◡✿)"
-    local __exit_string=$(if [[ $__last_exit -ne 0 ]]; then echo $__failure_string; else echo $__success_string; fi)
-    local __prompt="> "
-
-    if [[ -n ${CLEANPROMPT} ]]; then
-        PS1="${__clean_prompt}"
-    else
-        PS1="\n${__line_color}╭─┤${__text_color}\l${__line_color}├─╢${__text_color}\u@\h:\w${__line_color}╟─┤${__exit_string}${__line_color}├─╮\n╰${__prompt}\[$(tput sgr0)\]"
-    fi
-}
-#export PROMPT_COMMAND=gen_prompt
 export PS1="\u@\h:\w\$ "
 
 
