@@ -1,14 +1,10 @@
+FILES = $(shell find ./ -maxdepth 1 -name ".*" | sort | grep -vE '(\.swp|\.git)' | sed 's/^\.\///g' | xargs)
 DESTINATION=~
 
 clean:
-	rm -f $(DESTINATION)/.bash_profile
-	rm -f $(DESTINATION)/.bashrc
-	rm -f $(DESTINATION)/.colors
-	rm -f $(DESTINATION)/.editorconfig
-	rm -f $(DESTINATION)/.tmux.conf
-	rm -f $(DESTINATION)/.todo
-	rm -rf $(DESTINATION)/.vim
-	rm -f $(DESTINATION)/.vimrc
+	for file in $(FILES); do \
+		rm -rf $(DESTINATION)/$$file; \
+	done
 
 bash: .bash_profile .bashrc
 	ln -sf $(shell pwd)/.bash_profile $(DESTINATION)/
