@@ -26,6 +26,9 @@ clean-vim:
 	rm -rf $(DESTINATION)/.vim/bundle
 	rm -f $(DESTINATION)/.vimrc
 
+clean-xresources:
+	rm -f $(DESTINATION)/.Xresources
+
 bash:
 	ln -sf ${PWD}/.bash_profile $(DESTINATION)/
 	ln -sf ${PWD}/.bashrc $(DESTINATION)/
@@ -52,6 +55,9 @@ vim:
 	ln -sf ${PWD}/.vimrc $(DESTINATION)/
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
+
+xresources:
+	ln -sf ${PWD}/.Xresources $(DESTINATION)/
 
 all: bash editorconfig fish forecast mintty tmux vim
 
