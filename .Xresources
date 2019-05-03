@@ -18,6 +18,12 @@
 *.color7:     #BFBFBF
 *.color15:    #E6E6E6
 
-XTerm*faceName: noto Mono
+XTerm*faceName: Noto Mono
 XTerm*faceSize: 12
 XTerm*renderFont: true
+
+XTerm*VT100.Translations:                           #override \
+    Shift <KeyPress> Insert:    insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>V:          insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C:            copy-selection(CLIPBOARD) \n\
+    Ctrl <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY)
