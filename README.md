@@ -11,6 +11,7 @@
 ## Installation
 
 ```bash
-make backup  # This might throw some errors.
-make install
+# Backup anything you don't want overwritten
+make clean
+make all
 ```
