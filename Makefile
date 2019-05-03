@@ -1,11 +1,4 @@
-BAK=~/.dotfiles-$(shell date '+%Y-%m-%d_%H%M%S').bak
 DESTINATION=~
-
-backup:
-	mkdir $(BAK)
-	for file in bash_profile bashrc colors editorconfig git-prompt.sh tmux.conf todo vim vimrc; do \
-		mv $(DESTINATION)/.$$file $(BAK); \
-	done
 
 clean:
 	rm -f $(DESTINATION)/.bash_profile
