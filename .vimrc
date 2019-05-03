@@ -37,7 +37,11 @@ filetype plugin indent on    " required
 
 syntax on
 set t_Co=256
-colorscheme dracula
+try
+    colorscheme dracula
+catch
+    " Meh
+endtry
 
 set number
 set ruler
