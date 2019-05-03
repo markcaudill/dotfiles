@@ -1,36 +1,63 @@
-FILES = $(shell find ./ -maxdepth 1 -name ".*" | sort | grep -vE '(\.swp|\.git)' | sed 's/^\.\///g' | xargs)
 DESTINATION = ~
 
-clean:
-	for file in $(FILES); do \
-		rm -rf $(DESTINATION)/$$file; \
-	done
+clean: clean-bash clean-editorconfig clean-fish clean-forecast clean-mintty clean-tmux clean-vim
 
-bash: .bash_profile .bashrc .colors
-	ln -sf ${pwd}/.bash_profile $(DESTINATION)/
-	ln -sf ${pwd}/.bashrc $(DESTINATION)/
-	ln -sf ${pwd}/.colors $(DESTINATION)/
+clean-bash:
+	rm -f $(DESTINATION)/.bash_profile
+	rm -f $(DESTINATION)/.bashrc
+	rm -f $(DESTINATION)/.colors
 
-editorconfig: .editorconfig
-	ln -sf ${pwd}/.editorconfig $(DESTINATION)/
+clean-editorconfig:
+	rm -f $(DESTINATION)/.editorconfig
 
-fish: .config/fish
+clean-fish:
+	rm -rf $(DESTINATION)/.config/fish
+
+clean-forecast:
+	rm -f $(DESTINATION)/.forecast.io.example
+
+clean-mintty:
+	rm -f $(DESTINATION)/.minttyrc
+
+clean-tmux:
+	rm -f $(DESTINATION)/.tmux.conf
+
+clean-vim:
+	rm -rf $(DESTINATION)/.vim/bundle
+	rm -f $(DESTINATION)/.vimrc
+
+bash:
+	ln -sf ${PWD}/.bash_profile $(DESTINATION)/
+	ln -sf ${PWD}/.bashrc $(DESTINATION)/
+	ln -sf ${PWD}/.colors $(DESTINATION)/
+
+editorconfig:
+	ln -sf ${PWD}/.editorconfig $(DESTINATION)/
+
+fish:
 	mkdir -p $(DESTINATION)/.config
-	ln -sf ${pwd}/.config/fish $(DESTINATION)/.config/
+	ln -sf ${PWD}/.config/fish $(DESTINATION)/.config/
 
-forecast: .forecast.io
-	ln -sf ${pwd}/.forecast.io $(DESTINATION)/.forecast.io.example
+forecast:
+	ln -sf ${PWD}/.forecast.io $(DESTINATION)/.forecast.io.example
 
-mintty: .minttyrc
-	ln -sf ${pwd}/.minttyrc $(DESTINATION)/
+mintty:
+	ln -sf ${PWD}/.minttyrc $(DESTINATION)/
 
-tmux: .tmux.conf
-	ln -sf ${pwd}/.tmux.conf $(DESTINATION)/
+tmux:
+	ln -sf ${PWD}/.tmux.conf $(DESTINATION)/
 
-vim: .vimrc
+vim:
 	mkdir -p $(DESTINATION)/.vim/bundle
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
-	ln -sf ${pwd}/.vimrc $(DESTINATION)/
+	ln -sf ${PWD}/.vimrc $(DESTINATION)/
 
-install: bash editorconfig fish forecast mintty tmux vim
+all: bash editorconfig fish forecast mintty tmux vim
+
+.PHONY: all clean
+
+help:
+	@grep -E '^[a-zA-Z_-]+:.*$$' $(MAKEFILE_LIST)
+
+.DEFAULT_GOAL := help
