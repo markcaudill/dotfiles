@@ -49,9 +49,9 @@ tmux:
 
 vim:
 	mkdir -p $(DESTINATION)/.vim/bundle
+	ln -sf ${PWD}/.vimrc $(DESTINATION)/
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
-	ln -sf ${PWD}/.vimrc $(DESTINATION)/
 
 all: bash editorconfig fish forecast mintty tmux vim
 
