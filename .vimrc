@@ -27,6 +27,9 @@ Plugin 'tpope/vim-projectionist'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fireplace'
 
+" Ledger Plugins
+Plugin 'ledger/vim-ledger'
+
 " Ansible Plugins
 Plugin 'pearofducks/ansible-vim'
 
@@ -43,8 +46,10 @@ catch
     " Meh
 endtry
 
-set number
+set number relativenumber
+set nu rnu
 set ruler
+
 set laststatus=2
 set showcmd
 " Autocomplete filenames
