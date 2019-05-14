@@ -27,3 +27,6 @@ XTerm*VT100.Translations:                           #override \
     Ctrl Shift <Key>V:          insert-selection(CLIPBOARD) \n\
     Ctrl Shift <Key>C:            copy-selection(CLIPBOARD) \n\
     Ctrl <Btn1Up>: exec-formatted("xdg-open '%t'", PRIMARY)
+
+*.font: Noto Mono:pixelsize=16:antialias=true:autohint=true;
+*.alpha: 240
