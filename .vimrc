@@ -83,5 +83,9 @@ filetype plugin on
 
 let python_highlight_all=1
 
+let g:ansible_unindent_after_newline = 1
+let g:ansible_name_highlight = 'b
+let g:ansible_extra_keywords_highlight = 1'
+
 " Timestamp macro
 ia dt <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
