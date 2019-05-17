@@ -5,10 +5,6 @@ export EDITOR="vim"
 export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/heroku/bin
 export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
 export SSH_ENV=$HOME/.ssh/environment
-export CLEANPROMPT=""
-
-[[ -f ~/.todo_completion ]] && source ~/.todo_completion && complete -F _todo t
-
 
 # Prompt
 export PS1="\u@\h:\w\$ "
