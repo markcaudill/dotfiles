@@ -86,6 +86,7 @@ let python_highlight_all=1
 let g:ansible_unindent_after_newline = 1
 let g:ansible_name_highlight = 'b'
 let g:ansible_extra_keywords_highlight = 1
+au BufRead,BufNewFile */inventory set filetype=yaml.ansible
 
 " Timestamp macro
 ia dt <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
