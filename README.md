@@ -1,14 +1,9 @@
-# dotfiles
+dotfiles
+========
+muh dots
 
-    wow
-                     such dot
-
-
-         so files
-
-               many bash
-
-## Installation
+Installation
+------------
 
 ```bash
 # Backup anything you don't want overwritten
