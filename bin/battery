@@ -1,0 +1,4 @@
+#!/bin/sh
+
+BATTERY_FILE=/sys/class/power_supply/BAT0/capacity
+[ -r ${BATTERY_FILE} ] && cat ${BATTERY_FILE} || echo UNKNOWN

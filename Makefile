@@ -1,11 +1,16 @@
 DESTINATION = ~
+DESTINATION_BIN = ~/bin
 
-clean: clean-bash clean-editorconfig clean-fish clean-forecast clean-mintty clean-tmux clean-vim
+clean: clean-bash clean-bin clean-editorconfig clean-fish clean-forecast clean-mintty clean-tmux clean-vim
 
 clean-bash:
 	rm -f $(DESTINATION)/.bash_profile
 	rm -f $(DESTINATION)/.bashrc
 	rm -f $(DESTINATION)/.colors
+
+clean-bin:
+	rm -f $(DESTINATION_BIN)/battery
+	rm -f $(DESTINATION_BIN)/dinfo
 
 clean-editorconfig:
 	rm -f $(DESTINATION)/.editorconfig
@@ -34,6 +39,10 @@ bash:
 	ln -sf ${PWD}/.bashrc $(DESTINATION)/
 	ln -sf ${PWD}/.colors $(DESTINATION)/
 
+bin:
+	ln -sf ${PWD}/bin/battery $(DESTINATION_BIN)/battery
+	ln -sf ${PWD}/bin/dinfo $(DESTINATION_BIN)/dinfo
+
 editorconfig:
 	ln -sf ${PWD}/.editorconfig $(DESTINATION)/
 
@@ -59,9 +68,9 @@ vim:
 xresources:
 	ln -sf ${PWD}/.Xresources $(DESTINATION)/
 
-all: bash editorconfig fish forecast mintty tmux vim
+all: bash bin editorconfig fish forecast mintty tmux vim
 
-.PHONY: all clean
+.PHONY: all bash bin clean clean-bash clean-bin clean-editorconfig clean-fish clean-forecast clean-mintty clean-tmux clean-vim clean-xresources editorconfig fish forecast help mintty tmux vim xresources
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*$$' $(MAKEFILE_LIST)
