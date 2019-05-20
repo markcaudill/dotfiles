@@ -1,0 +1,68 @@
+#!/bin/sh
+
+# Defaults
+NOTES_DIR=$HOME/.notes
+NOTES_EXT=.md
+
+# Helper Functions
+timestamp() {
+    # Generate a sortable, yet still human-readable timestamp.
+    date '+%Y-%m-%d_%H%M%S'
+}
+
+slugify() {
+    echo ${*} | sed 's/[^A-Za-z0-9_-]/-/g' | sed 's/--*/-/g'
+}
+
+# Operation Functions
+help() {
+    cat <<HELP
+Usage: $(basename ${0}) {help|new|ls}
+Plain text note-taking.
+
+  help        this message
+  new         create a new note
+  ls          list notes
+HELP
+}
+
+new() {
+    if [ -z "${*}" ]; then
+        local filename=$(slugify "$(timestamp)")
+    else
+        local filename=$(slugify "$(timestamp)-${*}")
+    fi
+    ${EDITOR} "${NOTES_DIR}/${filename}${NOTES_EXT}"
+}
+
+ls_() {
+    local file_cmd=${FILE:-ls}
+    ${file_cmd} "${NOTES_DIR}"
+}
+
+main() {
+    # Initialize storage
+    mkdir -p ${NOTES_DIR}
+
+    case ${1} in
+        help)
+            help
+            exit
+            ;;
+        new)
+            shift
+            new ${*}
+            exit
+            ;;
+        ls)
+            ls_
+            exit
+            ;;
+        *)
+            help
+            exit 1
+            ;;
+    esac
+}
+
+main ${*}
