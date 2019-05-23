@@ -1,8 +1,9 @@
 set fish_greeting # Clear greeting
 
-add_to_user_path ~/bin
-add_to_user_path /usr/bin
-add_to_user_path /usr/sbin
+set --export PATH $PATH ~/bin
+set --export PATH $PATH /usr/bin
+set --export PATH $PATH /usr/sbin
+set --export PATH $PATH /usr/local/go/bin
 set --export BROWSER firefox
 set --export EDITOR vim
 set --export FILE ranger
