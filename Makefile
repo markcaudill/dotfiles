@@ -11,6 +11,7 @@ clean-bash:
 clean-bin:
 	rm -f $(DESTINATION_BIN)/battery
 	rm -f $(DESTINATION_BIN)/dinfo
+	rm -f $(DESTINATION_BIN)/extract
 	rm -f $(DESTINATION_BIN)/notes
 
 clean-editorconfig:
@@ -43,6 +44,7 @@ bash:
 bin:
 	ln -sf ${PWD}/bin/battery $(DESTINATION_BIN)/battery
 	ln -sf ${PWD}/bin/dinfo $(DESTINATION_BIN)/dinfo
+	ln -sf ${PWD}/bin/extract $(DESTINATION_BIN)/extract
 	ln -sf ${PWD}/bin/notes $(DESTINATION_BIN)/notes
 
 editorconfig:
