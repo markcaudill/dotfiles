@@ -13,6 +13,7 @@ clean-bin:
 	rm -f $(DESTINATION_BIN)/dinfo
 	rm -f $(DESTINATION_BIN)/extract
 	rm -f $(DESTINATION_BIN)/notes
+	rm -f $(DESTINATION_BIN)/sysinfo
 	rm -f $(DESTINATION_BIN)/uua
 
 clean-editorconfig:
@@ -47,6 +48,7 @@ bin:
 	ln -sf ${PWD}/bin/dinfo $(DESTINATION_BIN)/dinfo
 	ln -sf ${PWD}/bin/extract $(DESTINATION_BIN)/extract
 	ln -sf ${PWD}/bin/notes $(DESTINATION_BIN)/notes
+	ln -sf ${PWD}/bin/sysinfo $(DESTINATION_BIN)/sysinfo
 	ln -sf ${PWD}/bin/uua $(DESTINATION_BIN)/uua
 
 editorconfig:
