@@ -1,7 +1,7 @@
 DESTINATION = ~
 DESTINATION_BIN = ~/bin
 
-clean: clean-bash clean-bin clean-editorconfig clean-fish clean-forecast clean-mintty clean-tmux clean-vim
+clean: clean-bash clean-bin clean-editorconfig clean-fish clean-forecast clean-mintty clean-profile clean-tmux clean-vim
 
 clean-bash:
 	rm -f $(DESTINATION)/.bash_profile
@@ -28,6 +28,9 @@ clean-forecast:
 
 clean-mintty:
 	rm -f $(DESTINATION)/.minttyrc
+
+clean-profile:
+	rm -f $(DESTINATION)/.profile
 
 clean-tmux:
 	rm -f $(DESTINATION)/.tmux.conf
@@ -66,6 +69,9 @@ forecast:
 mintty:
 	ln -sf ${PWD}/.minttyrc $(DESTINATION)/
 
+profile:
+	ln -sf ${PWD}/.profile $(DESTINATION)/
+
 tmux:
 	ln -sf ${PWD}/.tmux.conf $(DESTINATION)/
 
@@ -78,7 +84,7 @@ vim:
 xresources:
 	ln -sf ${PWD}/.Xresources $(DESTINATION)/
 
-all: bash bin editorconfig fish forecast mintty tmux vim
+all: bash bin editorconfig fish forecast mintty profile tmux vim
 
 .PHONY: all bash bin clean clean-bash clean-bin clean-editorconfig clean-fish clean-forecast clean-mintty clean-tmux clean-vim clean-xresources editorconfig fish forecast help mintty tmux vim xresources
 
