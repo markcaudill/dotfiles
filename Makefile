@@ -15,6 +15,7 @@ clean-bin:
 	rm -f $(DESTINATION_BIN)/notes
 	rm -f $(DESTINATION_BIN)/sysinfo
 	rm -f $(DESTINATION_BIN)/uua
+	rm -f $(DESTINATION_BIN)/wlpop
 
 clean-editorconfig:
 	rm -f $(DESTINATION)/.editorconfig
@@ -50,6 +51,7 @@ bin:
 	ln -sf ${PWD}/bin/notes $(DESTINATION_BIN)/notes
 	ln -sf ${PWD}/bin/sysinfo $(DESTINATION_BIN)/sysinfo
 	ln -sf ${PWD}/bin/uua $(DESTINATION_BIN)/uua
+	ln -sf ${PWD}/bin/wlpop $(DESTINATION_BIN)/wlpop
 
 editorconfig:
 	ln -sf ${PWD}/.editorconfig $(DESTINATION)/
