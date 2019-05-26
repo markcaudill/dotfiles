@@ -10,7 +10,6 @@ alias ll='ls -l'
 alias mount='mount | column -t'
 alias path='echo -e ${PATH//:/\\n}'
 alias ping='ping -c 5'
-alias t='todo.sh -Ant'
 alias timestamp='date +"%Y%m%d%H%M%S"'
 alias wget='wget -c'
 
