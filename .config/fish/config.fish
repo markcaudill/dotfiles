@@ -8,4 +8,14 @@ set --export GIT_EDITOR vim
 set --export PYTHONPATH $PYTHONPATH ~/src/ansible/lib
 set --export TERMINAL gnome-terminal
 
+alias df='df -h'
+alias du='du -shx'
+alias la='ls -a'
+alias ll='ls -l'
+alias mount='mount | column -t'
+alias path='echo $PATH | sed "s/ /\n/g"'
+alias ping='ping -c 5'
+alias timestamp='date +"%Y%m%d%H%M%S"'
+alias wget='wget -c'
+
 ssh_agent
