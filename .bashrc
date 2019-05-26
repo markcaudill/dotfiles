@@ -1,14 +1,6 @@
 shopt -s histappend
+
 umask 0077
-
-export EDITOR="vim"
-export PATH=$PATH:$HOME/bin:$HOME/go/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/heroku/bin
-export PYTHONPATH=$PYTHONPATH:~/src/ansible/lib
-export SSH_ENV=$HOME/.ssh/environment
-
-# Prompt
-export PS1="\u@\h:\w\$ "
-
 
 # Aliases
 alias df='df -h'
