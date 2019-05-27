@@ -2,6 +2,8 @@ shopt -s histappend
 
 umask 0077
 
+export PS1="\$ "
+
 # Aliases
 alias ccat='highlight -O ansi'
 alias df='df -h'
