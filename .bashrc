@@ -3,6 +3,7 @@ shopt -s histappend
 umask 0077
 
 # Aliases
+alias ccat='highlight -O ansi'
 alias df='df -h'
 alias du='du -shx'
 alias la='ls -a'
@@ -36,11 +37,4 @@ transfer() {
     rm -f $tmpfile;
 }
 
-
-# Source SSH settings, if applicable
-if [ -f "${SSH_ENV}" ]; then
-    . ${SSH_ENV} > /dev/null
-    ps -ef | grep ${SSH_AGENT_PID} | grep ssh-agent$ > /dev/null || start_agent
-else
-     start_agent;
-fi
+gpgconf --launch gpg-agent

@@ -1,13 +1,14 @@
 set fish_greeting # Clear greeting
 
-set --export PATH $HOME/bin $HOME/.local/bin /usr/bin /usr/sbin /bin /sbin
+#set --export PATH $HOME/bin $HOME/.local/bin /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin
 set --export BROWSER firefox
 set --export EDITOR vim
 set --export FILE ranger
 set --export GIT_EDITOR vim
 set --export PYTHONPATH $PYTHONPATH ~/src/ansible/lib
-set --export TERMINAL gnome-terminal
+set --export TERMINAL st
 
+alias ccat='highlight -O ansi'
 alias df='df -h'
 alias du='du -shx'
 alias la='ls -a'
@@ -18,4 +19,4 @@ alias ping='ping -c 5'
 alias timestamp='date +"%Y%m%d%H%M%S"'
 alias wget='wget -c'
 
-ssh_agent
+gpgconf --launch gpg-agent
