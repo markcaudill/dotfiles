@@ -2,7 +2,19 @@ shopt -s histappend
 
 umask 0077
 
-export PS1="\$ "
+if [ -f ~/.colors ]; then
+    . ~/.colors
+    col_bracket=$(fromhex e9c46a)
+    col_user=$(fromhex 2a9d8f)
+    col_at=$(fromhex e9c46a)
+    col_host=$(fromhex f4a261)
+    col_colon=$(fromhex e9c46a)
+    col_dir=$(fromhex e76f51)
+    col_prompt=$(fromhex e9c46a)
+    export PS1="\[$(tput setaf ${col_bracket})\][\[$(tput setaf ${col_user})\]\u\[$(tput setaf ${col_at})\]@\[$(tput setaf ${col_host})\]\h\[$(tput setaf ${col_colon})\]:\[$(tput setaf ${col_dir})\]\W\[$(tput setaf ${col_bracket})\]]\[$(tput setaf ${col_prompt})\]\$${Color_Off} "
+else
+    export PS1="[\u@\h:\w]\$ "
+fi
 
 # Aliases
 alias ccat='highlight -O ansi'
