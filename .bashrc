@@ -13,7 +13,7 @@ if [ -f ~/.colors ]; then
     col_prompt=$(fromhex e9c46a)
     export PS1="\[$(tput setaf ${col_bracket})\][\[$(tput setaf ${col_user})\]\u\[$(tput setaf ${col_at})\]@\[$(tput setaf ${col_host})\]\h\[$(tput setaf ${col_colon})\]:\[$(tput setaf ${col_dir})\]\W\[$(tput setaf ${col_bracket})\]]\[$(tput setaf ${col_prompt})\]\$${Color_Off} "
 else
-    export PS1="[\u@\h:\w]\$ "
+    export PS1="[\u@\h:\W]\$ "
 fi
 
 # Aliases
