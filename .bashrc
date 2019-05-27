@@ -8,6 +8,7 @@ export PS1="\$ "
 alias ccat='highlight -O ansi'
 alias df='df -h'
 alias du='du -shx'
+alias ls='ls --color=auto'
 alias la='ls -a'
 alias ll='ls -l'
 alias mount='mount | column -t'
