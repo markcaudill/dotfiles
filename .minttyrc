@@ -20,3 +20,4 @@ Font=Consolas
 FontHeight=11
 AllowBlinking=yes
 CursorType=block
+Term=xterm-256color
