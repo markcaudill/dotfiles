@@ -57,3 +57,11 @@ transfer() {
     cat $tmpfile;
     rm -f $tmpfile;
 }
+
+# Start SSH Agent if SSH_ENV exists and this is an interactive shell
+if [[ -f ${SSH_ENV} && $- == *i* ]]; then
+    . ${SSH_ENV} > /dev/null
+    ps -ef | grep ${SSH_AGENT_PID} | grep 'ssh-agent$' > /dev/null || start_agent
+else
+    start_agent
+fi
