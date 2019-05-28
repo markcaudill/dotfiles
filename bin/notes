@@ -36,7 +36,11 @@ new() {
 }
 
 ls_() {
-    local file_cmd=${FILE:-ls}
+    if [ -x ${FILE} ]; then
+        local file_cmd="${FILE}"
+    else
+        local file_cmd=ls
+    fi
     ${file_cmd} "${NOTES_DIR}"
 }
 
