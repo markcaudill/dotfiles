@@ -94,5 +94,7 @@ let g:ansible_name_highlight = 'b'
 let g:ansible_extra_keywords_highlight = 1
 au BufRead,BufNewFile */inventory set filetype=yaml.ansible
 
+au BufRead,BufNewFile *.md setlocal textwidth=80
+
 " Timestamp macro
 ia dt <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
