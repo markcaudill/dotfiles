@@ -21,7 +21,7 @@ clean-editorconfig:
 	rm -f $(DESTINATION)/.editorconfig
 
 clean-fish:
-	rm -rf $(DESTINATION)/.config/fish
+	rm -f $(DESTINATION)/.config/fish
 
 clean-forecast:
 	rm -f $(DESTINATION)/.forecast.io.example
