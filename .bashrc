@@ -51,5 +51,3 @@ transfer() {
     cat $tmpfile;
     rm -f $tmpfile;
 }
-
-gpgconf --launch gpg-agent
