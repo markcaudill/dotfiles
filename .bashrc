@@ -2,6 +2,12 @@ shopt -s histappend
 
 umask 0077
 
+export BROWSER=firefox
+export EDITOR=vim
+export FILE=ranger
+export READER=zathura
+export TERMINAL=st
+
 if [ -f ~/.colors ]; then
     . ~/.colors
     col_bracket=$(fromhex e9c46a)
