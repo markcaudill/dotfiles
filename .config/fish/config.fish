@@ -18,5 +18,3 @@ alias path='echo $PATH | sed "s/ /\n/g"'
 alias ping='ping -c 5'
 alias timestamp='date +"%Y%m%d%H%M%S"'
 alias wget='wget -c'
-
-gpgconf --launch gpg-agent
