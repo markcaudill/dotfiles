@@ -8,6 +8,10 @@ export FILE=ranger
 export READER=zathura
 export TERMINAL=st
 
+export CDPATH=".:~"
+export HISTSIZE=-1
+export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S "
+
 if [ -f ~/.colors ]; then
     . ~/.colors
     col_bracket=$(fromhex e9c46a)
