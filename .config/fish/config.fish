@@ -21,4 +21,4 @@ alias timestamp='date +"%Y%m%d%H%M%S"'
 alias wget='wget -c'
 
 #  Start SSH Agent if SSH_ENV exists and this is an interactive shell
-start_agent
+status is-interactive; and start_agent
