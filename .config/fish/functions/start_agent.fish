@@ -1,5 +1,5 @@
 # Source: https://superuser.com/a/966942/40900
-function ssh_agent --description 'launch the ssh-agent and add the id_rsa identity'
+function start_agent --description 'launch the ssh-agent and add the id_rsa identity'
   if begin
       set -q SSH_AGENT_PID
       and kill -0 $SSH_AGENT_PID
