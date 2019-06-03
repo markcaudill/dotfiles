@@ -1,7 +1,7 @@
 DESTINATION = ~
 DESTINATION_BIN = ~/bin
 
-clean: clean-bash clean-bin clean-editorconfig clean-fish clean-forecast clean-mintty clean-profile clean-tmux clean-vim
+clean: clean-bash clean-bin clean-editorconfig clean-fish clean-mintty clean-profile clean-tmux clean-vim
 
 clean-bash:
 	rm -f $(DESTINATION)/.bash_profile
@@ -22,9 +22,6 @@ clean-editorconfig:
 
 clean-fish:
 	rm -f $(DESTINATION)/.config/fish
-
-clean-forecast:
-	rm -f $(DESTINATION)/.forecast.io.example
 
 clean-mintty:
 	rm -f $(DESTINATION)/.minttyrc
@@ -63,9 +60,6 @@ fish:
 	mkdir -p $(DESTINATION)/.config
 	ln -sf ${PWD}/.config/fish $(DESTINATION)/.config/
 
-forecast:
-	ln -sf ${PWD}/.forecast.io $(DESTINATION)/.forecast.io.example
-
 mintty:
 	ln -sf ${PWD}/.minttyrc $(DESTINATION)/
 
@@ -84,9 +78,9 @@ vim:
 xresources:
 	ln -sf ${PWD}/.Xresources $(DESTINATION)/
 
-all: bash bin editorconfig fish forecast mintty profile tmux vim
+all: bash bin editorconfig fish mintty profile tmux vim
 
-.PHONY: all bash bin clean clean-bash clean-bin clean-editorconfig clean-fish clean-forecast clean-mintty clean-tmux clean-vim clean-xresources editorconfig fish forecast help mintty tmux vim xresources
+.PHONY: all bash bin clean clean-bash clean-bin clean-editorconfig clean-fish clean-mintty clean-tmux clean-vim clean-xresources editorconfig fish help mintty tmux vim xresources
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*$$' $(MAKEFILE_LIST)
