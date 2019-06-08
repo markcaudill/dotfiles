@@ -45,6 +45,7 @@ bash:
 	ln -sf ${PWD}/.colors $(DESTINATION)/
 
 bin:
+	mkdir -p $(DESTINATION_BIN)
 	ln -sf ${PWD}/bin/battery $(DESTINATION_BIN)/battery
 	ln -sf ${PWD}/bin/dinfo $(DESTINATION_BIN)/dinfo
 	ln -sf ${PWD}/bin/extract $(DESTINATION_BIN)/extract
