@@ -2,11 +2,12 @@ shopt -s histappend
 
 umask 0077
 
-export BROWSER=firefox
-export EDITOR=vim
-export FILE=ranger
-export READER=zathura
-export TERMINAL=st
+include(`include/env-vars.m4')dnl
+export `BROWSER'=BROWSER
+export `EDITOR'=EDITOR
+export `FILE'=FILE
+export `READER'=READER
+export `TERMINAL'=TERMINAL
 
 export CDPATH=".:~"
 export HISTSIZE=-1
@@ -26,19 +27,7 @@ else
     export PS1="[\u@\h:\W]\$ "
 fi
 
-# Aliases
-alias ccat='highlight -O ansi'
-alias df='df -h'
-alias du='du -shx'
-alias ls='ls --color=auto'
-alias la='ls -a'
-alias ll='ls -l'
-alias mount='mount | column -t'
-alias path='echo -e ${PATH//:/\\n}'
-alias ping='ping -c 5'
-alias timestamp='date +"%Y%m%d%H%M%S"'
-alias wget='wget -c'
-
+include(`include/aliases.m4')dnl
 
 # Functions
 mp3() {

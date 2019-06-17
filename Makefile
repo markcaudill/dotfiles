@@ -115,6 +115,7 @@ uninstall-git:
 shells: .profile bash fish tmux
 
 clean-shells: clean-bash clean-fish clean-tmux
+	rm -f .profile
 
 install-shells: .profile install-bash install-fish install-tmux
 	cp -p .profile $(HOME)/.profile
@@ -122,12 +123,16 @@ install-shells: .profile install-bash install-fish install-tmux
 uninstall-shells: uninstall-bash uninstall-fish uninstall-tmux
 	rm -f $(HOME)/.profile
 
+.profile: .profile.m4 include/env-vars.m4
+	m4 < .profile.m4 > .profile
+
 ###
 ### Bash
 ###
 bash: .bash_profile .bashrc
 
 clean-bash:
+	rm -f .bashrc
 
 install-bash: bash
 	cp -p .bash_profile $(HOME)/.bash_profile
@@ -137,12 +142,16 @@ uninstall-bash:
 	rm -f $(HOME)/.bash_profile
 	rm -f $(HOME)/.bashrc
 
+.bashrc: .bashrc.m4 include/aliases.m4 include/env-vars.m4
+	m4 < .bashrc.m4 > .bashrc
+
 ###
 ### Fish
 ###
 fish: .config/fish/config.fish $(FISH_FUNCTIONS)
 
 clean-fish:
+	rm -f .config/fish/config.fish
 
 install-fish: fish
 	mkdir -p $(HOME)/.config
@@ -150,6 +159,9 @@ install-fish: fish
 
 uninstall-fish:
 	rm -rf $(HOME)/.config/fish
+
+.config/fish/config.fish: .config/fish/config.fish.m4 include/env-vars.m4
+	m4 < .config/fish/config.fish.m4 > .config/fish/config.fish
 
 
 ###
