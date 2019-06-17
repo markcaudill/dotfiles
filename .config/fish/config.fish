@@ -1,7 +1,7 @@
 set fish_greeting # Clear greeting
 
 set --export SSH_ENV ~/.ssh/environment
-#set --export PATH $HOME/bin $HOME/.local/bin /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin
+set --export PATH $HOME/bin $HOME/.local/bin /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin
 set --export BROWSER firefox
 set --export EDITOR vim
 set --export FILE ranger

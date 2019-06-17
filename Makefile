@@ -1,89 +1,166 @@
-DESTINATION = ~
-DESTINATION_BIN = ~/bin
+SHELL = /bin/sh
 
-clean: clean-bash clean-bin clean-editorconfig clean-fish clean-mintty clean-profile clean-tmux clean-vim
+BINS_SH =       \
+	bin/battery \
+	bin/dinfo   \
+	bin/extract \
+	bin/notes   \
+	bin/sysinfo \
+	bin/wlpop
 
-clean-bash:
-	rm -f $(DESTINATION)/.bash_profile
-	rm -f $(DESTINATION)/.bashrc
-	rm -f $(DESTINATION)/.colors
+FISH_FUNCTIONS =                             \
+    .config/fish/functions/ans-role.fish     \
+    .config/fish/functions/bash-example.fish \
+    .config/fish/functions/fish_prompt.fish  \
+    .config/fish/functions/path.fish         \
+    .config/fish/functions/ppjson.fish       \
+    .config/fish/functions/s.fish            \
+    .config/fish/functions/start_agent.fish  \
+    .config/fish/functions/ytdl.fish         \
+    .config/fish/functions/ytmp3.fish
 
-clean-bin:
-	rm -f $(DESTINATION_BIN)/battery
-	rm -f $(DESTINATION_BIN)/dinfo
-	rm -f $(DESTINATION_BIN)/extract
-	rm -f $(DESTINATION_BIN)/notes
-	rm -f $(DESTINATION_BIN)/sysinfo
-	rm -f $(DESTINATION_BIN)/uua
-	rm -f $(DESTINATION_BIN)/wlpop
+GIT_NAME = 'Mark Caudill'
+GIT_EMAIL = mark@mrkc.me
+GIT_SIGNINGKEY = 0x5B8069859601013F
 
-clean-editorconfig:
-	rm -f $(DESTINATION)/.editorconfig
 
-clean-fish:
-	rm -f $(DESTINATION)/.config/fish
+.POSIX:
 
-clean-mintty:
-	rm -f $(DESTINATION)/.minttyrc
+.PHONY: all install install-bash install-bins install-editors install-fish install-git install-shells install-tmux install-vim uninstall uninstall-bash uninstall-bins uninstall-editors uninstall-fish uninstall-git uninstall-shells uninstall-tmux uninstall-vim
 
-clean-profile:
-	rm -f $(DESTINATION)/.profile
 
-clean-tmux:
-	rm -f $(DESTINATION)/.tmux.conf
+all: bins editors git shells
+
+clean: clean-bins clean-editors clean-git clean-shells
+
+install: install-bins install-editors install-git install-shells
+
+uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-shells
+
+##
+## Scripts
+##
+bins: $(BINS_SH)
+
+clean-bins:
+
+install-bins: bins
+	mkdir -v -p $(HOME)/.local/bin
+	cp -v -p -t $(HOME)/.local/bin $(BINS_SH)
+	@echo Make sure $(HOME)/.local/bin is in your PATH.
+
+uninstall-bins:
+	for bin in $(BINS_SH); do \
+		rm -fv $(HOME)/.local/$$bin ;\
+	done
+
+
+##
+## Editors
+##
+editors: .editorconfig vim
+
+clean-editors: clean-vim
+
+install-editors: install-vim
+	cp -p .editorconfig $(HOME)/.editorconfig
+
+uninstall-editors: uninstall-vim
+	rm -f $(HOME)/.editorconfig
+
+###
+### Vim
+###
+vim: .vimrc
 
 clean-vim:
-	rm -rf $(DESTINATION)/.vim/bundle
-	rm -f $(DESTINATION)/.vimrc
 
-clean-xresources:
-	rm -f $(DESTINATION)/.Xresources
-
-bash:
-	ln -sf ${PWD}/.bash_profile $(DESTINATION)/
-	ln -sf ${PWD}/.bashrc $(DESTINATION)/
-	ln -sf ${PWD}/.colors $(DESTINATION)/
-
-bin:
-	mkdir -p $(DESTINATION_BIN)
-	ln -sf ${PWD}/bin/battery $(DESTINATION_BIN)/battery
-	ln -sf ${PWD}/bin/dinfo $(DESTINATION_BIN)/dinfo
-	ln -sf ${PWD}/bin/extract $(DESTINATION_BIN)/extract
-	ln -sf ${PWD}/bin/notes $(DESTINATION_BIN)/notes
-	ln -sf ${PWD}/bin/sysinfo $(DESTINATION_BIN)/sysinfo
-	ln -sf ${PWD}/bin/uua $(DESTINATION_BIN)/uua
-	ln -sf ${PWD}/bin/wlpop $(DESTINATION_BIN)/wlpop
-
-editorconfig:
-	ln -sf ${PWD}/.editorconfig $(DESTINATION)/
-
-fish:
-	mkdir -p $(DESTINATION)/.config
-	ln -sf ${PWD}/.config/fish $(DESTINATION)/.config/
-
-mintty:
-	ln -sf ${PWD}/.minttyrc $(DESTINATION)/
-
-profile:
-	ln -sf ${PWD}/.profile $(DESTINATION)/
-
-tmux:
-	ln -sf ${PWD}/.tmux.conf $(DESTINATION)/
-
-vim:
-	mkdir -p $(DESTINATION)/.vim/bundle
-	ln -sf ${PWD}/.vimrc $(DESTINATION)/
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+install-vim: vim
+	cp -p .vimrc $(HOME)/.vimrc
+	mkdir -p $(HOME)/.vim/bundle
+	test -d $(HOME)/.vim/bundle/Vundle.vim || \
+		git clone https://github.com/VundleVim/Vundle.vim.git $(HOME)/.vim/bundle/Vundle.vim
+	cd $(HOME)/.vim/bundle/Vundle.vim && git pull && cd -
 	vim +PluginInstall +qall
 
-xresources:
-	ln -sf ${PWD}/.Xresources $(DESTINATION)/
+uninstall-vim:
+	rm -rf $(HOME)/.vimrc $(HOME)/.vim/bundle
 
-all: bash bin editorconfig fish mintty profile tmux vim
 
-.PHONY: all bash bin clean clean-bash clean-bin clean-editorconfig clean-fish clean-mintty clean-tmux clean-vim clean-xresources editorconfig fish help mintty tmux vim xresources
+##
+## Git Shit
+##
+git: .gitconfig
 
-help:
-	@grep -E '^[a-zA-Z_-]+:.*$$' $(MAKEFILE_LIST)
+clean-git:
+	rm -f .gitconfig
 
-.DEFAULT_GOAL := help
+install-git: git
+	cp -p .gitconfig $(HOME)/.gitconfig
+
+uninstall-git:
+	rm -f $(HOME)/.gitconfig
+
+.gitconfig: .gitconfig.m4
+	m4 \
+		--define=GIT_NAME="$(GIT_NAME)" \
+		--define=GIT_EMAIL=$(GIT_EMAIL) \
+		--define=GIT_SIGNINGKEY=$(GIT_SIGNINGKEY) \
+		.gitconfig.m4 > .gitconfig
+
+
+##
+## Shells
+##
+shells: .profile bash fish tmux
+
+clean-shells: clean-bash clean-fish clean-tmux
+
+install-shells: .profile install-bash install-fish install-tmux
+	cp -p .profile $(HOME)/.profile
+
+uninstall-shells: uninstall-bash uninstall-fish uninstall-tmux
+	rm -f $(HOME)/.profile
+
+###
+### Bash
+###
+bash: .bash_profile .bashrc
+
+clean-bash:
+
+install-bash: bash
+	cp -p .bash_profile $(HOME)/.bash_profile
+	cp -p .bashrc $(HOME)/.bashrc
+
+uninstall-bash:
+	rm -f $(HOME)/.bash_profile
+	rm -f $(HOME)/.bashrc
+
+###
+### Fish
+###
+fish: .config/fish/config.fish $(FISH_FUNCTIONS)
+
+clean-fish:
+
+install-fish: fish
+	mkdir -p $(HOME)/.config
+	cp -pr .config/fish $(HOME)/.config/
+
+uninstall-fish:
+	rm -rf $(HOME)/.config/fish
+
+
+###
+### tmux
+###
+tmux: .tmux.conf
+
+clean-tmux:
+
+install-tmux: tmux
+	cp -p .tmux.conf $(HOME)/.tmux.conf
+
+uninstall-tmux:
+	rm -f $(HOME)/.tmux.conf
