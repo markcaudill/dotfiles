@@ -30,6 +30,10 @@ Plugin 'tpope/vim-fireplace'
 " Ledger Plugins
 Plugin 'ledger/vim-ledger'
 
+" Markdown Plugins
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+
 " Ansible Plugins
 Plugin 'pearofducks/ansible-vim'
 
