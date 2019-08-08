@@ -98,6 +98,7 @@ let g:ansible_name_highlight = 'b'
 let g:ansible_extra_keywords_highlight = 1
 au BufRead,BufNewFile */inventory set filetype=yaml.ansible
 
+let g:vim_markdown_new_list_item_indent = 2
 au BufRead,BufNewFile *.md setlocal textwidth=80
 
 " Timestamp macro
