@@ -1,11 +1,12 @@
 SHELL = /bin/sh
 
-BINS_SH =       \
-	bin/battery \
-	bin/dinfo   \
-	bin/extract \
-	bin/notes   \
-	bin/sysinfo \
+BINS_SH =          \
+	bin/battery    \
+	bin/dinfo      \
+	bin/extract    \
+	bin/notes      \
+	bin/sysinfo    \
+	bin/update_dns \
 	bin/wlpop
 
 LIBS =                     \

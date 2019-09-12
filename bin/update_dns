@@ -1,0 +1,17 @@
+#!/bin/sh
+
+CREDENTIALS="${HOME}/.update_dns.conf"
+MAILINABOX="${1}"
+RECORD="${2}"
+HCUUID="${3}"
+
+source "$(dirname ${0})/../lib/healthchecks.io.sh"
+source "${CREDENTIALS}"
+
+hc_start
+curl -s -X PUT --user ${USER}:${PASS} "${MAILINABOX}/admin/dns/custom/${RECORD}" > /dev/null
+if [ "$?" -eq 0 ]; then
+    hc_success
+else
+    hc_fail
+fi
