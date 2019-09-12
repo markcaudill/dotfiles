@@ -8,6 +8,9 @@ BINS_SH =       \
 	bin/sysinfo \
 	bin/wlpop
 
+LIBS =                     \
+    lib/healthchecks.io.sh
+
 FISH_FUNCTIONS =                             \
     .config/fish/functions/ans-role.fish     \
     .config/fish/functions/bash-example.fish \
@@ -29,13 +32,13 @@ GIT_SIGNINGKEY = 0x5B8069859601013F
 .PHONY: all install install-bash install-bins install-editors install-fish install-git install-shells install-tmux install-vim uninstall uninstall-bash uninstall-bins uninstall-editors uninstall-fish uninstall-git uninstall-shells uninstall-tmux uninstall-vim
 
 
-all: bins editors git shells
+all: bins editors git libs shells
 
-clean: clean-bins clean-editors clean-git clean-shells
+clean: clean-bins clean-editors clean-git clean-libs clean-shells
 
-install: install-bins install-editors install-git install-shells
+install: install-bins install-editors install-git install-libs install-shells
 
-uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-shells
+uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-shells
 
 ##
 ## Scripts
@@ -107,6 +110,23 @@ uninstall-git:
 		--define=GIT_EMAIL=$(GIT_EMAIL) \
 		--define=GIT_SIGNINGKEY=$(GIT_SIGNINGKEY) \
 		.gitconfig.m4 > .gitconfig
+
+
+##
+## Libs
+##
+libs: $(LIBS)
+
+clean-libs:
+
+install-libs: libs
+	mkdir -v -p $(HOME)/.local/lib
+	cp -v -p -t $(HOME)/.local/lib $(LIBS)
+
+uninstall-libs:
+	for lib in $(LIBS); do \
+		rm -fv $(HOME)/.local/$$lib ;\
+	done
 
 
 ##
