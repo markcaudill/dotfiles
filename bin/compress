@@ -1,0 +1,13 @@
+#!/bin/sh
+
+while [ $# -gt 0 ]; do
+    if [ -d "${1}" ]; then
+        command tar -cJf "${1}.tar.bz2" "${1}"
+    elif [ -f "${1}" ]; then
+        command bzip2 -z "${1}"
+    else
+        echo "Unknown error in compressing ${1}. Skipping any remaining files."
+        exit 1
+    fi
+    shift
+done

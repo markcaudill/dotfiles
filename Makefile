@@ -2,6 +2,7 @@ SHELL = /bin/sh
 
 BINS_SH =          \
 	bin/battery    \
+	bin/compress   \
 	bin/dinfo      \
 	bin/extract    \
 	bin/notes      \
