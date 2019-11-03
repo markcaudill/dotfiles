@@ -1,3 +1,7 @@
+# Cron monitoring tool
+# https://healthchecks.io/
+# https://github.com/healthchecks/healthchecks
+
 API_BASE="https://hc-ping.com"
 CURL_OPTS="-fsS --retry 3"
 
