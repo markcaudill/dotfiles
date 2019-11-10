@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# From https://www.commandlinefu.com/commands/view/24726/create-a-nicely-formatted-example-of-a-shell-command-and-its-output
+
+cat <<EXAMPLE
+EXAMPLE:
+
+    $@
+
+OUTPUT:
+
+$(eval "$@" | sed 's/^/    /g')
+
+EXAMPLE

@@ -4,6 +4,7 @@ BINS_SH =          \
 	bin/battery    \
 	bin/compress   \
 	bin/dinfo      \
+	bin/example    \
 	bin/extract    \
 	bin/notes      \
 	bin/sysinfo    \
