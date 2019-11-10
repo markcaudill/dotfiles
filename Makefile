@@ -7,6 +7,7 @@ BINS_SH =          \
 	bin/example    \
 	bin/extract    \
 	bin/gh         \
+	bin/mb         \
 	bin/notes      \
 	bin/sysinfo    \
 	bin/update_dns \
