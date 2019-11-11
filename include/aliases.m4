@@ -1,6 +1,7 @@
 alias ccat='highlight -O ansi'
 alias df='df -h'
 alias du='du -shx'
+alias fs='python -m SimpleHTTPServer'
 alias h='hledger'
 alias hb='hledger balance'
 alias hr='hledger register'
