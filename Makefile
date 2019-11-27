@@ -210,10 +210,10 @@ clean-mintty:
 	rm -f .minttyrc
 
 install-mintty:
-	cp -p .mintty $(HOME)/.mintty
+	cp -p .minttyrc $(HOME)/.mintty
 
 uninstall-mintty:
-	rm -f $(HOME)/.mintty
+	rm -f $(HOME)/.minttyrc
 
 .minttyrc:
 	cp -p submodules/mintty/dracula.minttyrc .minttyrc
