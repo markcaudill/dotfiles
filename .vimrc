@@ -12,7 +12,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Dracula Theme
-Plugin 'dracula/vim'
+Plugin 'dracula/vim', { 'name': 'dracula' }
+
+" vim-airline
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 
 " EditorConfig
 Plugin 'editorconfig/editorconfig-vim'
@@ -48,6 +52,8 @@ Plugin 'dag/vim-fish'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" Try to setup the colorscheme
+set rtp+=~/.vim/bundle/dracula
 syntax on
 set t_Co=256
 try
