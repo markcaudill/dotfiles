@@ -36,14 +36,16 @@ GIT_SIGNINGKEY = 0x5B8069859601013F
 
 .PHONY: all install install-bash install-bins install-editors install-fish install-git install-shells install-tmux install-vim uninstall uninstall-bash uninstall-bins uninstall-editors uninstall-fish uninstall-git uninstall-shells uninstall-tmux uninstall-vim
 
+.gitignore:
+	curl -s https://gitignore.io/api/vim,visualstudiocode > .gitignore
 
-all: bins editors git libs shells
+all: bins editors git libs shells terminals
 
-clean: clean-bins clean-editors clean-git clean-libs clean-shells
+clean: clean-bins clean-editors clean-git clean-libs clean-shells clean-terminals
 
-install: install-bins install-editors install-git install-libs install-shells
+install: install-bins install-editors install-git install-libs install-shells install-terminals
 
-uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-shells
+uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-shells uninstall-terminals
 
 ##
 ## Scripts
@@ -137,15 +139,15 @@ uninstall-libs:
 ##
 ## Shells
 ##
-shells: .profile bash fish tmux
+shells: .profile bash fish
 
-clean-shells: clean-bash clean-fish clean-tmux
+clean-shells: clean-bash clean-fish
 	rm -f .profile
 
-install-shells: .profile install-bash install-fish install-tmux
+install-shells: .profile install-bash install-fish
 	cp -p .profile $(HOME)/.profile
 
-uninstall-shells: uninstall-bash uninstall-fish uninstall-tmux
+uninstall-shells: uninstall-bash uninstall-fish
 	rm -f $(HOME)/.profile
 
 .profile: .profile.m4 include/env-vars.m4
@@ -187,6 +189,34 @@ uninstall-fish:
 
 .config/fish/config.fish: .config/fish/config.fish.m4 include/env-vars.m4
 	m4 < .config/fish/config.fish.m4 > .config/fish/config.fish
+
+##
+## Terminals
+##
+terminals: mintty tmux
+
+clean-terminals: clean-mintty clean-tmux
+
+install-terminals: install-mintty install-tmux
+
+uninstall-terminals: uninstall-mintty uninstall-tmux
+
+###
+### mintty
+###
+mintty: .minttyrc
+
+clean-mintty:
+	rm -f .minttyrc
+
+install-mintty:
+	cp -p .mintty $(HOME)/.mintty
+
+uninstall-mintty:
+	rm -f $(HOME)/.mintty
+
+.minttyrc:
+	cp -p submodules/mintty/dracula.minttyrc .minttyrc
 
 
 ###
