@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 shopt -s histappend
 
 umask 0077
@@ -22,10 +23,11 @@ if [ -f ~/.colors ]; then
     col_colon=$(fromhex e9c46a)
     col_dir=$(fromhex e76f51)
     col_prompt=$(fromhex e9c46a)
-    export PS1="\[$(tput setaf ${col_bracket})\][\[$(tput setaf ${col_user})\]\u\[$(tput setaf ${col_at})\]@\[$(tput setaf ${col_host})\]\h\[$(tput setaf ${col_colon})\]:\[$(tput setaf ${col_dir})\]\W\[$(tput setaf ${col_bracket})\]]\[$(tput setaf ${col_prompt})\]\$${Color_Off} "
+    PS1="\[$(tput setaf ${col_bracket})\][\[$(tput setaf ${col_user})\]\u\[$(tput setaf ${col_at})\]@\[$(tput setaf ${col_host})\]\h\[$(tput setaf ${col_colon})\]:\[$(tput setaf ${col_dir})\]\W\[$(tput setaf ${col_bracket})\]]\[$(tput setaf ${col_prompt})\]\$${Color_Off} "
 else
-    export PS1="[\u@\h:\W]\$ "
+    PS1="[\u@\h:\W]\$ "
 fi
+export PS1
 
 include(`include/aliases.m4')dnl
 
