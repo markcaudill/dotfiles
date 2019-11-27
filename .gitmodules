@@ -1,0 +1,3 @@
+[submodule "submodules/mintty"]
+	path = submodules/mintty
+	url = git@github.com:dracula/mintty.git
