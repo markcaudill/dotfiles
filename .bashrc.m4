@@ -1,7 +1,7 @@
 # shellcheck shell=bash
 shopt -s histappend
 
-umask 0077
+umask 0027
 
 include(`include/env-vars.m4')dnl
 export `BROWSER'=BROWSER
