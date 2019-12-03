@@ -146,9 +146,11 @@ clean-shells: clean-bash clean-fish
 
 install-shells: .profile install-bash install-fish
 	cp -p .profile $(HOME)/.profile
+	cp -p .colors $(HOME)/.colors
 
 uninstall-shells: uninstall-bash uninstall-fish
 	rm -f $(HOME)/.profile
+	rm -f $(HOME)/.colors
 
 .profile: .profile.m4 include/env-vars.m4
 	m4 < .profile.m4 > .profile
