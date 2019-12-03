@@ -1,5 +1,6 @@
 set shell=bash
 set nocompatible
+set termguicolors
 filetype off
 
 " set the runtime path to include Vundle and initialize
