@@ -195,13 +195,13 @@ uninstall-fish:
 ##
 ## Terminals
 ##
-terminals: mintty tmux
+terminals: mintty tmux xresources
 
-clean-terminals: clean-mintty clean-tmux
+clean-terminals: clean-mintty clean-tmux clean-xresources
 
-install-terminals: install-mintty install-tmux
+install-terminals: install-mintty install-tmux install-xresources
 
-uninstall-terminals: uninstall-mintty uninstall-tmux
+uninstall-terminals: uninstall-mintty uninstall-tmux uninstall-xresources
 
 ###
 ### mintty
@@ -218,7 +218,7 @@ uninstall-mintty:
 	rm -f $(HOME)/.minttyrc
 
 .minttyrc:
-	cp -p submodules/mintty/dracula.minttyrc .minttyrc
+	cp -p include/dracula/mintty/dracula.minttyrc .minttyrc
 
 
 ###
@@ -233,3 +233,23 @@ install-tmux: tmux
 
 uninstall-tmux:
 	rm -f $(HOME)/.tmux.conf
+
+
+###
+### Xresources
+###
+xresources: .Xresources .xinitrc
+
+clean-xresources:
+	rm -f .Xresources
+
+install-xresources:
+	cp -p .Xresources $(HOME)/.Xresources
+	cp -p .xinitrc $(HOME)/.xinitrc
+
+uninstall-xresources:
+	rm -f $(HOME)/.Xresources
+	rm -f $(HOME)/.xinitrc
+
+.Xresources:
+	cp -p include/dracula/xresources/Xresources .Xresources
