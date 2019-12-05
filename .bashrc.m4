@@ -48,4 +48,6 @@ else
     start_agent
 fi
 
+source <(kitty + complete setup bash)
+
 eval "$(starship init bash)"
