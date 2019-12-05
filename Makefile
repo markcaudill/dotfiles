@@ -195,13 +195,27 @@ uninstall-fish:
 ##
 ## Terminals
 ##
-terminals: mintty tmux xresources
+terminals: kitty mintty tmux xresources
 
-clean-terminals: clean-mintty clean-tmux clean-xresources
+clean-terminals: clean-kitty clean-mintty clean-tmux clean-xresources
 
-install-terminals: install-mintty install-tmux install-xresources
+install-terminals: install-kitty install-mintty install-tmux install-xresources
 
-uninstall-terminals: uninstall-mintty uninstall-tmux uninstall-xresources
+uninstall-terminals: uninstall-kitty uninstall-mintty uninstall-tmux uninstall-xresources
+
+###
+### kitty
+###
+kitty: .config/kitty/kitty.conf
+
+clean-kitty:
+
+install-kitty:
+	mkdir -p $(HOME)/.config/kitty
+	cp -p .config/kitty/kitty.conf $(HOME)/.config/kitty/kitty.conf
+
+uninstall-kitty:
+	rm -rf $(HOME)/.config/kitty
 
 ###
 ### mintty
