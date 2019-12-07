@@ -15,3 +15,5 @@ include(`include/aliases.m4')dnl
 if status --is-interactive > /dev/null
     start_agent
 end
+
+command -v starship >/dev/null; and starship init fish | source

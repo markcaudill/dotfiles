@@ -48,6 +48,10 @@ else
     start_agent
 fi
 
-source <(kitty + complete setup bash)
+if [ "${BASH_VERSINFO[0]}" -gt 4 ] || ([ "${BASH_VERSINFO[0]}" -eq 4 ] && [ "${BASH_VERSINFO[1]}" -ge 1 ]); then
+    command -v starship >/dev/null && source <(starship init bash --print-full-init)
+else
+    command -v starship >/dev/null && source /dev/stdin <<<"$(starship init bash --print-full-init)"
+fi
 
-eval "$(starship init bash)"
+command -v kitty >/dev/null && source <(kitty + complete setup bash)
