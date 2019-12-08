@@ -72,6 +72,10 @@ catch
     " Meh
 endtry
 
+" Enable rainbow parens
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+
 set number relativenumber
 set nu rnu
 set ruler
