@@ -40,6 +40,8 @@ transfer() {
     rm -f $tmpfile;
 }
 
+test -f /etc/bash_completion && source /etc/bash_completion
+
 # Start SSH Agent if SSH_ENV exists and this is an interactive shell
 if [[ -f ${`SSH_ENV'} && $- == *i* ]]; then
     . ${`SSH_ENV'} > /dev/null
@@ -49,9 +51,9 @@ else
 fi
 
 if [ "${BASH_VERSINFO[0]}" -gt 4 ] || ([ "${BASH_VERSINFO[0]}" -eq 4 ] && [ "${BASH_VERSINFO[1]}" -ge 1 ]); then
-    command -v starship >/dev/null && source <(starship init bash --print-full-init)
+    command -v starship &>/dev/null && source <(starship init bash --print-full-init)
 else
-    command -v starship >/dev/null && source /dev/stdin <<<"$(starship init bash --print-full-init)"
+    command -v starship &>/dev/null && source /dev/stdin <<<"$(starship init bash --print-full-init)"
 fi
 
-command -v kitty >/dev/null && source <(kitty + complete setup bash)
+command -v kitty &>/dev/null && source <(kitty + complete setup bash)
