@@ -4,7 +4,7 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory beep nomatch
 unsetopt autocd extendedglob notify
-bindkey -v
+bindkey -e
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/mcaudill/.zshrc'
