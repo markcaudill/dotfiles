@@ -3,8 +3,6 @@ shopt -s histappend
 
 umask 0027
 
-eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
-
 include(`include/env-vars.m4')dnl
 export `BROWSER'=BROWSER
 export `EDITOR'=EDITOR
