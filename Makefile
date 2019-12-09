@@ -139,16 +139,16 @@ uninstall-libs:
 ##
 ## Shells
 ##
-shells: .profile bash fish
+shells: .profile bash fish zsh
 
-clean-shells: clean-bash clean-fish
+clean-shells: clean-bash clean-fish clean-zsh
 	rm -f .profile
 
-install-shells: .profile install-bash install-fish
+install-shells: .profile install-bash install-fish install-zsh
 	cp -p .profile $(HOME)/.profile
 	cp -p .colors $(HOME)/.colors
 
-uninstall-shells: uninstall-bash uninstall-fish
+uninstall-shells: uninstall-bash uninstall-fish uninstall-zsh
 	rm -f $(HOME)/.profile
 	rm -f $(HOME)/.colors
 
@@ -191,6 +191,24 @@ uninstall-fish:
 
 .config/fish/config.fish: .config/fish/config.fish.m4 include/env-vars.m4
 	m4 < .config/fish/config.fish.m4 > .config/fish/config.fish
+
+###
+### Zsh
+###
+zsh: .zshrc
+
+clean-zsh:
+	rm -f .zshrc
+
+install-zsh: fish
+	cp -pr .zshrc $(HOME)/.zshrc
+
+uninstall-zsh:
+	rm -rf $(HOME)/.zshrc
+
+.zshrc: .zshrc.m4 include/env-vars.m4 include/aliases.m4
+	m4 < .zshrc.m4 > .zshrc
+
 
 ##
 ## Terminals
