@@ -4,6 +4,7 @@ shopt -s histappend
 umask 0027
 
 include(`include/env-vars.m4')dnl
+export `PATH'=PATH
 export `BROWSER'=BROWSER
 export `EDITOR'=EDITOR
 export `FILE'=FILE
