@@ -34,27 +34,27 @@ GIT_SIGNINGKEY = 0x5B8069859601013F
 
 .POSIX:
 
-.PHONY: all install install-bash install-bins install-editors install-fish install-git install-shells install-tmux install-vim uninstall uninstall-bash uninstall-bins uninstall-editors uninstall-fish uninstall-git uninstall-shells uninstall-tmux uninstall-vim
+.PHONY: all install install-bins install-editors install-fish install-git install-tmux install-vim uninstall uninstall-bins uninstall-editors uninstall-fish uninstall-git uninstall-tmux uninstall-vim .gitignore
 
 .gitignore:
 	curl -s https://gitignore.io/api/vim,visualstudiocode > .gitignore
 
-all: bins editors git libs shells terminals
+all: bins editors git libs fish terminals
 
-clean: clean-bins clean-editors clean-git clean-libs clean-shells clean-terminals
+clean: clean-bins clean-editors clean-git clean-libs clean-fish clean-terminals
 
-install: install-bins install-editors install-git install-libs install-shells install-terminals
+install: install-bins install-editors install-git install-libs install-fish install-terminals
 
-uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-shells uninstall-terminals
+uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-fish uninstall-terminals
 
 ##
 ## Scripts
 ##
-bins: $(BINS_SH)
+bins:
 
 clean-bins:
 
-install-bins: bins
+install-bins:
 	mkdir -v -p $(HOME)/.local/bin
 	cp -v -p -t $(HOME)/.local/bin $(BINS_SH)
 	@echo Make sure $(HOME)/.local/bin is in your PATH.
@@ -68,7 +68,7 @@ uninstall-bins:
 ##
 ## Editors
 ##
-editors: .editorconfig vim
+editors:
 
 clean-editors: clean-vim
 
@@ -81,11 +81,11 @@ uninstall-editors: uninstall-vim
 ###
 ### Vim
 ###
-vim: .vimrc
+vim:
 
 clean-vim:
 
-install-vim: vim
+install-vim:
 	cp -p .vimrc $(HOME)/.vimrc
 	mkdir -p $(HOME)/.vim/bundle
 	test -d $(HOME)/.vim/bundle/Vundle.vim || \
@@ -122,11 +122,11 @@ uninstall-git:
 ##
 ## Libs
 ##
-libs: $(LIBS)
+libs:
 
 clean-libs:
 
-install-libs: libs
+install-libs:
 	mkdir -v -p $(HOME)/.local/lib
 	cp -v -p -t $(HOME)/.local/lib $(LIBS)
 
@@ -136,51 +136,12 @@ uninstall-libs:
 	done
 
 
-##
-## Shells
-##
-shells: .profile bash fish zsh
-
-clean-shells: clean-bash clean-fish clean-zsh
-	rm -f .profile
-
-install-shells: .profile install-bash install-fish install-zsh
-	cp -p .profile $(HOME)/.profile
-	cp -p .colors $(HOME)/.colors
-
-uninstall-shells: uninstall-bash uninstall-fish uninstall-zsh
-	rm -f $(HOME)/.profile
-	rm -f $(HOME)/.colors
-
-.profile: .profile.m4 include/env-vars.m4
-	m4 < .profile.m4 > .profile
-
-###
-### Bash
-###
-bash: .bash_profile .bashrc
-
-clean-bash:
-	rm -f .bashrc
-
-install-bash: bash
-	cp -p .bash_profile $(HOME)/.bash_profile
-	cp -p .bashrc $(HOME)/.bashrc
-
-uninstall-bash:
-	rm -f $(HOME)/.bash_profile
-	rm -f $(HOME)/.bashrc
-
-.bashrc: .bashrc.m4 include/aliases.m4 include/env-vars.m4
-	m4 < .bashrc.m4 > .bashrc
-
 ###
 ### Fish
 ###
-fish: .config/fish/config.fish $(FISH_FUNCTIONS)
+fish:
 
 clean-fish:
-	rm -f .config/fish/config.fish
 
 install-fish: fish
 	mkdir -p $(HOME)/.config
@@ -188,26 +149,6 @@ install-fish: fish
 
 uninstall-fish:
 	rm -rf $(HOME)/.config/fish
-
-.config/fish/config.fish: .config/fish/config.fish.m4 include/env-vars.m4
-	m4 < .config/fish/config.fish.m4 > .config/fish/config.fish
-
-###
-### Zsh
-###
-zsh: .zshrc
-
-clean-zsh:
-	rm -f .zshrc
-
-install-zsh: fish
-	cp -pr .zshrc $(HOME)/.zshrc
-
-uninstall-zsh:
-	rm -rf $(HOME)/.zshrc
-
-.zshrc: .zshrc.m4 include/env-vars.m4 include/aliases.m4
-	m4 < .zshrc.m4 > .zshrc
 
 
 ##
