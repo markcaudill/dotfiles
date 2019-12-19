@@ -16,16 +16,6 @@ BINS_SH =          \
 LIBS =                     \
     lib/healthchecks.io.sh
 
-FISH_FUNCTIONS =                             \
-    .config/fish/functions/bash-example.fish \
-    .config/fish/functions/fish_prompt.fish  \
-    .config/fish/functions/path.fish         \
-    .config/fish/functions/ppjson.fish       \
-    .config/fish/functions/s.fish            \
-    .config/fish/functions/start_agent.fish  \
-    .config/fish/functions/ytdl.fish         \
-    .config/fish/functions/ytmp3.fish
-
 GIT_NAME = 'Mark Caudill'
 GIT_EMAIL = mark@mrkc.me
 GIT_SIGNINGKEY = 0x5B8069859601013F
