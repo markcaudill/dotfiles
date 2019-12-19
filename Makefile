@@ -17,7 +17,6 @@ LIBS =                     \
     lib/healthchecks.io.sh
 
 FISH_FUNCTIONS =                             \
-    .config/fish/functions/ans-role.fish     \
     .config/fish/functions/bash-example.fish \
     .config/fish/functions/fish_prompt.fish  \
     .config/fish/functions/path.fish         \
