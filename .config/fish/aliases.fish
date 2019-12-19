@@ -21,3 +21,16 @@ abbr --add ayear 'date -d "next year" "+%Y-%m-%d"'
 abbr --add ts date --iso-8601=seconds
 abbr --add tsf 'ts | sed "s/://g"'
 abbr --add wget wget -c
+abbr --add gs  git status -sb
+abbr --add ga  git add
+abbr --add gc  git commit
+abbr --add gcm git commit -m
+abbr --add gca git commit --amend
+abbr --add gcl git clone
+abbr --add gco git checkout
+abbr --add gp  git push
+abbr --add gpl git pull
+abbr --add gl  git l
+abbr --add gd  git diff
+abbr --add gds git diff --staged
+abbr --add gf  git fetch
