@@ -57,6 +57,9 @@ Plugin 'ekalinin/dockerfile.vim'
 " Shell Plugins
 Plugin 'dag/vim-fish'
 
+" Terraform Plugins
+Plugin 'hashivim/vim-terraform'
+
 "
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
