@@ -174,13 +174,13 @@ clean-mintty:
 	rm -f .minttyrc
 
 install-mintty:
-	cp -p .minttyrc $(HOME)/.mintty
+	cp -p .minttyrc $(HOME)/.minttyrc
 
 uninstall-mintty:
 	rm -f $(HOME)/.minttyrc
 
-.minttyrc:
-	cp -p include/dracula/mintty/dracula.minttyrc .minttyrc
+.minttyrc: .minttyrc.m4
+	m4 < .minttyrc.m4 > .minttyrc
 
 
 ###
