@@ -1,6 +1,7 @@
 SHELL = /bin/sh
 
 BINS_SH =          \
+	bin/ansrole    \
 	bin/battery    \
 	bin/compress   \
 	bin/dinfo      \
