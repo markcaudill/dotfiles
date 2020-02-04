@@ -21,6 +21,10 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Web server config syntax
+Plugin 'chr4/nginx.vim'
+Plugin 'chr4/sslsecure.vim'
+
 " Dracula Theme
 Plugin 'dracula/vim', { 'name': 'dracula' }
 
