@@ -52,6 +52,14 @@ Plugin 'ledger/vim-ledger'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 
+" org-mode
+Plugin 'jceb/vim-orgmode'
+
+" Misc
+Plugin 'tpope/vim-speeddating'
+Plugin 'itchyny/calendar.vim'
+Plugin 'vim-scripts/utl.vim'
+
 " Ansible Plugins
 Plugin 'pearofducks/ansible-vim'
 
