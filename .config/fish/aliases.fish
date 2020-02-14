@@ -24,6 +24,7 @@ abbr --add g    git
 abbr --add ga   git add
 abbr --add gaa  git add .
 abbr --add gaaa git add --all
+abbr --add gabr 'abbr | grep git'
 abbr --add gau  git add --update
 abbr --add gb   git branch
 abbr --add gbd  git branch --delete
