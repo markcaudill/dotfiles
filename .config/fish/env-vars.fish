@@ -1,4 +1,4 @@
-set PATHS $HOME/.local/bin $HOME/.gem/ruby/2.5.0/bin /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin
+set PATHS $HOME/.local/bin $HOME/.cask/bin $HOME/.gem/ruby/2.5.0/bin /usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin
 for p in $PATHS;
     test -d $p
     and not contains $p $PATH
