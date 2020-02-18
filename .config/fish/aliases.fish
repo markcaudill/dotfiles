@@ -24,6 +24,7 @@ abbr --add g    git
 abbr --add ga   git add
 abbr --add gaa  git add .
 abbr --add gaaa git add --all
+abbr --add gabr 'abbr | grep git'
 abbr --add gau  git add --update
 abbr --add gb   git branch
 abbr --add gbd  git branch --delete
@@ -40,7 +41,7 @@ abbr --add gd   git diff
 abbr --add gda  git diff HEAD
 abbr --add gds  git diff --staged
 abbr --add glg  git log --graph --oneline --decorate --all
-abbr --add gld  git log --pretty=format:"%h %ad %s" --date=short --all
+abbr --add gld  'git log --pretty=format:"%h %ad %s" --date=short --all'
 abbr --add gm   git merge --no-ff
 abbr --add gma  git merge --abort
 abbr --add gmc  git merge --continue
