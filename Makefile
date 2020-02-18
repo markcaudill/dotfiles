@@ -17,6 +17,15 @@ BINS_SH =          \
 LIBS =                     \
     lib/healthchecks.io.sh
 
+OS := $(shell uname -o)
+ifeq "$(OS)" "Cygwin"
+	CASK := $(shell cygpath -w $(HOME) | sed 's/\\/\\\\\\\\/g')\\\\.cask\\\\cask.el
+	EMACS_BASE := "$(HOME)/AppData/Roaming"
+else
+	CASK := $(HOME)/.cask/cask.el
+	EMACS_BASE := "$(HOME)"
+endif
+
 GIT_NAME = 'Mark Caudill'
 GIT_EMAIL = mark@mrkc.me
 GIT_SIGNINGKEY = 0x5B8069859601013F
@@ -27,7 +36,7 @@ GIT_SIGNINGKEY = 0x5B8069859601013F
 .PHONY: all install install-bins install-editors install-fish install-git install-tmux install-vim uninstall uninstall-bins uninstall-editors uninstall-fish uninstall-git uninstall-tmux uninstall-vim .gitignore
 
 .gitignore:
-	curl -s https://gitignore.io/api/vim,visualstudiocode > .gitignore
+	curl -s https://gitignore.io/api/emacs,vim,visualstudiocode > .gitignore
 
 all: bins editors git libs fish terminals
 
@@ -60,13 +69,36 @@ uninstall-bins:
 ##
 editors:
 
-clean-editors: clean-vim
+clean-editors: clean-emacs clean-vim
 
-install-editors: install-vim
+install-editors: install-emacs install-vim
 	cp -p .editorconfig $(HOME)/.editorconfig
 
-uninstall-editors: uninstall-vim
+uninstall-editors: uninstall-emacs uninstall-vim
 	rm -f $(HOME)/.editorconfig
+
+###
+### Emacs
+###
+emacs: .emacs.d/init.el
+
+clean-emacs:
+	rm -f .emacs.d/init.el
+
+install-emacs: emacs
+	mkdir -p $(EMACS_BASE)/.emacs.d
+	cp -v -p -r -t $(EMACS_BASE)/.emacs.d \
+		.emacs.d/Cask \
+		.emacs.d/init.el
+	cd $(EMACS_BASE)/.emacs.d; \
+		cask install
+
+uninstall-emacs:
+	rm -rf $(EMACS_BASE)/.emacs
+	rm -rf $(EMACS_BASE)/.emacs.d
+
+.emacs.d/init.el: .emacs.d/init.el.m4
+	m4 -DCASK=$(CASK) .emacs.d/init.el.m4 > .emacs.d/init.el
 
 ###
 ### Vim
