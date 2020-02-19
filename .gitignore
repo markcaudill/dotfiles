@@ -1,6 +1,57 @@
 
-# Created by https://www.gitignore.io/api/vim,visualstudiocode
-# Edit at https://www.gitignore.io/?templates=vim,visualstudiocode
+# Created by https://www.gitignore.io/api/emacs,vim,visualstudiocode
+# Edit at https://www.gitignore.io/?templates=emacs,vim,visualstudiocode
+
+### Emacs ###
+# -*- mode: gitignore; -*-
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# Org-mode
+.org-id-locations
+*_archive
+
+# flymake-mode
+*_flymake.*
+
+# eshell files
+/eshell/history
+/eshell/lastdir
+
+# elpa packages
+/elpa/
+
+# reftex files
+*.rel
+
+# AUCTeX auto folder
+/auto/
+
+# cask packages
+.cask/
+dist/
+
+# Flycheck
+flycheck_*.el
+
+# server auth directory
+/server/
+
+# projectiles files
+.projectile
+
+# directory configuration
+.dir-locals.el
+
+# network security
+/network-security.data
+
 
 ### Vim ###
 # Swap
@@ -16,11 +67,15 @@ Sessionx.vim
 
 # Temporary
 .netrwhist
-*~
+
 # Auto-generated tag files
 tags
+
 # Persistent undo
 [._]*.un~
+
+# Coc configuration directory
+.vim
 
 ### VisualStudioCode ###
 .vscode/*
@@ -33,4 +88,9 @@ tags
 # Ignore all local history of files
 .history
 
-# End of https://www.gitignore.io/api/vim,visualstudiocode
+# End of https://www.gitignore.io/api/emacs,vim,visualstudiocode
+
+.Xresources
+.emacs.d/init.el
+.gitconfig
+.minttyrc
