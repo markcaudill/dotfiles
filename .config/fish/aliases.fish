@@ -29,6 +29,7 @@ abbr --add gau  git add --update
 abbr --add gb   git branch
 abbr --add gbd  git branch --delete
 abbr --add gc   git commit
+abbr --add gca  git commit --all --message
 abbr --add gcl  git clone
 abbr --add gcm  git commit --message
 abbr --add gcf  git commit --fixup
