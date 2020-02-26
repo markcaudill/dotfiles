@@ -99,8 +99,9 @@ install-emacs: emacs
 	cp -v -p -r -t $(EMACS_BASE)/.emacs.d \
 		.emacs.d/Cask \
 		.emacs.d/init.el
-	cd $(EMACS_BASE)/.emacs.d; \
-		cask install
+	command -v cask && { \
+		cd $(EMACS_BASE)/.emacs.d; \
+		cask install; }
 
 uninstall-emacs:
 	rm -rf $(EMACS_BASE)/.emacs
