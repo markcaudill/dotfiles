@@ -7,6 +7,7 @@ end
 set -x BROWSER firefox
 set -x EDITOR vim
 set -x FILE ranger
+set -x GOHOME $HOME/go
 set -x READER zathura
 set -x SSH_ENV $HOME/.ssh/environment
 set -x TERMINAL kitty
