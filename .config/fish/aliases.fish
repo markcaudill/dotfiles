@@ -46,6 +46,7 @@ abbr --add gcod git checkout develop
 abbr --add gd   git diff
 abbr --add gda  git diff HEAD
 abbr --add gds  git diff --staged
+abbr --add gl   git log
 abbr --add glg  git log --graph --oneline --decorate --all
 abbr --add gld  'git log --pretty=format:"%h %ad %s" --date=short --all'
 abbr --add gm   git merge --no-ff
