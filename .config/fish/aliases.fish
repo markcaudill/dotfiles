@@ -9,6 +9,11 @@ abbr --add ping ping -c 5
 abbr --add t todo.sh -ctan
 abbr --add ta todo.sh -ctan add
 abbr --add td todo.sh -ctan do
+abbr --add tf terraform
+abbr --add tfa terraform apply
+abbr --add tfd terraform destroy
+abbr --add tfp terraform plan
+abbr --add tfs terraform show
 abbr --add tl todo.sh -ctan ls
 abbr --add tw todo.sh -ctan ls @work
 abbr --add tnw 'todo.sh -ctan ls | grep -v @work'
