@@ -45,6 +45,9 @@ Plugin 'tpope/vim-projectionist'
 Plugin 'tpope/vim-dispatch'
 Plugin 'tpope/vim-fireplace'
 
+" Go
+set rtp+=$GOPATH/src/golang.org/x/lint/misc/vim
+
 " Ledger Plugins
 Plugin 'ledger/vim-ledger'
 
