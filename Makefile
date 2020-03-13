@@ -41,13 +41,13 @@ endif
 
 .POSIX:
 
-.PHONY: all install install-bins install-editors install-fish install-git install-tmux install-vim uninstall uninstall-bins uninstall-editors uninstall-fish uninstall-git uninstall-tmux uninstall-vim .gitignore
+.PHONY: all install install-bins install-editors install-fish install-bash install-git install-tmux install-vim uninstall uninstall-bins uninstall-editors uninstall-fish uninstall-bash uninstall-git uninstall-tmux uninstall-vim .gitignore
 
 .gitignore:
 	curl -s https://gitignore.io/api/emacs,vim,visualstudiocode > $@
 	echo "$$GITIGNORE" >> $@
 
-all: bins editors git libs fish terminals
+all: bins editors git libs fish bash terminals
 
 clean: clean-bins clean-editors clean-git clean-libs clean-fish clean-terminals
 
@@ -182,6 +182,26 @@ install-fish: fish
 uninstall-fish:
 	rm -rf $(HOME)/.config/fish
 
+
+###
+### Bash
+###
+bash:
+
+clean-bash:
+
+install-bash: bash
+	mkdir -p $(HOME)/.config
+	cp -pr .config/bash.d $(HOME)/.config/
+	cp -p .bashrc $(HOME)/
+	cp -p .bash_logout $(HOME)/
+	cp -p .bash_profile $(HOME)/
+
+uninstall-bash:
+	rm -rf $(HOME)/.config/bash.d \
+		$(HOME)/.bashrc \
+		$(HOME)/.bash_logout \
+		$(HOME)/.bash_profile
 
 ##
 ## Terminals
