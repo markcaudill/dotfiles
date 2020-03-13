@@ -1,37 +1,66 @@
 # shellcheck shell=bash
+
+# Shortcuts areound filesystem
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-alias --='cd -'
+alias -- -='cd -'
+alias src='cd ~/src'
+alias d='cd ~/Downloads'
+
+# Colorful cat
 alias ccat='highlight -O ansi'
-alias df='df -h'
+
+# Show filesystem space in human-readable format
+alias df='df -hP'
+
+# Summarize disk usage in human-readable terms and don't jump filesystems
 alias du='du -shx'
+
+# Start an HTTP server out of the current directory
 alias fs='python -m SimpleHTTPServer'
+
+# List files with color, human-readable units, and file type hints
 alias ls='ls --color=auto --human-readable --file-type'
+
+# List all files, including hidden, except . and ..
 alias la='ls -A'
+
+# List filesin long format
 alias ll='ls -l'
+
+# Make mount output more readable
 alias mount='mount | column -t'
+
+# Limit ping to 5 packets
 alias ping='ping -c 5'
+
+# Todo.txt helpers
 alias t='todo.sh -ctan'
 alias ta='todo.sh -ctan add'
 alias td='todo.sh -ctan do'
-alias tf='terraform'
-alias tfa='terraform apply'
-alias tfd='terraform destroy'
-alias tfp='terraform plan'
-alias tfs='terraform show'
 alias tl='todo.sh -ctan ls'
 alias tw='todo.sh -ctan ls @work'
 alias tnw='todo.sh -ctan ls | grep -v @work'
-alias today='date -d "today" "+%Y-%m-%d"'
-alias tomorrow='date -d "next week" "+%Y-%m-%d"'
-alias aweek='date -d "next week" "+%Y-%m-%d"'
-alias amonth='date -d "next month" "+%Y-%m-%d"'
-alias ayear='date -d "next year" "+%Y-%m-%d"'
+
+# Terraform helpers
+alias tf='terraform'
+alias tfa='tf apply'
+alias tfd='tf destroy'
+alias tfp='tf plan'
+alias tfs='tf show'
+
+# Timestamp
 alias ts='date --iso-8601=seconds'
+
+# Filename-friendly timestamp
 alias tsf='date --iso-8601=seconds | sed "s/://g"'
+
+# Try to continue
 alias wget='wget -c'
+
+# Git aliases
 alias g='git'
 alias ga='git add'
 alias gaa='git add .'
