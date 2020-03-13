@@ -11,14 +11,13 @@ done
 # shellcheck disable=SC1091
 test -f /etc/bash_completion && source /etc/bash_completion
 
-# Start SSH Agent if SSH_ENV exists and this is an interactive shell
-if [[ -f "${SSH_ENV}" && $- == *i* ]]; then
-    # shellcheck source=/dev/null
-    . "${SSH_ENV}" > /dev/null
-    test "$(ps -p "${SSH_AGENT_PID}" -o comm -h)" = "ssh-agent" || start_agent "${SSH_ENV}"
-else
+# If this is an interactive shell and SSH_ENV exists as a file, source it
+# shellcheck source=/dev/null
+test -f "${SSH_ENV}" -a "$-" == "*i*" && . "${SSH_ENV}" >/dev/null
+# Make sure there's actually an ssh-agent running with SSH_AGENT_PID
+# or else start a new one
+test "$(ps -p "${SSH_AGENT_PID}" -o comm -h 2>/dev/null)" = "ssh-agent" || \
     start_agent "${SSH_ENV}"
-fi
 
 # shellcheck source=/dev/null
 hash starship && source <(starship init bash --print-full-init)
