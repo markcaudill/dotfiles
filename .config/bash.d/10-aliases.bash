@@ -1,4 +1,9 @@
 # shellcheck shell=bash
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias --='cd -'
 alias ccat='highlight -O ansi'
 alias df='df -h'
 alias du='du -shx'
