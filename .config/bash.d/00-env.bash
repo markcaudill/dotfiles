@@ -1,11 +1,11 @@
 # shellcheck shell=bash
 
 export CDPATH=".:~"
-export HISTCONROL=""
-export HISTFILE=${HOME}/.bash_history
-export HISTFILESIZE=-1
-export HISTSIZE=1
+export HISTCONTROL=ignoredups
+export HISTSIZE=2147483648
+export HISTFILESIZE="${HISTSIZE}"
 export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S "
+export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:* --help"
 export GOPATH=${HOME}/go
 export GOBIN=${GOPATH}/bin
 export PATH=${HOME}/.local/bin:${GOBIN}:/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin
