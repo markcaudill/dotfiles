@@ -27,7 +27,7 @@ export GITIGNORE
 
 GIT_NAME = 'Mark Caudill'
 GIT_EMAIL = mark@mrkc.me
-GIT_SIGNINGKEY = 0x5B8069859601013F
+GIT_SIGNINGKEY = 4DBEB43A8D281F2F
 
 OS := $(shell uname -o)
 
