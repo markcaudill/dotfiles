@@ -20,7 +20,4 @@ test "$(ps -p "${SSH_AGENT_PID}" -o comm -h 2>/dev/null)" = "ssh-agent" || \
     start_agent "${SSH_ENV}"
 
 # shellcheck source=/dev/null
-hash starship && source <(starship init bash --print-full-init)
-
-# shellcheck source=/dev/null
 hash kitty &>/dev/null && source <(kitty + complete setup bash)
