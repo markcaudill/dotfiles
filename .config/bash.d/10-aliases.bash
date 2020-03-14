@@ -9,6 +9,27 @@ alias -- -='cd -'
 alias src='cd ~/src'
 alias d='cd ~/Downloads'
 
+# Prompt before overwriting files
+alias cp='cp -i'
+alias mv='mv -i'
+
+# Quickly copy public key
+alias pubkey='cat ${HOME}/.ssh/id_ed25519.pub | xclip -selection clipboard | echo "=> Public key copied to pasteboard."'
+
+# Intuitive map function
+# For example, to list all directories that contain a certain file:
+# find . -name .gitattributes | map dirname
+alias map="xargs -n1"
+
+# Alias HTTP methods
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+    # shellcheck disable=SC2139,SC2140
+	alias "${method}"="curl -s -X ${method}"
+done
+
+# URL-encode strings
+alias urlencode='python3 -c '\''import sys, urllib.parse; print(urllib.parse.quote_plus(str(" ".join(sys.argv[1:]))));'\'''
+
 # Colorful cat
 alias ccat='highlight -O ansi'
 
