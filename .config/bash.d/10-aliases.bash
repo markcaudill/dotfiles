@@ -43,7 +43,7 @@ alias du='du -shx'
 alias fs='python -m SimpleHTTPServer'
 
 # List files with color, human-readable units, and file type hints
-alias ls='ls --color=auto --human-readable --file-type'
+uname | grep Linux &>/dev/null && alias ls='ls --color=auto --human-readable --file-type'
 
 # List all files, including hidden, except . and ..
 alias la='ls -A'
