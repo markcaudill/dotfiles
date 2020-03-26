@@ -1,4 +1,8 @@
 # shellcheck shell=bash
+
+# shellcheck disable=SC1091
+test -f /etc/profile && source /etc/profile
+
 shopt -s checkwinsize histappend hostcomplete
 
 umask 0027
