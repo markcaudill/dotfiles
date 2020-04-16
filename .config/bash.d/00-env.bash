@@ -18,3 +18,4 @@ export FILE=ranger
 export READER=zathura
 export SSH_ENV=$HOME/.ssh/environment
 export TERMINAL=kitty
+export GPG_TTY=$(tty)
