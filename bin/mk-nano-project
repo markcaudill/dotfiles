@@ -1,0 +1,38 @@
+#!/bin/bash
+
+PROJECT_NAME="${1}"
+
+usage() {
+    cat <<USAGE
+Create an Arduino Nano project skeleton.
+
+Usage: ${0} NAME
+
+USAGE
+}
+
+# Make sure the arduino-cli utility is present
+# <https://arduino.github.io/arduino-cli/installation/>
+hash arduino-cli &>/dev/null || { echo "arduino-cli not found" && exit 1; }
+# Make sure an argument was passed
+test -z "${1}" && usage && exit 1
+# If the argument was -h or --help then display usage
+test "${1}" = "-h" -o "${1}" = "--help" && usage && exit 0
+
+# Create an empty sketch
+arduino-cli sketch new "${PROJECT_NAME}"
+
+# Create a Makefile
+cat <<MAKEFILE > "${PROJECT_NAME}"/Makefile
+PHONY = build clean upload
+
+build:
+	arduino-cli compile -b arduino:avr:nano
+
+clean:
+	rm *.elf *.hex
+
+upload: build
+	arduino-cli upload -b arduino:avr:nano:cpu=atmega328old -p /dev/ttyUSB0
+MAKEFILE
+
