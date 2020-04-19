@@ -1,3 +1,4 @@
+abbr --add adno arduino-cli
 abbr --add ccat highlight -O ansi
 abbr --add df df -h
 abbr --add du du -shx
