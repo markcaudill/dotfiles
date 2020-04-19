@@ -20,3 +20,5 @@ test -f "${SSH_ENV}" && start_agent "${SSH_ENV}"
 
 # shellcheck source=/dev/null
 hash kitty &>/dev/null && source <(kitty + complete setup bash)
+
+command -v starship >/dev/null && eval "$(starship init bash)"
