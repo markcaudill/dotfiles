@@ -36,3 +36,8 @@ upload: build
 	arduino-cli upload -b arduino:avr:nano:cpu=atmega328old -p /dev/ttyUSB0
 MAKEFILE
 
+# Create .gitignore
+cat <<GITIGNORE > "${PROJECT_NAME}"/.gitignore
+*.elf
+*.hex
+GITIGNORE
