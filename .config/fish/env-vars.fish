@@ -11,3 +11,4 @@ set -x FILE ranger
 set -x READER zathura
 set -x SSH_ENV $HOME/.ssh/environment
 set -x TERMINAL kitty
+set -x GPG_TTY (tty)
