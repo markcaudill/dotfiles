@@ -3,8 +3,15 @@ abbr --add ccat highlight -O ansi
 abbr --add df df -h
 abbr --add du du -shx
 abbr --add fs python -m SimpleHTTPServer
-abbr --add la ls -a
-abbr --add ll ls -l
+if command -sq lsd
+    abbr --add ls lsd
+    abbr --add la lsd -a
+    abbr --add ll lsd -l
+    abbr --add lt lsd --tree
+else
+    abbr --add la ls -a
+    abbr --add ll ls -l
+end
 abbr --add mount 'mount | column -t'
 abbr --add ping ping -c 5
 abbr --add t todo.sh -ctan
