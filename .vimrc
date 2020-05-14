@@ -21,6 +21,9 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" Vimwiki
+Plugin 'vimwiki/vimwiki'
+
 " Web server config syntax
 Plugin 'chr4/nginx.vim'
 Plugin 'chr4/sslsecure.vim'
