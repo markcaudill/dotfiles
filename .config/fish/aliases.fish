@@ -4,10 +4,10 @@ abbr --add df df -h
 abbr --add du du -shx
 abbr --add fs python -m SimpleHTTPServer
 if command -sq lsd
-    abbr --add ls lsd
-    abbr --add la lsd -a
-    abbr --add ll lsd -l
-    abbr --add lt lsd --tree
+    abbr --add ls lsd --icon-theme unicode
+    abbr --add la lsd --icon-theme unicode -a
+    abbr --add ll lsd --icon-theme unicode -l
+    abbr --add lt lsd --icon-theme unicode --tree
 else
     abbr --add la ls -a
     abbr --add ll ls -l
