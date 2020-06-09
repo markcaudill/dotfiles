@@ -1,73 +1,73 @@
-abbr --add adno arduino-cli
-abbr --add ccat highlight -O ansi
-abbr --add df df -h
-abbr --add du du -shx
-abbr --add fs python -m SimpleHTTPServer
+alias adno='arduino-cli'
+alias ccat='highlight -O ansi'
+alias df='df -h'
+alias du='du -shx'
+alias fs='python -m SimpleHTTPServer'
 if command -sq lsd
-    abbr --add ls lsd --icon-theme unicode
-    abbr --add la lsd --icon-theme unicode -a
-    abbr --add ll lsd --icon-theme unicode -l
-    abbr --add lt lsd --icon-theme unicode --tree
+    alias ls='lsd --icon-theme unicode'
+    alias la='lsd --icon-theme unicode -a'
+    alias ll='lsd --icon-theme unicode -l'
+    alias lt='lsd --icon-theme unicode --tree'
 else
-    abbr --add la ls -a
-    abbr --add ll ls -l
+    alias la='ls -a'
+    alias ll='ls -l'
 end
-abbr --add mount 'mount | column -t'
-abbr --add ping ping -c 5
-abbr --add t todo.sh -ctan
-abbr --add ta todo.sh -ctan add
-abbr --add td todo.sh -ctan do
-abbr --add tf terraform
-abbr --add tfa terraform apply
-abbr --add tfd terraform destroy
-abbr --add tfp terraform plan
-abbr --add tfs terraform show
-abbr --add tl todo.sh -ctan ls
-abbr --add tw todo.sh -ctan ls @work
-abbr --add tnw 'todo.sh -ctan ls | grep -v @work'
-abbr --add today 'date -d "today" "+%Y-%m-%d"'
-abbr --add tomorrow 'date -d "next week" "+%Y-%m-%d"'
-abbr --add aweek 'date -d "next week" "+%Y-%m-%d"'
-abbr --add amonth 'date -d "next month" "+%Y-%m-%d"'
-abbr --add ayear 'date -d "next year" "+%Y-%m-%d"'
-abbr --add ts date --iso-8601=seconds
-abbr --add tsf 'date --iso-8601=seconds | sed "s/://g"'
-abbr --add wget wget -c
-abbr --add g    git
-abbr --add ga   git add
-abbr --add gaa  git add .
-abbr --add gaaa git add --all
-abbr --add gabr 'abbr | grep git'
-abbr --add gau  git add --update
-abbr --add gb   git branch
-abbr --add gbd  git branch --delete
-abbr --add gc   git commit
-abbr --add gca  git commit --all --message
-abbr --add gcl  git clone
-abbr --add gcm  git commit --message
-abbr --add gcf  git commit --fixup
-abbr --add gco  git checkout
-abbr --add gcob git checkout -b
-abbr --add gcom git checkout master
-abbr --add gcos git checkout staging
-abbr --add gcod git checkout develop
-abbr --add gd   git diff
-abbr --add gda  git diff HEAD
-abbr --add gds  git diff --staged
-abbr --add gl   git log
-abbr --add glg  git log --graph --oneline --decorate --all
-abbr --add gld  'git log --pretty=format:"%h %ad %s" --date=short --all'
-abbr --add gm   git merge --no-ff
-abbr --add gma  git merge --abort
-abbr --add gmc  git merge --continue
-abbr --add gp   git pull
-abbr --add gpr  git pull --rebase
-abbr --add gr   git rebase
-abbr --add gs   git status --branch
-abbr --add gss  git status --branch --short
-abbr --add gst  git stash
-abbr --add gsta git stash apply
-abbr --add gstd git stash drop
-abbr --add gstl git stash list
-abbr --add gstp git stash pop
-abbr --add gsts git stash save
+alias mount='mount | column -t'
+alias ping='ping -c 5'
+alias t='todo.sh -ctan'
+alias ta='todo.sh -ctan add'
+alias td='todo.sh -ctan do'
+alias tf='terraform'
+alias tfa='terraform apply'
+alias tfd='terraform destroy'
+alias tfp='terraform plan'
+alias tfs='terraform show'
+alias tl='todo.sh -ctan ls'
+alias tw='todo.sh -ctan ls @work'
+alias tnw='todo.sh -ctan ls | grep -v @work'
+alias today='date -d "today" "+%Y-%m-%d"'
+alias tomorrow='date -d "next week" "+%Y-%m-%d"'
+alias aweek='date -d "next week" "+%Y-%m-%d"'
+alias amonth='date -d "next month" "+%Y-%m-%d"'
+alias ayear='date -d "next year" "+%Y-%m-%d"'
+alias ts='date --iso-8601=seconds'
+alias tsf='date --iso-8601=seconds | sed "s/://g"'
+alias wget='wget -c'
+alias g='git'
+alias ga='git add'
+alias gaa='git add .'
+alias gaaa='git add --all'
+alias gabr='abbr | grep git'
+alias gau='git add --update'
+alias gb='git branch'
+alias gbd='git branch --delete'
+alias gc='git commit'
+alias gca='git commit --all --message'
+alias gcl='git clone'
+alias gcm='git commit --message'
+alias gcf='git commit --fixup'
+alias gco='git checkout'
+alias gcob='git checkout -b'
+alias gcom='git checkout master'
+alias gcos='git checkout staging'
+alias gcod='git checkout develop'
+alias gd='git diff'
+alias gda='git diff HEAD'
+alias gds='git diff --staged'
+alias gl='git log'
+alias glg='git log --graph --oneline --decorate --all'
+alias gld='git log --pretty=format:"%h %ad %s" --date=short --all'
+alias gm='git merge --no-ff'
+alias gma='git merge --abort'
+alias gmc='git merge --continue'
+alias gp='git pull'
+alias gpr='git pull --rebase'
+alias gr='git rebase'
+alias gs='git status --branch'
+alias gss='git status --branch --short'
+alias gst='git stash'
+alias gsta='git stash apply'
+alias gstd='git stash drop'
+alias gstl='git stash list'
+alias gstp='git stash pop'
+alias gsts='git stash save'
