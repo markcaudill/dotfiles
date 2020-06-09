@@ -124,9 +124,6 @@ set autoindent " Keep indentation from previous line
 set foldmethod=indent
 set foldlevel=20
 
-" Keep cursor in vertically centered if possible
-set so=999
-
 "Highlight trailing whitespace
 highlight ExtraWhitespace ctermbg=red ctermfg=white guibg=red
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
