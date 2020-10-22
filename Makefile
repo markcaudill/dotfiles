@@ -1,18 +1,19 @@
 SHELL = /bin/sh
 
+BINS_DIR = bin
 BINS_SH =          \
-	bin/ansrole    \
-	bin/battery    \
-	bin/compress   \
-	bin/dinfo      \
-	bin/example    \
-	bin/extract    \
-	bin/gh         \
-	bin/mb         \
-	bin/notes      \
-	bin/sysinfo    \
-	bin/update_dns \
-	bin/wlpop
+	$(BIN_DIR)/ansrole    \
+	$(BIN_DIR)/battery    \
+	$(BIN_DIR)/compress   \
+	$(BIN_DIR)/dinfo      \
+	$(BIN_DIR)/example    \
+	$(BIN_DIR)/extract    \
+	$(BIN_DIR)/gh         \
+	$(BIN_DIR)/mb         \
+	$(BIN_DIR)/notes      \
+	$(BIN_DIR)/sysinfo    \
+	$(BIN_DIR)/update_dns \
+	$(BIN_DIR)/wlpop
 
 LIBS =                     \
     lib/healthchecks.io.sh
@@ -28,6 +29,8 @@ export GITIGNORE
 GIT_NAME = 'Mark Caudill'
 GIT_EMAIL = mark@mrkc.me
 GIT_SIGNINGKEY = 4DBEB43A8D281F2F
+
+SHELLCHECK_FORMAT = 'checkstyle'
 
 OS := $(shell uname -o)
 
@@ -46,6 +49,11 @@ clean: clean-bins clean-editors clean-git clean-libs clean-fish clean-bash clean
 install: install-bins install-editors install-git install-libs install-fish install-bash install-terminals
 
 uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-fish uninstall-bash uninstall-terminals
+
+test:
+	find . -type f -name "*.sh" -exec shellcheck --check-sourced --shell sh --format $(SHELLCHECK_FORMAT) {} \;
+	find . -type f -name "*.bash" -exec shellcheck --check-sourced --shell bash --format $(SHELLCHECK_FORMAT) {} \;
+	find bin -type f -exec shellcheck --check-sourced --format $(SHELLCHECK_FORMAT) {} \;
 
 ##
 ## Scripts
