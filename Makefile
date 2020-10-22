@@ -51,9 +51,9 @@ install: install-bins install-editors install-git install-libs install-fish inst
 uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-fish uninstall-bash uninstall-terminals
 
 test:
-	find . -type f -name "*.sh" -exec shellcheck --check-sourced --shell sh --format $(SHELLCHECK_FORMAT) {} \;
-	find . -type f -name "*.bash" -exec shellcheck --check-sourced --shell bash --format $(SHELLCHECK_FORMAT) {} \;
-	find bin -type f -exec shellcheck --check-sourced --format $(SHELLCHECK_FORMAT) {} \;
+	find . -type f -name "*.sh" -exec shellcheck --external-sources --shell sh --format $(SHELLCHECK_FORMAT) {} \;
+	find . -type f -name "*.bash" -exec shellcheck --external-sources --shell bash --format $(SHELLCHECK_FORMAT) {} \;
+	find bin -type f -exec shellcheck --external-sources --format $(SHELLCHECK_FORMAT) {} \;
 
 ##
 ## Scripts
