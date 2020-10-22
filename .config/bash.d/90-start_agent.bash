@@ -8,6 +8,7 @@ start_agent() {
     test "$-" == "*i*" || return
 
     # Attempt to load an existing ssh environment
+    # shellcheck source=/dev/null
     test -f "${ssh_env}" && . "${ssh_env}" &> /dev/null
 
     # Check to see if there's an agent running in the existing
