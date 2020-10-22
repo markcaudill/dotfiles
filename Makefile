@@ -30,7 +30,7 @@ GIT_NAME = 'Mark Caudill'
 GIT_EMAIL = mark@mrkc.me
 GIT_SIGNINGKEY = 4DBEB43A8D281F2F
 
-SHELLCHECK_FORMAT = 'checkstyle'
+SHELLCHECK_FORMAT = 'tty'
 
 OS := $(shell uname -o)
 
@@ -50,10 +50,14 @@ install: install-bins install-editors install-git install-libs install-fish inst
 
 uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-fish uninstall-bash uninstall-terminals
 
-test:
-	find . -type f -name "*.sh" -exec shellcheck --external-sources --shell sh --format $(SHELLCHECK_FORMAT) {} \;
-	find . -type f -name "*.bash" -exec shellcheck --external-sources --shell bash --format $(SHELLCHECK_FORMAT) {} \;
-	find bin -type f -exec shellcheck --external-sources --format $(SHELLCHECK_FORMAT) {} \;
+test: test-bins test-sh test-bash
+
+
+test-bash:
+	find . -type f -name "*.bash" | xargs shellcheck --external-sources --shell bash --format $(SHELLCHECK_FORMAT)
+
+test-sh:
+	find . -type f -name "*.sh" | xargs shellcheck --external-sources --shell sh --format $(SHELLCHECK_FORMAT)
 
 ##
 ## Scripts
@@ -72,6 +76,8 @@ uninstall-bins:
 		rm -fv $(HOME)/.local/$$bin ;\
 	done
 
+test-bins:
+	find bin -type f | xargs shellcheck --external-sources --format $(SHELLCHECK_FORMAT)
 
 ##
 ## Editors
