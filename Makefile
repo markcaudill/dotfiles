@@ -2,18 +2,18 @@ SHELL = /bin/sh
 
 BINS_DIR = bin
 BINS_SH =          \
-	$(BIN_DIR)/ansrole    \
-	$(BIN_DIR)/battery    \
-	$(BIN_DIR)/compress   \
-	$(BIN_DIR)/dinfo      \
-	$(BIN_DIR)/example    \
-	$(BIN_DIR)/extract    \
-	$(BIN_DIR)/gh         \
-	$(BIN_DIR)/mb         \
-	$(BIN_DIR)/notes      \
-	$(BIN_DIR)/sysinfo    \
-	$(BIN_DIR)/update_dns \
-	$(BIN_DIR)/wlpop
+	$(BINS_DIR)/ansrole    \
+	$(BINS_DIR)/battery    \
+	$(BINS_DIR)/compress   \
+	$(BINS_DIR)/dinfo      \
+	$(BINS_DIR)/example    \
+	$(BINS_DIR)/extract    \
+	$(BINS_DIR)/gh         \
+	$(BINS_DIR)/mb         \
+	$(BINS_DIR)/notes      \
+	$(BINS_DIR)/sysinfo    \
+	$(BINS_DIR)/update_dns \
+	$(BINS_DIR)/wlpop
 
 LIBS =                     \
     lib/healthchecks.io.sh
