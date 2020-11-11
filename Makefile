@@ -1,18 +1,19 @@
 SHELL = /bin/sh
 
+BINS_DIR = bin
 BINS_SH =          \
-	bin/ansrole    \
-	bin/battery    \
-	bin/compress   \
-	bin/dinfo      \
-	bin/example    \
-	bin/extract    \
-	bin/gh         \
-	bin/mb         \
-	bin/notes      \
-	bin/sysinfo    \
-	bin/update_dns \
-	bin/wlpop
+	$(BINS_DIR)/ansrole    \
+	$(BINS_DIR)/battery    \
+	$(BINS_DIR)/compress   \
+	$(BINS_DIR)/dinfo      \
+	$(BINS_DIR)/example    \
+	$(BINS_DIR)/extract    \
+	$(BINS_DIR)/gh         \
+	$(BINS_DIR)/mb         \
+	$(BINS_DIR)/notes      \
+	$(BINS_DIR)/sysinfo    \
+	$(BINS_DIR)/update_dns \
+	$(BINS_DIR)/wlpop
 
 LIBS =                     \
     lib/healthchecks.io.sh
@@ -28,6 +29,8 @@ export GITIGNORE
 GIT_NAME = 'Mark Caudill'
 GIT_EMAIL = mark@mrkc.me
 GIT_SIGNINGKEY = 4DBEB43A8D281F2F
+
+SHELLCHECK_FORMAT = 'tty'
 
 OS := $(shell uname -o)
 
@@ -47,6 +50,15 @@ install: install-bins install-editors install-git install-libs install-fish inst
 
 uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-fish uninstall-bash uninstall-terminals
 
+test: test-bins test-sh test-bash
+
+
+test-bash:
+	find . -type f -name "*.bash" | xargs shellcheck --external-sources --shell bash --format $(SHELLCHECK_FORMAT)
+
+test-sh:
+	find . -type f -name "*.sh" | xargs shellcheck --external-sources --shell sh --format $(SHELLCHECK_FORMAT)
+
 ##
 ## Scripts
 ##
@@ -64,6 +76,8 @@ uninstall-bins:
 		rm -fv $(HOME)/.local/$$bin ;\
 	done
 
+test-bins:
+	find bin -type f | xargs shellcheck --external-sources --format $(SHELLCHECK_FORMAT)
 
 ##
 ## Editors

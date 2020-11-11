@@ -1,47 +1,47 @@
 #!/bin/sh
 
 _base_domain() {
-    echo ${*} | awk -F'.' '{print $(NF-1)"."$NF}'
+    echo "$@" | awk -F'.' '{print $(NF-1)"."$NF}'
 }
 
 _whois() {
-    whois ${1}
+    whois "${1}"
 }
 
 _ssl_exp() {
-    openssl s_client -connect ${1}:443 < /dev/null 2> /dev/null | openssl x509 -noout -enddate | awk -F'=' '{print $2}'
+    openssl s_client -connect "${1}":443 < /dev/null 2> /dev/null | openssl x509 -noout -enddate | awk -F'=' '{print $2}'
 }
 
 _ssl_issuer() {
-    openssl s_client -connect ${1}:443 < /dev/null 2> /dev/null | openssl x509 -noout -issuer
+    openssl s_client -connect "${1}":443 < /dev/null 2> /dev/null | openssl x509 -noout -issuer
 }
 
 _dns() {
-    local domain=${1}
-    local base=$(_base_domain ${domain})
-    if [ ${domain} != ${base} ]; then
-        host ${base}
+    domain="${1}"
+    base="$(_base_domain "${domain}")"
+    if [ "${domain}" != "${base}" ]; then
+        host "${base}"
     fi
-    host ${domain}
+    host "${domain}"
 }
 
 report() {
-    local domain=${1}
+    domain="${1}"
     cat <<EOF
 WHOIS
 =====
-$(_whois ${domain})
+$(_whois "${domain}")
 
 SSL
 ===
-Expiry: $(_ssl_exp ${domain})
-Issuer: $(_ssl_issuer ${domain})
+Expiry: $(_ssl_exp "${domain}")
+Issuer: $(_ssl_issuer "${domain}")
 
 DNS
 ===
-$(_dns ${domain} | sort | uniq)
+$(_dns "${domain}" | sort | uniq)
 
 EOF
 }
 
-report ${1}
+report "${1}"

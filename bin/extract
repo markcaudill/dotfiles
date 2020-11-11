@@ -2,48 +2,48 @@
 # Source: https://github.com/dideler/dotfiles
 
 while [ $# -gt 0 ]; do
-    if [ ! -f $1 ]; then
-        echo Skipping $1. Does not exist or is not regular.
+    if [ ! -f "$1" ]; then
+        echo Skipping "$1". Does not exist or is not regular.
     else
         case $1 in
             *.tar)
-                tar -xvf $1
+                tar -xvf "$1"
                 ;;
             *.tar.bz2)
-                tar -xjvf $1
+                tar -xjvf "$1"
                 ;;
             *.tbz2)
-                tar -xjvf $1
+                tar -xjvf "$1"
                 ;;
             *.tar.gz)
-                tar -xzvf $1
+                tar -xzvf "$1"
                 ;;
             *.tgz)
-                tar -xzvf $1
+                tar -xzvf "$1"
                 ;;
             *.bz)
-                bunzip2 $1
+                bunzip2 "$1"
                 ;;
             *.bz2)
-                bunzip2 $1
+                bunzip2 "$1"
                 ;;
             *.gz)
-                gunzip $1
+                gunzip "$1"
                 ;;
             *.rar)
-                unrar -x $1
+                unrar -x "$1"
                 ;;
             *.zip)
-                unzip -u $1 -d $(basename $1 .zip)
+                unzip -u "$1" -d "$(basename "$1" .zip)"
                 ;;
             *.Z)
-                uncompress $1
+                uncompress "$1"
                 ;;
             *.pax)
-                pax -r < $1
+                pax -r < "$1"
                 ;;
             *)
-                echo Unable to determine an extraction method for $1.
+                echo Unable to determine an extraction method for "$1".
                 ;;
         esac
     fi

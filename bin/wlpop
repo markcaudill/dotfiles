@@ -5,16 +5,16 @@ CHANNELS="1 2 3 4 5 6 7 8 9 10 11 12 13 14 36 40 44 48 52 56 60 64 100 104 108 1
 SCAN_RESULTS=$(mktemp)
 
 bar_line() {
-    local length=${1}
-    local line_char=${2:-"#"}
-    for i in $(seq 1 ${1}); do
-        echo -n ${line_char}
+    length="${1}"
+    line_char="${2:-"#"}"
+    for _ in $(seq 1 "${length}"); do
+        printf '%s' "${line_char}"
     done
-    echo
+    printf '\n'
 }
 
 cleanup() {
-    rm -f ${SCAN_RESULTS}
+    rm -f "${SCAN_RESULTS}"
 }
 
 ##
@@ -22,9 +22,9 @@ cleanup() {
 ##
 trap cleanup EXIT INT TERM HUP
 
-if [ "${1}" = "-h" -o "${1}" = "--help" ]; then
+if [ "${1}" = "-h" ] || [ "${1}" = "--help" ]; then
     cat <<USAGE
-Usage: $(basename ${0})
+Usage: $(basename "${0}")
 Print out a frequency grpah of the wifi channels in scanning range.
 
   -a  show all channels, even if empty
@@ -33,16 +33,16 @@ USAGE
     exit
 fi
 
-sudo iwlist wlp3s0 scan | grep -Eo 'Channel:[0-9]+' > ${SCAN_RESULTS}
+sudo iwlist "${INTERFACE}" scan | grep -Eo 'Channel:[0-9]+' > "${SCAN_RESULTS}"
 if [ ! -s "${SCAN_RESULTS}" ]; then
     echo "Scan returned no results."
     exit 1
 fi
 
 for channel in $CHANNELS; do
-    COUNT=$(grep -E "^Channel:${channel}\$" ${SCAN_RESULTS} | wc -l)
-    if [ ${COUNT} -gt "0" -o "${1}" = "-a" ]; then
-        printf "Channel %3s: " ${channel}
-        bar_line ${COUNT}
+    COUNT=$(grep -c -E "^Channel:${channel}\$" "${SCAN_RESULTS}")
+    if [ "${COUNT}" -gt "0" ] || [ "${1}" = "-a" ]; then
+        printf "Channel %3s: " "${channel}"
+        bar_line "${COUNT}"
     fi
 done

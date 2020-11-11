@@ -11,13 +11,13 @@ timestamp() {
 }
 
 slugify() {
-    echo ${*} | sed 's/[^A-Za-z0-9_-]/-/g' | sed 's/--*/-/g'
+    echo "$@" | sed 's/[^A-Za-z0-9_-]/-/g' | sed 's/--*/-/g'
 }
 
 # Operation Functions
 help() {
     cat <<HELP
-Usage: $(basename ${0}) {help|new|ls}
+Usage: $(basename "${0}") {help|new|ls}
 Plain text note-taking.
 
   help        this message
@@ -28,20 +28,20 @@ HELP
 
 new() {
     if [ -z "${*}" ]; then
-        local filename=$(slugify "$(timestamp)")
+        filename="$(slugify "$(timestamp)")"
     else
-        local filename=$(slugify "$(timestamp)-${*}")
+        filename="$(slugify "$(timestamp)-${*}")"
     fi
-    ${EDITOR} "${NOTES_DIR}/${filename}${NOTES_EXT}"
+    "${EDITOR}" "${NOTES_DIR}/${filename}${NOTES_EXT}"
 }
 
 ls_() {
-    ${FILE:-ls} "${NOTES_DIR}"
+    "${FILE:-ls}" "${NOTES_DIR}"
 }
 
 main() {
     # Initialize storage
-    mkdir -p ${NOTES_DIR}
+    mkdir -p "${NOTES_DIR}"
 
     case ${1} in
         help)
@@ -50,7 +50,7 @@ main() {
             ;;
         new)
             shift
-            new ${*}
+            new "$@"
             exit
             ;;
         ls)
@@ -64,4 +64,4 @@ main() {
     esac
 }
 
-main ${*}
+main "$@"
