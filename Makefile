@@ -10,6 +10,7 @@ BINS_SH =          \
 	$(BINS_DIR)/extract    \
 	$(BINS_DIR)/gh         \
 	$(BINS_DIR)/mb         \
+	$(BINS_DIR)/mitdis     \
 	$(BINS_DIR)/notes      \
 	$(BINS_DIR)/sysinfo    \
 	$(BINS_DIR)/update_dns \
