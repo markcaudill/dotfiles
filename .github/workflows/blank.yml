@@ -24,4 +24,4 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Run make test
-        run: make test
+        run: make all
