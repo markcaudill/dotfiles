@@ -37,11 +37,7 @@ OS := $(shell uname -o)
 
 .POSIX:
 
-.PHONY: all install install-bins install-editors install-fish install-bash install-git install-tmux install-vim uninstall uninstall-bins uninstall-editors uninstall-fish uninstall-bash uninstall-git uninstall-tmux uninstall-vim .gitignore
-
-.gitignore:
-	curl -s https://gitignore.io/api/vim,visualstudiocode > $@
-	echo "$$GITIGNORE" >> $@
+.PHONY: all install install-bins install-editors install-fish install-bash install-git install-tmux install-vim uninstall uninstall-bins uninstall-editors uninstall-fish uninstall-bash uninstall-git uninstall-tmux uninstall-vim
 
 all: bins editors git libs fish bash terminals
 
