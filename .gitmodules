@@ -1,6 +1,6 @@
 [submodule "submodules/mintty"]
 	path = include/dracula/mintty
-	url = git@github.com:dracula/mintty.git
+	url = https://github.com/dracula/mintty.git
 [submodule "include/dracule/xresources"]
 	path = include/dracula/xresources
-	url = git@github.com:dracula/xresources.git
+	url = https://github.com/dracula/xresources.git
