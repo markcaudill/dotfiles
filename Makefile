@@ -19,14 +19,6 @@ BINS_SH =          \
 LIBS =                     \
     lib/healthchecks.io.sh
 
-define GITIGNORE
-
-.Xresources
-.gitconfig
-.minttyrc
-endef
-export GITIGNORE
-
 GIT_NAME = 'Mark Caudill'
 GIT_EMAIL = mark@mrkc.me
 GIT_SIGNINGKEY = 4DBEB43A8D281F2F
