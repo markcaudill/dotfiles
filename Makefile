@@ -2,7 +2,6 @@ SHELL = /bin/sh
 
 BINS_DIR = bin
 BINS_SH =          \
-	$(BINS_DIR)/ansrole    \
 	$(BINS_DIR)/battery    \
 	$(BINS_DIR)/compress   \
 	$(BINS_DIR)/dinfo      \
