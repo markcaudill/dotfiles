@@ -1,8 +1,12 @@
-SHELL = /bin/sh
+SHELL := /bin/bash
+.ONESHELL:
+.SHELLFLAGS := -eu -o pipefail -c
+.DELETE_ON_ERROR:
+MAKEFLAGS += --warn-undefined-variables
+MAKEFLAGS += --no-builtin-rules
 
 BINS_DIR = bin
 BINS_SH =          \
-	$(BINS_DIR)/ansrole    \
 	$(BINS_DIR)/battery    \
 	$(BINS_DIR)/compress   \
 	$(BINS_DIR)/dinfo      \
@@ -27,8 +31,7 @@ SHELLCHECK_FORMAT = 'tty'
 
 OS := $(shell uname -o)
 
-.POSIX:
-
+# Targets that generate no files
 .PHONY: all install install-bins install-editors install-fish install-bash install-git install-tmux install-vim uninstall uninstall-bins uninstall-editors uninstall-fish uninstall-bash uninstall-git uninstall-tmux uninstall-vim
 
 all: bins editors git libs fish bash terminals
