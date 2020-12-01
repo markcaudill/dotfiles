@@ -12,6 +12,9 @@ else
     alias la='ls -a'
     alias ll='ls -l'
 end
+if command -sq kitty
+	alias ssh='kitty +kitten ssh'
+end
 alias mount='mount | column -t'
 alias ping='ping -c 5'
 alias t='todo.sh -ctan'
