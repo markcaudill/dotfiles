@@ -4,6 +4,6 @@ Locale=en_US
 Charset=UTF-8
 BoldAsColour=no
 BoldAsFont=no
-FontHeight=11
+FontHeight=14
 CursorType=block
 Transparency=off
