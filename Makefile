@@ -106,16 +106,18 @@ uninstall-vim:
 ##
 ## Git Shit
 ##
-git: .gitconfig
+git: .gitconfig .gitignore_
 
 clean-git:
-	rm -f .gitconfig
+	rm -f .gitconfig .gitignore_
 
 install-git: git
 	cp -p .gitconfig $(HOME)/.gitconfig
+	cp -p .gitignore_ $(HOME)/.gitignore
 
 uninstall-git:
 	rm -f $(HOME)/.gitconfig
+	rm -f $(HOME)/.gitignore_
 
 .gitconfig: .gitconfig.m4
 	m4 \
@@ -123,6 +125,9 @@ uninstall-git:
 		--define=GIT_EMAIL=$(GIT_EMAIL) \
 		--define=GIT_SIGNINGKEY=$(GIT_SIGNINGKEY) \
 		.gitconfig.m4 > .gitconfig
+
+.gitignore_: .gitignore_.m4
+	m4 < .gitignore_.m4 > .gitignore_
 
 
 ##

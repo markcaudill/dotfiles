@@ -4,3 +4,6 @@
 	name = GIT_NAME
 	email = GIT_EMAIL
 	signingkey = GIT_SIGNINGKEY
+
+[core]
+	excludesFile = ~/.gitignore
