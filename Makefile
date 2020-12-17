@@ -150,9 +150,10 @@ uninstall-libs:
 ###
 ### Fish
 ###
-fish:
+fish: .config/fish/completions/kubectl.fish
 
 clean-fish:
+	rm -f .config/fish/completions/kubectl.fish
 
 install-fish: fish
 	mkdir -p $(HOME)/.config
@@ -160,6 +161,9 @@ install-fish: fish
 
 uninstall-fish:
 	rm -rf $(HOME)/.config/fish
+
+.config/fish/completions/kubectl.fish:
+	cp -p include/fish-kubectl-completions/completions/kubectl.fish .config/fish/completions/kubectl.fish
 
 
 ###
