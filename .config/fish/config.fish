@@ -11,3 +11,8 @@ end
 if command -v starship >/dev/null
     starship init fish | source
 end
+
+
+if command -v helm >/dev/null
+	helm completion fish | source
+end

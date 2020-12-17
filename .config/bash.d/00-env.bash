@@ -21,3 +21,5 @@ export SSH_ENV=$HOME/.ssh/environment
 export TERMINAL=kitty
 GPG_TTY=$(tty)
 export GPG_TTY
+# shellcheck source=/dev/null
+command -v helm >/dev/null && source <(helm completion bash)
