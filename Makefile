@@ -163,7 +163,8 @@ uninstall-fish:
 	rm -rf $(HOME)/.config/fish
 
 .config/fish/completions/kubectl.fish:
-	cp -p include/fish-kubectl-completions/completions/kubectl.fish .config/fish/completions/kubectl.fish
+	mkdir -p $$(dirname $@)
+	cp -p include/fish-kubectl-completions/completions/kubectl.fish $@
 
 
 ###
