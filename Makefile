@@ -46,10 +46,10 @@ test: test-bins test-sh test-bash
 
 
 test-bash:
-	find . -type f -name "*.bash" | xargs shellcheck --external-sources --shell bash --format $(SHELLCHECK_FORMAT)
+	find . \( -path ./include -prune -o -name "*.bash" \) -type f | xargs shellcheck --external-sources --shell bash --format $(SHELLCHECK_FORMAT)
 
 test-sh:
-	find . -type f -name "*.sh" | xargs shellcheck --external-sources --shell sh --format $(SHELLCHECK_FORMAT)
+	find . \( -path ./include -prune -o -name "*.sh" \) -type f | xargs shellcheck --external-sources --shell sh --format $(SHELLCHECK_FORMAT)
 
 ##
 ## Scripts
