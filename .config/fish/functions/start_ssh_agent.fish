@@ -8,6 +8,9 @@ function __is_ssh_agent_running
 end
 
 function __load_ssh_env
+	# Return if $SSH_ENV does not exist
+	test ! -r "$SSH_ENV"; and return 0
+
     # If the $SSH_ENV file is in C-shell format
     if grep -E '^setenv' "$SSH_ENV" ^/dev/null >/dev/null
         eval (cat "$SSH_ENV" | sed 's/^setenv/set -gx/' | sed 's/^echo/#echo/') >/dev/null
@@ -16,7 +19,7 @@ function __load_ssh_env
         eval (cat "$SSH_ENV" | sed 's/^\([^=]*\)=\([^;]*\).*/set -gx \1 \2; /g' | sed 's/^echo/#echo/g') >/dev/null
     else
     # Fall through: eval and hope for the best
-        eval (cat $SSH_ENV) >/dev/null
+        eval (cat $SSH_ENV) ^/dev/null >/dev/null
     end
 end
 
