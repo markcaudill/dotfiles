@@ -3,10 +3,9 @@
 # https://github.com/healthchecks/healthchecks
 
 API_BASE="https://hc-ping.com"
-CURL_OPTS="-fsS --retry 3"
 
 hc_get() {
-    curl ${CURL_OPTS} "${API_BASE}/${1}" > /dev/null
+    curl -fsS --retry 3 "${API_BASE}/${1}" > /dev/null
 }
 
 hc_start() {
