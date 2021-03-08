@@ -69,7 +69,7 @@ uninstall-bins:
 	done
 
 test-bins:
-	find bin -type f | xargs shellcheck --external-sources --format $(SHELLCHECK_FORMAT)
+	find bin -type f -executable | xargs shellcheck --external-sources --format $(SHELLCHECK_FORMAT)
 
 ##
 ## Editors
