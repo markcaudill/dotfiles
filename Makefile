@@ -12,7 +12,6 @@ BINS_SH =          \
 	$(BINS_DIR)/dinfo      \
 	$(BINS_DIR)/example    \
 	$(BINS_DIR)/extract    \
-	$(BINS_DIR)/gh         \
 	$(BINS_DIR)/mb         \
 	$(BINS_DIR)/mitdis     \
 	$(BINS_DIR)/notes      \
