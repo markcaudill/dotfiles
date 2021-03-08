@@ -16,6 +16,7 @@ if command -sq kitty
 	alias ssh='kitty +kitten ssh'
 end
 alias mount='mount | column -t'
+alias mol=molecule
 alias ping='ping -c 5'
 alias t='todo.sh -ctan'
 alias ta='todo.sh -ctan add'

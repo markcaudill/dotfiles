@@ -1,4 +1,4 @@
-function mol
+function molecule
 	docker run --rm -it \
 		--log-driver none \
 		-v $PWD:$PWD \
