@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# From: https://www.commandlinefu.com/commands/view/24703/print-github-url-for-the-current-url
-
-git remote -v | sed -n '/github.com.*push/{s/^[^[:space:]]\+[[:space:]]\+//;s|git@github.com:|https://github.com/|;s/\.git.*//;p}'

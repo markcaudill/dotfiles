@@ -19,3 +19,7 @@ end
 if command -v minikube >/dev/null
 	minikube completion fish | source
 end
+
+if command -v gh >/dev/null
+	gh completion -s fish | source
+end
