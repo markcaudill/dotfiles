@@ -1,6 +1,8 @@
 dotfiles
 ========
 
+[![ShellCheck](https://github.com/markcaudill/dotfiles/actions/workflows/shellcheck.yml/badge.svg?branch=main)](https://github.com/markcaudill/dotfiles/actions/workflows/shellcheck.yml)
+
 muh dots
 
 Install/Update
