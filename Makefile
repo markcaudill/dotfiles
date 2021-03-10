@@ -41,6 +41,12 @@ install: install-bins install-editors install-git install-libs install-fish inst
 
 uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-fish uninstall-bash uninstall-terminals
 
+shellcheck: $(shell git ls-files "*.bash" "*.sh" | xargs)
+	@echo "+ $@"
+	docker pull koalaman/shellcheck
+	docker run --rm koalaman/shellcheck -V
+	docker run --rm -v $(PWD):/mnt koalaman/shellcheck --color=always --format=tty $^
+
 test: test-bins test-sh test-bash
 
 
