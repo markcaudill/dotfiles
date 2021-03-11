@@ -6,7 +6,7 @@ for p in $PATHS;
     and not contains $p $PATH
     and set -x PATH $PATH $p
 end
-set -x BROWSER firefox
+set -x BROWSER brave-browser
 set -x EDITOR vim
 set -x FILE ranger
 set -x READER zathura
