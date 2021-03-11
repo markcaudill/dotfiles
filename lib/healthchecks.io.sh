@@ -1,3 +1,4 @@
+# shellcheck shell=bash
 # Cron monitoring tool
 # https://healthchecks.io/
 # https://github.com/healthchecks/healthchecks
