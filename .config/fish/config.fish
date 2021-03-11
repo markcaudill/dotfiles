@@ -23,3 +23,5 @@ end
 if command -v gh >/dev/null
 	gh completion -s fish | source
 end
+
+fish_vi_key_bindings
