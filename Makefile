@@ -37,9 +37,9 @@ all: bins editors git libs fish bash terminals
 
 clean: clean-bins clean-editors clean-git clean-libs clean-fish clean-bash clean-terminals
 
-install: install-bins install-editors install-git install-libs install-fish install-bash install-terminals
+install: install-bins install-editors install-git install-inputrc install-libs install-fish install-bash install-terminals
 
-uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-libs uninstall-fish uninstall-bash uninstall-terminals
+uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-inputrc uninstall-libs uninstall-fish uninstall-bash uninstall-terminals
 
 shellcheck: $(shell git ls-files "*.bash" "*.sh" | xargs)
 	@echo "+ $@"
@@ -267,3 +267,17 @@ uninstall-xresources:
 
 .Xresources:
 	cp -p include/dracula/xresources/Xresources .Xresources
+
+
+###
+### inputrc
+###
+inputrc: .inputrc
+
+clean-inputrc:
+
+install-inputrc: inputrc
+	cp -p .inputrc $(HOME)/.inputrc
+
+uninstall-inputrc:
+	rm -f $(HOME)/.inputrc
