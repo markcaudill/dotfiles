@@ -1,5 +1,6 @@
 function pandoc
 	docker run --rm \
+		-i \
 		--log-driver none \
 		--net none \
 		--name pandoc \
