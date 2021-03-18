@@ -5,7 +5,9 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " Plugin directives go here
-Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive' " Git plugin
+Plugin 'tpope/vim-rhubarb.git' " GitHub plugin for fugitive
+Plugin 'shumphrey/fugitive-gitlab.vim' " GitLab plugin for fugitive
 call vundle#end()
 filetype plugin indent on
 " /Vundle
