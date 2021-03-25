@@ -27,3 +27,7 @@ function MarkdownPreview()
 	:redraw!
 endfunction
 :nmap <Leader>p :call MarkdownPreview()<CR>
+
+" Resize vertical splits
+nnoremap <silent> <Leader>+ :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
