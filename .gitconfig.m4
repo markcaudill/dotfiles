@@ -7,3 +7,6 @@
 
 [core]
 	excludesFile = ~/.gitignore
+
+[init]
+	defaultBranch = main
