@@ -8,6 +8,7 @@ call vundle#begin()
 Plugin 'tpope/vim-fugitive' " Git plugin
 Plugin 'tpope/vim-rhubarb.git' " GitHub plugin for fugitive
 Plugin 'shumphrey/fugitive-gitlab.vim' " GitLab plugin for fugitive
+Plugin 'editorconfig/editorconfig-vim' " Editorconfig plugin
 call vundle#end()
 filetype plugin indent on
 " /Vundle
