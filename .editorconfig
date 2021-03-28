@@ -36,6 +36,10 @@ indent_style = space
 indent_size = 4
 max_line_length = 79
 
+[*.tf]
+indent_style = space
+indent_size = 2
+
 # http://yaml.org/spec/1.2/2009-07-21/spec.html#id2576668
 [*.{yaml,yml}]
 indent_style = space
