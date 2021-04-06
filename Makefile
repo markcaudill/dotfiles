@@ -31,15 +31,15 @@ SHELLCHECK_FORMAT = 'tty'
 OS := $(shell uname -o)
 
 # Targets that generate no files
-.PHONY: all install install-bins install-editors install-fish install-bash install-git install-tmux install-vim uninstall uninstall-bins uninstall-editors uninstall-fish uninstall-bash uninstall-git uninstall-tmux uninstall-vim
+.PHONY: all install install-bins install-editors install-bash install-git install-tmux install-vim uninstall uninstall-bins uninstall-editors uninstall-bash uninstall-git uninstall-tmux uninstall-vim
 
-all: bins editors git libs fish bash terminals
+all: bins editors git libs bash terminals
 
-clean: clean-bins clean-editors clean-git clean-libs clean-fish clean-bash clean-terminals
+clean: clean-bins clean-editors clean-git clean-libs clean-bash clean-terminals
 
-install: install-bins install-editors install-git install-inputrc install-libs install-fish install-bash install-terminals
+install: install-bins install-editors install-git install-inputrc install-libs install-bash install-terminals
 
-uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-inputrc uninstall-libs uninstall-fish uninstall-bash uninstall-terminals
+uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-inputrc uninstall-libs uninstall-bash uninstall-terminals
 
 shellcheck: $(shell git ls-files "*.bash" "*.sh" | xargs)
 	@echo "+ $@"
@@ -150,26 +150,6 @@ uninstall-libs:
 	for lib in $(LIBS); do \
 		rm -fv $(HOME)/.local/$$lib ;\
 	done
-
-
-###
-### Fish
-###
-fish: .config/fish/completions/kubectl.fish
-
-clean-fish:
-	rm -f .config/fish/completions/kubectl.fish
-
-install-fish: fish
-	mkdir -p $(HOME)/.config
-	cp -pr .config/fish $(HOME)/.config/
-
-uninstall-fish:
-	rm -rf $(HOME)/.config/fish
-
-.config/fish/completions/kubectl.fish:
-	mkdir -p $$(dirname $@)
-	cp -p include/fish-kubectl-completions/completions/kubectl.fish $@
 
 
 ###

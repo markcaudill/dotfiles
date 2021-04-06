@@ -1,6 +1,6 @@
 # shellcheck shell=bash
 
-# Shortcuts areound filesystem
+# Shortcuts around filesystem
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -48,7 +48,7 @@ uname | grep Linux &>/dev/null && alias ls='ls --color=auto --human-readable --f
 # List all files, including hidden, except . and ..
 alias la='ls -A'
 
-# List filesin long format
+# List files in long format
 alias ll='ls -l'
 
 # Make mount output more readable
@@ -56,14 +56,6 @@ alias mount='mount | column -t'
 
 # Limit ping to 5 packets
 alias ping='ping -c 5'
-
-# Todo.txt helpers
-alias t='todo.sh -ctan'
-alias ta='todo.sh -ctan add'
-alias td='todo.sh -ctan do'
-alias tl='todo.sh -ctan ls'
-alias tw='todo.sh -ctan ls @work'
-alias tnw='todo.sh -ctan ls | grep -v @work'
 
 # Terraform helpers
 alias tf='terraform'

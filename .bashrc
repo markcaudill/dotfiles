@@ -1,5 +1,7 @@
 # shellcheck shell=bash
 
+set -o vi
+
 # shellcheck disable=SC1091
 test -f /etc/profile && source /etc/profile
 
@@ -20,5 +22,3 @@ test -f "${SSH_ENV}" && start_agent "${SSH_ENV}"
 
 # shellcheck source=/dev/null
 hash kitty &>/dev/null && source <(kitty + complete setup bash)
-
-command -v starship >/dev/null && eval "$(starship init bash)"

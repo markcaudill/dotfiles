@@ -13,13 +13,7 @@ for p in ${HOME}/.local/bin ${GOBIN} /usr/local/go/bin /usr/local/bin /usr/local
         PATH="${PATH:+"${PATH}:"}${p}"
 done
 export PATH
-export BROWSER=brave-browser
 export EDITOR=vim
-export FILE=ranger
-export READER=zathura
 export SSH_ENV=$HOME/.ssh/environment
-export TERMINAL=kitty
 GPG_TTY=$(tty)
 export GPG_TTY
-# shellcheck source=/dev/null
-command -v helm >/dev/null && source <(helm completion bash)
