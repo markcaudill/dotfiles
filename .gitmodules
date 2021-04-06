@@ -4,6 +4,3 @@
 [submodule "include/dracula/xresources"]
 	path = include/dracula/xresources
 	url = https://github.com/dracula/xresources.git
-[submodule "include/fish-kubectl-completions"]
-	path = include/fish-kubectl-completions
-	url = https://github.com/evanlucas/fish-kubectl-completions
