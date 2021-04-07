@@ -1,9 +1,9 @@
 # This is Git's per-user configuration file.
 [user]
 # Please adapt and uncomment the following lines:
-	name = GIT_NAME
-	email = GIT_EMAIL
-	signingkey = GIT_SIGNINGKEY
+	name = 'Mark Caudill'
+	email = mark@mrkc.me
+	signingkey = 4DBEB43A8D281F2F
 
 [core]
 	excludesFile = ~/.gitignore
