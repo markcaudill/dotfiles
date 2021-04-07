@@ -5,7 +5,7 @@ SHELL := /bin/bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-BINS = $(shell find bin -type f -printf "%p ")
+BINS = $(shell git ls-files .local/bin | xargs)
 
 SHELLCHECK = shellcheck --external-sources --color=always --format=tty
 CONFIG_MODE = 0640
