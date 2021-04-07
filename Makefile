@@ -26,7 +26,7 @@ GIT_NAME = 'Mark Caudill'
 GIT_EMAIL = mark@mrkc.me
 GIT_SIGNINGKEY = 4DBEB43A8D281F2F
 
-SHELLCHECK_FORMAT = 'tty'
+SHELLCHECK = shellcheck --external-sources --color=always --format=tty
 
 OS := $(shell uname -o)
 
@@ -42,19 +42,12 @@ install: install-bins install-editors install-git install-inputrc install-libs i
 uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-inputrc uninstall-libs uninstall-bash uninstall-terminals
 
 shellcheck: $(shell git ls-files "*.bash" "*.sh" | xargs)
-	@echo "+ $@"
-	docker pull koalaman/shellcheck
-	docker run --rm koalaman/shellcheck -V
-	docker run --rm -v $(PWD):/mnt koalaman/shellcheck --color=always --format=tty $^
+	@echo "+ $@ : $^"
+	$(SHELLCHECK) $^
+.PHONY: shellcheck
 
-test: test-bins test-sh test-bash
+test: shellcheck
 
-
-test-bash:
-	find . \( -path ./include -prune -o -name "*.bash" \) -type f | xargs shellcheck --external-sources --shell bash --format $(SHELLCHECK_FORMAT)
-
-test-sh:
-	find . \( -path ./include -prune -o -name "*.sh" \) -type f | xargs shellcheck --external-sources --shell sh --format $(SHELLCHECK_FORMAT)
 
 ##
 ## Scripts
