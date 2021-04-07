@@ -5,14 +5,15 @@ SHELL := /bin/bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-BINS_DIR = bin
-BINS_SH = $(shell find bin -type f -printf "%p ")
+BINS = $(shell find bin -type f -printf "%p ")
 
 GIT_NAME = 'Mark Caudill'
 GIT_EMAIL = mark@mrkc.me
 GIT_SIGNINGKEY = 4DBEB43A8D281F2F
 
 SHELLCHECK = shellcheck --external-sources --color=always --format=tty
+CONFIG_MODE = 0640
+BIN_MODE = 0750
 
 OS := $(shell uname -o)
 
@@ -38,21 +39,18 @@ test: shellcheck
 ##
 ## Scripts
 ##
-bins:
+bins: $(BINS)
 
 clean-bins:
 
-install-bins:
-	mkdir -v -p $(HOME)/.local/bin
-	cp -v -p -t $(HOME)/.local/bin $(BINS_SH)
+install-bins: $(BINS)
+	install -m $(BIN_MODE) -D -t $(HOME)/.local/bin $(BINS)
 	@echo Make sure $(HOME)/.local/bin is in your PATH.
 
 uninstall-bins:
-	for bin in $(BINS_SH); do \
-		rm -fv $(HOME)/.local/$$bin ;\
-	done
+	rm -fv $(addprefix $(HOME)/.local/bin/,$(subst bin/,,$(BINS)))
 
-test-bins:
+test-bins: $(BINS)
 	find bin -type f -executable | xargs shellcheck --external-sources --format $(SHELLCHECK_FORMAT)
 
 ##
@@ -63,7 +61,7 @@ editors:
 clean-editors: clean-vim
 
 install-editors: install-vim
-	cp -p .editorconfig $(HOME)/.editorconfig
+	install --mode=$(CONFIG_MODE) .editorconfig $(HOME)
 
 uninstall-editors: uninstall-vim
 	rm -f $(HOME)/.editorconfig
