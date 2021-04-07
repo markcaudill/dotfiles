@@ -5,24 +5,13 @@ SHELL := /bin/bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-BINS = $(shell git ls-files .local/bin | xargs)
-
 SHELLCHECK = shellcheck --external-sources --color=always --format=tty
-CONFIG_MODE = 0640
-BIN_MODE = 0750
+ALL = $(shell git ls-files | grep -vE '.github|LICENSE|Makefile|README.md')
+DEST = $(HOME)
 
 OS := $(shell uname -o)
 
-# Targets that generate no files
-.PHONY: all install install-bins install-editors install-bash install-git install-tmux install-vim uninstall uninstall-bins uninstall-editors uninstall-bash uninstall-git uninstall-tmux uninstall-vim
-
-all: bins editors git libs bash terminals
-
-clean: clean-bins clean-editors clean-git clean-libs clean-bash clean-terminals
-
-install: install-bins install-editors install-git install-inputrc install-libs install-bash install-terminals
-
-uninstall: uninstall-bins uninstall-editors uninstall-git uninstall-inputrc uninstall-libs uninstall-bash uninstall-terminals
+all: $(ALL)
 
 shellcheck: $(shell git ls-files "*.bash" "*.sh" | xargs)
 	@echo "+ $@ : $^"
@@ -31,206 +20,16 @@ shellcheck: $(shell git ls-files "*.bash" "*.sh" | xargs)
 
 test: shellcheck
 
-
-##
-## Scripts
-##
-bins: $(BINS)
-
-clean-bins:
-
-install-bins: $(BINS)
-	install -m $(BIN_MODE) -D -t $(HOME)/.local/bin $(BINS)
-	@echo Make sure $(HOME)/.local/bin is in your PATH.
-
-uninstall-bins:
-	rm -fv $(addprefix $(HOME)/.local/bin/,$(subst bin/,,$(BINS)))
-
-test-bins: $(BINS)
-	find bin -type f -executable | xargs shellcheck --external-sources --format $(SHELLCHECK_FORMAT)
-
-##
-## Editors
-##
-editors:
-
-clean-editors: clean-vim
-
-install-editors: install-vim
-	install --mode=$(CONFIG_MODE) .editorconfig $(HOME)
-
-uninstall-editors: uninstall-vim
-	rm -f $(HOME)/.editorconfig
-
-###
-### Vim
-###
-vim:
-
-clean-vim:
-
-install-vim:
-	cp -p .vimrc $(HOME)/.vimrc
-	mkdir -p $(HOME)/.vim/bundle
-	test -d $(HOME)/.vim/bundle/Vundle.vim || \
-		git clone https://github.com/VundleVim/Vundle.vim.git $(HOME)/.vim/bundle/Vundle.vim
-	cd $(HOME)/.vim/bundle/Vundle.vim && git pull && cd -
-	vim +PluginInstall +qall
-
-uninstall-vim:
-	rm -rf $(HOME)/.vimrc $(HOME)/.vim/bundle
-
-
-##
-## Git Shit
-##
-git: .gitconfig .gitignore_
-
-clean-git:
-	rm -f .gitconfig .gitignore_
-
-install-git: git
-	cp -p .gitconfig $(HOME)/.gitconfig
-	cp -p .gitignore_ $(HOME)/.gitignore
-
-uninstall-git:
-	rm -f $(HOME)/.gitconfig
-	rm -f $(HOME)/.gitignore_
-
-.gitconfig: .gitconfig.m4
-	m4 \
-		--define=GIT_NAME="$(GIT_NAME)" \
-		--define=GIT_EMAIL=$(GIT_EMAIL) \
-		--define=GIT_SIGNINGKEY=$(GIT_SIGNINGKEY) \
-		.gitconfig.m4 > .gitconfig
-
-.gitignore_: .gitignore_.m4
-	m4 < .gitignore_.m4 > .gitignore_
-
-
-##
-## Libs
-##
-libs:
-
-clean-libs:
-
-install-libs:
-	mkdir -v -p $(HOME)/.local/lib
-	cp -v -p -t $(HOME)/.local/lib $(LIBS)
-
-uninstall-libs:
-	for lib in $(LIBS); do \
-		rm -fv $(HOME)/.local/$$lib ;\
+install: $(ALL)
+	@echo "+ $@: $^"
+	for i in $^; do
+		install -v -D -m $$(stat -c %a $$i) -t $(DEST)/$$(dirname $$i) $$i
 	done
+.PHONY: install
 
-
-###
-### Bash
-###
-bash:
-
-clean-bash:
-
-install-bash: bash
-	mkdir -p $(HOME)/.config
-	cp -pr .config/bash.d $(HOME)/.config/
-	cp -p .bashrc $(HOME)/
-	cp -p .bash_logout $(HOME)/
-	cp -p .bash_profile $(HOME)/
-
-uninstall-bash:
-	rm -rf $(HOME)/.config/bash.d \
-		$(HOME)/.bashrc \
-		$(HOME)/.bash_logout \
-		$(HOME)/.bash_profile
-
-##
-## Terminals
-##
-terminals: kitty mintty tmux xresources
-
-clean-terminals: clean-kitty clean-mintty clean-tmux clean-xresources
-
-install-terminals: install-kitty install-mintty install-tmux install-xresources
-
-uninstall-terminals: uninstall-kitty uninstall-mintty uninstall-tmux uninstall-xresources
-
-###
-### kitty
-###
-kitty: .config/kitty/kitty.conf
-
-clean-kitty:
-
-install-kitty:
-	mkdir -p $(HOME)/.config/kitty
-	cp -p .config/kitty/kitty.conf $(HOME)/.config/kitty/kitty.conf
-
-uninstall-kitty:
-	rm -rf $(HOME)/.config/kitty
-
-###
-### mintty
-###
-mintty: .minttyrc
-
-clean-mintty:
-	rm -f .minttyrc
-
-install-mintty:
-	cp -p .minttyrc $(HOME)/.minttyrc
-
-uninstall-mintty:
-	rm -f $(HOME)/.minttyrc
-
-.minttyrc: .minttyrc.m4
-	m4 < .minttyrc.m4 > .minttyrc
-
-
-###
-### tmux
-###
-tmux: .tmux.conf
-
-clean-tmux:
-
-install-tmux: tmux
-	cp -p .tmux.conf $(HOME)/.tmux.conf
-
-uninstall-tmux:
-	rm -f $(HOME)/.tmux.conf
-
-
-###
-### Xresources
-###
-xresources: .Xresources .xinitrc
-
-clean-xresources:
-	rm -f .Xresources
-
-install-xresources:
-	cp -p .Xresources $(HOME)/.Xresources
-	cp -p .xinitrc $(HOME)/.xinitrc
-
-uninstall-xresources:
-	rm -f $(HOME)/.Xresources
-	rm -f $(HOME)/.xinitrc
-
-.Xresources:
-	cp -p include/dracula/xresources/Xresources .Xresources
-
-
-###
-### inputrc
-###
-inputrc: .inputrc
-
-clean-inputrc:
-
-install-inputrc: inputrc
-	cp -p .inputrc $(HOME)/.inputrc
-
-uninstall-inputrc:
-	rm -f $(HOME)/.inputrc
+uninstall: $(ALL)
+	@echo "+ $@"
+	for i in $^; do
+		rm -fv $(DEST)/$$i
+	done
+.PHONY: uninstall
