@@ -6,21 +6,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 BINS_DIR = bin
-BINS_SH =          \
-	$(BINS_DIR)/battery    \
-	$(BINS_DIR)/compress   \
-	$(BINS_DIR)/dinfo      \
-	$(BINS_DIR)/example    \
-	$(BINS_DIR)/extract    \
-	$(BINS_DIR)/mb         \
-	$(BINS_DIR)/mitdis     \
-	$(BINS_DIR)/notes      \
-	$(BINS_DIR)/sysinfo    \
-	$(BINS_DIR)/update_dns \
-	$(BINS_DIR)/wlpop
-
-LIBS =                     \
-    lib/healthchecks.io.sh
+BINS_SH = $(shell find bin -type f -printf "%p ")
 
 GIT_NAME = 'Mark Caudill'
 GIT_EMAIL = mark@mrkc.me
