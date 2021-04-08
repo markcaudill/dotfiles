@@ -6,6 +6,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 SHELLCHECK = shellcheck --external-sources --color=always --format=tty
+STOW = stow -v -t $(DEST) --ignore="(Makefile.*|README\.md|\.github|LICENSE)"
 ALL = $(shell git ls-files | grep -vE '.github|LICENSE|Makefile|README.md')
 DEST = $(HOME)
 
@@ -31,3 +32,12 @@ uninstall: $(ALL)
 		rm -fv $(DEST)/$$i
 	done
 .PHONY: uninstall
+
+stow: $(ALL)
+	@echo "+ $@"
+	$(STOW) -S ./
+.PHONEY: stow
+
+unstow: $(ALL)
+	@echo "+ $@"
+	$(STOW) -D ./
