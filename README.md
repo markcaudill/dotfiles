@@ -11,21 +11,18 @@ Install/Update
 1. Backup anything in your `$HOME` that you don't want overwritten. Review
    [Makefile](Makefile) to see which files will be affected.
 
-2. Ensure no build artifacts are present.
+2. Install
 
-    ```bash
-    make clean
-    ```
+	1. Using `install` (copies files into place)
 
-3. Update submodules
+		```bash
+		make install
+		```
 
-    ```bash
-    git submodule update --init --recursive
-    ```
+	2. Using `stow` (symlink files instead of copy)
 
-4. Build and install
+		```bash
+		make stow
+		```
 
-    ```bash
-    make all
-    make install
-    ```
+3. Uninstall using `make uninstall` or `make unstow` (as applicable)
