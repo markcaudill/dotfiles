@@ -9,14 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install GNU make
-        run: sudo apt-get update && sudo apt-get -y install make
-
-      - name: Pull shellcheck container image
-        run: docker pull koalaman/shellcheck && docker run --rm koalaman/shellcheck -V
+        run: sudo apt-get update && sudo apt-get -y install make shellcheck
 
       - uses: actions/checkout@v2
-        with:
-          submodules: 'recursive'
 
       - name: Run make shellcheck
         run: make shellcheck
