@@ -113,5 +113,7 @@ alias gstl='git stash list'
 alias gstp='git stash pop'
 alias gsts='git stash save'
 
+alias path='echo $PATH | sed "s/:/\n/g"'
+
 # Use Podman instead of Docker if it's installed
 command -v podman >/dev/null && alias docker=podman
