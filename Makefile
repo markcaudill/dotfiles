@@ -9,8 +9,6 @@ SHELLCHECK = shellcheck --external-sources --color=always --format=tty
 ALL = $(shell git ls-files | grep -vE '.github|LICENSE|Makefile|README.md')
 DEST = $(HOME)
 
-OS := $(shell uname -o)
-
 all: $(ALL)
 
 shellcheck: $(shell git ls-files "*.bash" "*.sh" | xargs)
