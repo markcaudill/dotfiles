@@ -12,7 +12,7 @@ DEST = $(HOME)
 
 all: $(ALL)
 
-shellcheck: $(shell git ls-files "*.bash" "*.sh" | xargs)
+shellcheck: $(shell grep --exclude-dir=.git -rlE '^#!/.*(sh|bash)' | xargs)
 	@echo "+ $@ : $^"
 	$(SHELLCHECK) $^
 .PHONY: shellcheck
