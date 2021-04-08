@@ -1,3 +1,3 @@
 #!/bin/sh
 
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+test -f ~/.Xresources && xrdb -merge -I"$HOME" ~/.Xresources
