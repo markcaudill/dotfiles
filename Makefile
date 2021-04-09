@@ -36,8 +36,14 @@ uninstall: $(ALL)
 stow: $(ALL)
 	@echo "+ $@"
 	$(STOW) -S ./
-.PHONEY: stow
+.PHONY: stow
 
 unstow: $(ALL)
 	@echo "+ $@"
 	$(STOW) -D ./
+.PHONY: unstow
+
+restow: $(ALL)
+	@echo "+ $@"
+	$(STOW) -R ./
+.PHONY: restow
