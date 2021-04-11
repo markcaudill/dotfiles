@@ -17,6 +17,10 @@ set path+=**
 set wildmenu
 syntax enable
 
+" Enable line numbers
+set number
+set relativenumber
+
 " Markdown preview generator using pandoc (via STDIN) and xdg-open
 " Essentially: `cat <tmp_markdown> | pandoc > <tmp_html>; xdg-open <tmp_html>`
 function MarkdownPreview()
