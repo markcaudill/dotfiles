@@ -22,6 +22,20 @@ syntax enable
 set number
 set relativenumber
 
+" Enable undo history
+set undofile
+set undodir=~/.vim/undo
+
+" Disable arrow keys (easier for Ducky mini which has arrows as Fn keys at
+" kl;o)
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
+" Run goimports every save
+let g:go_fmt_command = "goimports"
+
 " Markdown preview generator using pandoc (via STDIN) and xdg-open
 " Essentially: `cat <tmp_markdown> | pandoc > <tmp_html>; xdg-open <tmp_html>`
 function MarkdownPreview()
