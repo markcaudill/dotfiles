@@ -5,8 +5,8 @@ before_script:
   - sudo apt-get update && sudo apt-get -y install make
 
 
-test:
-  stage: shellcheck
+shellcheck:
+  stage: test
   script:    
     - echo "Install ShellCheck"
     - sudo apt-get -y install shellcheck
