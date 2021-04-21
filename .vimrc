@@ -10,6 +10,7 @@ Plugin 'tpope/vim-rhubarb.git' " GitHub plugin for fugitive
 Plugin 'shumphrey/fugitive-gitlab.vim' " GitLab plugin for fugitive
 Plugin 'editorconfig/editorconfig-vim' " Editorconfig plugin
 Plugin 'fatih/vim-go.git' " Go plugin
+Plugin 'preservim/nerdtree' " File browser plugin
 call vundle#end()
 filetype plugin indent on
 " /Vundle
@@ -32,6 +33,12 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
+" NERDTree shortcuts
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 " Run goimports every save
 let g:go_fmt_command = "goimports"
