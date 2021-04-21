@@ -6,8 +6,9 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 SHELLCHECK = shellcheck --external-sources --color=always --format=tty
-STOW = stow -v -t $(DEST) --ignore="(Makefile.*|README\.md|\.github|LICENSE)"
-ALL = $(shell git ls-files | grep -vE '.github|LICENSE|Makefile|README.md')
+IGNORE = "(Makefile.*|README\.md|\.github|\.gitlab-ci\.yml|LICENSE)"
+STOW = stow -v -t $(DEST) --ignore=$(IGNORE)
+ALL = $(shell git ls-files | grep -vE $(IGNORE))
 DEST = $(HOME)
 
 all: $(ALL)
