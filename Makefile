@@ -7,7 +7,7 @@ MAKEFLAGS += --no-builtin-rules
 
 SHELLCHECK = shellcheck --external-sources --color=always --format=tty
 IGNORE = "(Makefile.*|README\.md|\.github|\.gitlab-ci\.yml|LICENSE)"
-STOW = stow -v -t $(DEST) --ignore=$(IGNORE)
+STOW = stow -v -t $(DEST) --ignore=$(IGNORE) --no-folding
 ALL = $(shell git ls-files | grep -vE $(IGNORE))
 DEST = $(HOME)
 
