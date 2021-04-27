@@ -6,7 +6,7 @@ before_script:
 
 
 shellcheck:
-  stage: shellcheck
+  stage: test
   script:    
     - echo "Install ShellCheck"
     - sudo apt-get -y install shellcheck
