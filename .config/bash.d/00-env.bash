@@ -19,6 +19,7 @@ for p in ${PATHS[@]}; do
 	fi
 done
 export PATH=${VALID_PATHS}
+export PONY_KEYID=250113B256B542E9
 export EDITOR=vim
 export SSH_ENV=$HOME/.ssh/environment
 GPG_TTY=$(tty)
