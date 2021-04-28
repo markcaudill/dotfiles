@@ -3,7 +3,7 @@
 # Please adapt and uncomment the following lines:
 	name = 'Mark Caudill'
 	email = mark@mrkc.me
-	signingkey = 4DBEB43A8D281F2F
+	signingkey = 250113B256B542E9
 
 [core]
 	excludesFile = ~/.gitignore
