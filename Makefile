@@ -5,7 +5,7 @@ SHELL := /bin/bash
 MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
-SHELLCHECK = shellcheck --external-sources --color=always --format=tty
+SHELLCHECK = docker run --rm -it -v "$(PWD):/mnt" koalaman/shellcheck:stable --external-sources --color=always --format=tty
 IGNORE = "(Makefile.*|README\.md|\.github|\.gitlab-ci\.yml|LICENSE)"
 STOW = stow -v -t $(DEST) --ignore=$(IGNORE) --no-folding
 ALL = $(shell git ls-files | grep -vE $(IGNORE))
@@ -13,7 +13,7 @@ DEST = $(HOME)
 
 all: $(ALL)
 
-shellcheck: $(shell grep --exclude-dir=.git -rlE '^#!/.*(sh|bash)' | xargs)
+shellcheck: $(shell grep --exclude-dir=.git -rlE '^#!/.*(sh|bash)' | xargs) $(shell git ls-files .config/bash.d | xargs)
 	@echo "+ $@ : $^"
 	$(SHELLCHECK) $^
 .PHONY: shellcheck
