@@ -13,8 +13,8 @@ charset = utf-8
 indent_style = tab
 indent_size = 4
 
-[*.clj, *.cljs]
-indent_stype = space
+[*.{clj,cljs}]
+indent_type = space
 indent_size = 2
 
 # https://golang.org/doc/effective_go.html#formatting
