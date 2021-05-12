@@ -22,3 +22,5 @@ test -f "${SSH_ENV}" && start_agent "${SSH_ENV}"
 
 # shellcheck source=/dev/null
 hash kitty &>/dev/null && source <(kitty + complete setup bash)
+
+test -f ~/.cargo/env && source ~/.cargo/env
