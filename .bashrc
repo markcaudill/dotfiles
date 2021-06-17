@@ -29,4 +29,7 @@ hash kind &>/dev/null && source <(kind completion bash)
 # shellcheck source=/dev/null
 hash kubectl &>/dev/null && source <(kubectl completion bash)
 
+# shellcheck source=/dev/null
+hash helm &>/dev/null && source <(helm completion bash)
+
 test -f ~/.cargo/env && source ~/.cargo/env
