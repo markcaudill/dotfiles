@@ -23,4 +23,10 @@ test -f "${SSH_ENV}" && start_agent "${SSH_ENV}"
 # shellcheck source=/dev/null
 hash kitty &>/dev/null && source <(kitty + complete setup bash)
 
+# shellcheck source=/dev/null
+hash kind &>/dev/null && source <(kind completion bash)
+
+# shellcheck source=/dev/null
+hash kubectl &>/dev/null && source <(kubectl completion bash)
+
 test -f ~/.cargo/env && source ~/.cargo/env
