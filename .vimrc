@@ -6,17 +6,19 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " Plugin directives go here
 Plugin 'huyvohcmc/atlas.vim' " Minimal monochrome theme
+Plugin 'sainnhe/gruvbox-material' " Theme
 Plugin 'tpope/vim-fugitive' " Git plugin
 Plugin 'tpope/vim-rhubarb.git' " GitHub plugin for fugitive
 Plugin 'shumphrey/fugitive-gitlab.vim' " GitLab plugin for fugitive
 Plugin 'editorconfig/editorconfig-vim' " Editorconfig plugin
 Plugin 'fatih/vim-go.git' " Go plugin
 Plugin 'preservim/nerdtree' " File browser plugin
+Plugin 'hashivim/vim-hashicorp-tools' " Hashicorp plugins (Packer, Terraform, etc.)
 call vundle#end()
 filetype plugin indent on
 " /Vundle
 
-colorscheme atlas
+colorscheme gruvbox-material
 
 set path+=**
 set wildmenu
