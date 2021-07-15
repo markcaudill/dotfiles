@@ -155,5 +155,5 @@ alias path='echo $PATH | sed "s/:/\n/g"'
 # Use Podman instead of Docker if it's installed
 command -v podman >/dev/null && alias docker=podman
 
-alias dot='dot -Ncolor="#E2E2E1" -Ecolor="#E2E2E1" -Nfontcolor="#E2E2E1" -Efontcolor="#E2E2E1" -Gbgcolor="#272220" -Efontname="Fira Code" -Nfontname="Fira Code" -Gfontname="Fira Code" -Efontsize=12 -Nfontsize=12 -Gfontsize=12'
+alias dot='dot -Ncolor="#E2E2E1" -Ecolor="#e1e1e1" -Nfontcolor="#e1e1e1" -Efontcolor="#e1e1e1" -Gbgcolor="#282828" -Efontname="Fira Code" -Nfontname="Fira Code" -Gfontname="Fira Code" -Efontsize=12 -Nfontsize=12 -Gfontsize=12'
 alias icat='kitty +kitten icat --align=left --silent'
