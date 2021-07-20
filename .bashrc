@@ -32,4 +32,7 @@ hash kubectl &>/dev/null && source <(kubectl completion bash)
 # shellcheck source=/dev/null
 hash helm &>/dev/null && source <(helm completion bash)
 
+# shellcheck source=/dev/null
+test -x /home/linuxbrew/.linuxbrew/bin/brew && source <(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
 test -f ~/.cargo/env && source ~/.cargo/env
