@@ -15,6 +15,7 @@ Plugin 'fatih/vim-go.git' " Go plugin
 Plugin 'preservim/nerdtree' " File browser plugin
 Plugin 'hashivim/vim-hashicorp-tools' " Hashicorp plugins (Packer, Terraform, etc.)
 Plugin 'szw/vim-maximizer' " Maximize Vim windows
+Plugin 'https://github.com/davisdude/vim-love-docs/tree/build'
 call vundle#end()
 filetype plugin indent on
 " /Vundle
