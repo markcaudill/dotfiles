@@ -4,6 +4,8 @@ set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
 " Plugin directives go here
 Plugin 'huyvohcmc/atlas.vim' " Minimal monochrome theme
 Plugin 'sainnhe/gruvbox-material' " Theme
@@ -15,7 +17,6 @@ Plugin 'fatih/vim-go.git' " Go plugin
 Plugin 'preservim/nerdtree' " File browser plugin
 Plugin 'hashivim/vim-hashicorp-tools' " Hashicorp plugins (Packer, Terraform, etc.)
 Plugin 'szw/vim-maximizer' " Maximize Vim windows
-Plugin 'https://github.com/davisdude/vim-love-docs/tree/build'
 call vundle#end()
 filetype plugin indent on
 " /Vundle
