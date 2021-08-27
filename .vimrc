@@ -18,6 +18,26 @@ Plugin 'preservim/nerdtree' " File browser plugin
 Plugin 'hashivim/vim-hashicorp-tools' " Hashicorp plugins (Packer, Terraform, etc.)
 Plugin 'szw/vim-maximizer' " Maximize Vim windows
 Plugin 'kristijanhusak/vim-carbon-now-sh'
+let g:carbon_now_sh_options =
+			\{
+				\'t': 'monokai',
+				\'bg': '#F5A623',
+				\'wt': 'boxy',
+				\'wc': 'true',
+				\'fm': 'Hack',
+				\'fs': '18px',
+				\'ln': 'false',
+				\'ds': 'true',
+				\'dsyoff': '20px',
+				\'dsblur': '68px',
+				\'wa': 'true',
+				\'lh': '133%',
+				\'pv': '48px',
+				\'ph': '32px',
+				\'si': 'false',
+				\'wm': 'false',
+				\'es': '2x'
+			\}
 call vundle#end()
 filetype plugin indent on
 " /Vundle
