@@ -1,23 +1,29 @@
 set nocompatible
 
-" Vundle
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-" Plugin directives go here
-Plugin 'huyvohcmc/atlas.vim' " Minimal monochrome theme
-Plugin 'sainnhe/gruvbox-material' " Theme
-Plugin 'tpope/vim-fugitive' " Git plugin
-Plugin 'tpope/vim-rhubarb.git' " GitHub plugin for fugitive
-Plugin 'shumphrey/fugitive-gitlab.vim' " GitLab plugin for fugitive
-Plugin 'editorconfig/editorconfig-vim' " Editorconfig plugin
-Plugin 'fatih/vim-go.git' " Go plugin
-Plugin 'preservim/nerdtree' " File browser plugin
-Plugin 'hashivim/vim-hashicorp-tools' " Hashicorp plugins (Packer, Terraform, etc.)
-Plugin 'szw/vim-maximizer' " Maximize Vim windows
-Plugin 'kristijanhusak/vim-carbon-now-sh'
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+			\| PlugInstall --sync | source $MYVIMRC
+			\| endif
+
+" vim-plug
+call plug#begin()
+Plug 'huyvohcmc/atlas.vim' " Minimal monochrome theme
+Plug 'sainnhe/gruvbox-material' " Theme
+Plug 'tpope/vim-fugitive' " Git plugin
+Plug 'tpope/vim-rhubarb' " GitHub plugin for fugitive
+Plug 'shumphrey/fugitive-gitlab.vim' " GitLab plugin for fugitive
+Plug 'editorconfig/editorconfig-vim' " Editorconfig plugin
+Plug 'fatih/vim-go' " Go plugin
+Plug 'preservim/nerdtree' " File browser plugin
+Plug 'hashivim/vim-hashicorp-tools' " Hashicorp plugins (Packer, Terraform, etc.)
+Plug 'szw/vim-maximizer' " Maximize Vim windows
+Plug 'kristijanhusak/vim-carbon-now-sh'
 let g:carbon_now_sh_options =
 			\{
 				\'t': 'monokai',
@@ -38,15 +44,12 @@ let g:carbon_now_sh_options =
 				\'wm': 'false',
 				\'es': '2x'
 			\}
-call vundle#end()
-filetype plugin indent on
-" /Vundle
+call plug#end()
 
 colorscheme gruvbox-material
 
 set path+=**
 set wildmenu
-syntax enable
 
 " Enable line numbers
 set number
