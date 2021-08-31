@@ -14,6 +14,7 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 " vim-plug
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ap/vim-css-color' " Colorize hex characters
 Plug 'huyvohcmc/atlas.vim' " Minimal monochrome theme
 Plug 'sainnhe/gruvbox-material' " Theme
 Plug 'tpope/vim-fugitive' " Git plugin
