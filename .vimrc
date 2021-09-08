@@ -15,8 +15,6 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'ap/vim-css-color' " Colorize hex characters
-Plug 'huyvohcmc/atlas.vim' " Minimal monochrome theme
-Plug 'sainnhe/gruvbox-material' " Theme
 Plug 'tpope/vim-fugitive' " Git plugin
 Plug 'tpope/vim-rhubarb' " GitHub plugin for fugitive
 Plug 'shumphrey/fugitive-gitlab.vim' " GitLab plugin for fugitive
@@ -46,8 +44,6 @@ let g:carbon_now_sh_options =
 				\'es': '2x'
 			\}
 call plug#end()
-
-colorscheme gruvbox-material
 
 set path+=**
 set wildmenu
