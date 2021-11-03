@@ -8,7 +8,7 @@ export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S "
 export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:* --help:pony:pony *"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export GOBIN="${GOPATH}/bin"
-PATHS=("${HOME}/.local/bin" "${GOBIN}" "${GOBIN}" "/snap/bin" "/usr/local/go/bin" "/cygdrive/c/Go/bin" "/usr/local/bin" "/usr/local/sbin" "/usr/bin" "/usr/sbin" "/bin" "/sbin")
+PATHS=("${HOME}/.local/bin" "${GOBIN}" "${GOBIN}" "/snap/bin" "/usr/local/go/bin" "/cygdrive/c/Go/bin" "/usr/local/bin" "/usr/local/sbin" "/usr/bin" "/usr/sbin" "/bin" "/sbin" "/usr/games")
 VALID_PATHS=
 # Only add a path to PATH if it it exists and isn't already in PATH. VALID_PATHS is used as intermediary variable
 for p in "${PATHS[@]}"; do
