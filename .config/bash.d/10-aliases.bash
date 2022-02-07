@@ -9,6 +9,13 @@ alias -- -='cd -'
 alias src='cd ~/src'
 alias d='cd ~/Downloads'
 
+# Docker
+alias dc='docker-compose'
+alias dcu='docker-compose up'
+alias dcud='docker-compose up -d'
+alias dcl='docker-compose logs'
+alias d='docker'
+
 # Prompt before overwriting files
 alias cp='cp -i'
 alias mv='mv -i'
