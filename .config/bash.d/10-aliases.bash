@@ -64,6 +64,9 @@ alias mount='mount | column -t'
 # Limit ping to 5 packets
 alias ping='ping -c 5'
 
+# Password
+alias pw="tr -dc 'A-Za-z0-9!\"#$%&'\''()*+,-./:;<=>?@[\]^_\`{|}~' </dev/urandom | head -c 16  ; echo"
+
 # Terraform helpers
 alias tf='terraform'
 alias tfa='tf apply'
