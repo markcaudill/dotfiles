@@ -5,7 +5,7 @@ export HISTCONTROL=ignoredups
 export HISTSIZE=2147483648
 export HISTFILESIZE="${HISTSIZE}"
 export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S "
-export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:pony:pony *"
+export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export GOBIN="${GOPATH}/bin"
 export NVM_DIR="${HOME}/.nvm"
@@ -20,7 +20,6 @@ for p in "${PATHS[@]}"; do
 	fi
 done
 export PATH=${VALID_PATHS}
-export PONY_KEYID=250113B256B542E9
 export EDITOR=vim
 export SSH_ENV=$HOME/.ssh/environment
 GPG_TTY=$(tty)
