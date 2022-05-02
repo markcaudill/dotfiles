@@ -23,12 +23,6 @@ alias pubkey='cat ${HOME}/.ssh/id_ed25519.pub | xclip -selection clipboard | ech
 # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
 
-# Alias HTTP methods
-for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
-    # shellcheck disable=SC2139,SC2140
-	alias "${method}"="curl -s -X ${method}"
-done
-
 # URL-encode strings
 alias urlencode='python3 -c '\''import sys, urllib.parse; print(urllib.parse.quote_plus(str(" ".join(sys.argv[1:]))));'\'''
 
