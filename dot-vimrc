@@ -22,6 +22,7 @@ Plug 'preservim/nerdtree' " File browser plugin
 Plug 'hashivim/vim-hashicorp-tools' " Hashicorp plugins (Packer, Terraform, etc.)
 Plug 'szw/vim-maximizer' " Maximize Vim windows
 Plug 'kristijanhusak/vim-carbon-now-sh'
+Plug 'itspriddle/vim-shellcheck'
 let g:carbon_now_sh_options =
 			\{
 				\'t': 'monokai',
