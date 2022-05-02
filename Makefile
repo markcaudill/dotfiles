@@ -7,7 +7,7 @@ MAKEFLAGS += --no-builtin-rules
 
 SHELLCHECK = shellcheck
 IGNORE = "(Makefile.*|README\.md|\.github|\.gitlab-ci\.yml|LICENSE)"
-STOW = stow -v -t $(DEST) --ignore=$(IGNORE) --no-folding
+STOW = stow -v -t $(DEST) --ignore=$(IGNORE) --no-folding --dotfiles
 ALL = $(shell git ls-files | grep -vE $(IGNORE))
 DEST = $(HOME)
 
@@ -19,20 +19,6 @@ shellcheck: $(shell grep --exclude-dir=.git -rlE '^#!/.*(sh|bash)' | xargs) $(sh
 .PHONY: shellcheck
 
 test: shellcheck
-
-install: $(ALL)
-	@echo "+ $@: $^"
-	for i in $^; do
-		install -v -D -m $$(stat -c %a $$i) -t $(DEST)/$$(dirname $$i) $$i
-	done
-.PHONY: install
-
-uninstall: $(ALL)
-	@echo "+ $@"
-	for i in $^; do
-		rm -fv $(DEST)/$$i
-	done
-.PHONY: uninstall
 
 stow: $(ALL)
 	@echo "+ $@"
