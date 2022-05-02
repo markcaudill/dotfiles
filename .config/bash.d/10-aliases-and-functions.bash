@@ -1,16 +1,5 @@
 # shellcheck shell=bash
 
-# Shortcuts around filesystem
-alias src='cd ~/src'
-alias d='cd ~/Downloads'
-
-# Docker
-alias dc='docker-compose'
-alias dcu='docker-compose up'
-alias dcud='docker-compose up -d'
-alias dcl='docker-compose logs'
-alias d='docker'
-
 # Prompt before overwriting files
 alias cp='cp -i'
 alias mv='mv -i'
@@ -56,12 +45,8 @@ alias ping='ping -c 5'
 # Password
 alias pw="tr -dc 'A-Za-z0-9!\"#$%&'\''()*+,-./:;<=>?@[\]^_\`{|}~' </dev/urandom | head -c 16  ; echo"
 
-# Terraform helpers
+# Terraform
 alias tf='terraform'
-alias tfa='tf apply'
-alias tfd='tf destroy'
-alias tfp='tf plan'
-alias tfs='tf show'
 
 # Timestamp
 alias ts='date --iso-8601=seconds'
