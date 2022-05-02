@@ -9,6 +9,6 @@ EXAMPLE:
 
 OUTPUT:
 
-$(eval "$@" | sed 's/^/    /g')
+$("$@" | sed 's/^/    /g')
 
 EXAMPLE
