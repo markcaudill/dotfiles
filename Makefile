@@ -6,14 +6,14 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 SHELLCHECK = shellcheck
-IGNORE = "(Makefile.*|README\.md|\.github|\.gitlab-ci\.yml|LICENSE)"
+IGNORE = "(Makefile.*|README\.md|\.drone.yml|\.github|\.gitlab-ci\.yml|Jenkinsfile|LICENSE)"
 STOW = stow -v -t $(DEST) --ignore=$(IGNORE) --no-folding --dotfiles
 ALL = $(shell git ls-files | grep -vE $(IGNORE))
 DEST = $(HOME)
 
 all: $(ALL)
 
-shellcheck: $(shell grep --exclude-dir=.git -rlE '^#!/.*(sh|bash)' | xargs) $(shell git ls-files .config/bash.d | xargs)
+shellcheck: $(shell grep --exclude-dir=.git -rlE '^#!/.*(sh|bash)' | xargs) $(shell git ls-files dot-config/bash.d | xargs)
 	@echo "+ $@ : $^"
 	$(SHELLCHECK) $^
 .PHONY: shellcheck
