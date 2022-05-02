@@ -1,11 +1,6 @@
 # shellcheck shell=bash
 
 # Shortcuts around filesystem
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias -- -='cd -'
 alias src='cd ~/src'
 alias d='cd ~/Downloads'
 

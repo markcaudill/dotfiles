@@ -14,23 +14,8 @@ for i in "${HOME}/.config/bash.d"/*.bash; do
     . "${i}"
 done
 
-# shellcheck disable=SC1091
-test -f /etc/bash_completion && source /etc/bash_completion
-
 # shellcheck source=/dev/null
 test -f "${SSH_ENV}" && start_agent "${SSH_ENV}"
-
-# shellcheck source=/dev/null
-hash kitty &>/dev/null && source <(kitty + complete setup bash)
-
-# shellcheck source=/dev/null
-hash kind &>/dev/null && source <(kind completion bash)
-
-# shellcheck source=/dev/null
-hash kubectl &>/dev/null && source <(kubectl completion bash)
-
-# shellcheck source=/dev/null
-hash helm &>/dev/null && source <(helm completion bash)
 
 # shellcheck source=/dev/null
 test -x /home/linuxbrew/.linuxbrew/bin/brew && source <(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
