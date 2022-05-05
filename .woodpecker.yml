@@ -1,10 +1,7 @@
 ---
 
-kind: pipeline
-name: default
-
-steps:
-  - name: ShellCheck
+pipeline:
+  shellcheck:
     image: ubuntu:latest
     commands:
       - apt-get update && apt-get -y install git make shellcheck
