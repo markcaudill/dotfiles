@@ -134,3 +134,4 @@ alias path='echo $PATH | sed "s/:/\n/g"'
 # Use Podman instead of Docker if it's installed
 command -v podman >/dev/null && alias docker=podman
 
+alias mol='molecule'
