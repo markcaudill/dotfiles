@@ -1,8 +1,0 @@
----
-
-pipeline:
-  shellcheck:
-    image: ubuntu:latest
-    commands:
-      - apt-get update && apt-get -y install git make shellcheck
-      - make shellcheck
