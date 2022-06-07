@@ -17,6 +17,9 @@ hash kind &>/dev/null && source <(kind completion bash)
 # shellcheck source=/dev/null
 hash kubectl &>/dev/null && source <(kubectl completion bash)
 
+# shellcheck source=/dev/null
+hash molecule &>/dev/null && source <(_MOLECULE_COMPLETE=bash_source molecule)
+
 # bash/zsh completion support for core Git.
 # shellcheck disable=SC1004,SC1007,SC1083,SC1125,SC2004,SC2018,SC2019,SC2034,SC2046,SC2086,SC2155,SC2166,SC2194,SC2206
 #
