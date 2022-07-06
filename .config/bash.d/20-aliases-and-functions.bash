@@ -13,6 +13,8 @@ alias urlencode='python3 -c '\''import sys, urllib.parse; print(urllib.parse.quo
 # Colorful cat
 alias ccat='highlight -O ansi'
 
+command -v batcat &>/dev/null && alias bat='batcat'
+
 # Show filesystem space in human-readable format
 alias df='df -hP'
 
