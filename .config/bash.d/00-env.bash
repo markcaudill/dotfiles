@@ -5,7 +5,8 @@ export EDITOR=vim
 export FLYCTL_INSTALL="${HOME}/.fly"
 export GOBIN="${GOPATH}/bin"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
-export GPG_TTY=$(tty)
+GPG_TTY=$(tty)
+export GPG_TTY
 export HISTCONTROL=ignoredups
 export HISTFILESIZE="${HISTSIZE}"
 export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:pony:pony *"
