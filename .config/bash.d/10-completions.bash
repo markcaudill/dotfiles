@@ -9,9 +9,6 @@ test -f /etc/bash_completion && source /etc/bash_completion
 hash helm &>/dev/null && source <(helm completion bash)
 
 # shellcheck source=/dev/null
-hash kitty &>/dev/null && source <(kitty + complete setup bash)
-
-# shellcheck source=/dev/null
 hash kind &>/dev/null && source <(kind completion bash)
 
 # shellcheck source=/dev/null
