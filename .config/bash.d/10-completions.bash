@@ -1,3 +1,4 @@
+# shellcheck disable=SC1004,SC1007,SC1083,SC1125,SC2004,SC2018,SC2019,SC2034,SC2046,SC2086,SC2155,SC2166,SC2194,SC2206,SC2296
 
 # shellcheck source=/dev/null
 test -s "${NVM_DIR}/bash_completion" && source "${NVM_DIR}/bash_completion"  # This loads nvm bash_completion
@@ -18,7 +19,6 @@ hash kubectl &>/dev/null && source <(kubectl completion bash)
 hash molecule &>/dev/null && source <(_MOLECULE_COMPLETE=bash_source molecule)
 
 # bash/zsh completion support for core Git.
-# shellcheck disable=SC1004,SC1007,SC1083,SC1125,SC2004,SC2018,SC2019,SC2034,SC2046,SC2086,SC2155,SC2166,SC2194,SC2206
 #
 # Copyright (C) 2006,2007 Shawn O. Pearce <spearce@spearce.org>
 # Conceptually based on gitcompletion (http://gitweb.hawaga.org.uk/).
