@@ -42,6 +42,8 @@ alias ping='ping -c 5'
 # Password
 alias pw="tr -dc 'A-Za-z0-9!\"#$%&'\''()*+,-./:;<=>?@[\]^_\`{|}~' </dev/urandom | head -c 16  ; echo"
 
+alias t='tmux a -d -t main || tmux new -s main'
+
 # Terraform
 alias tf='terraform'
 
