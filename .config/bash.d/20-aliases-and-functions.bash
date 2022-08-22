@@ -140,6 +140,8 @@ command -v podman &>/dev/null && alias docker=podman
 
 command -v molecule &>/dev/null && alias mol='molecule'
 
+command -v trash &>/dev/null && alias rm=trash
+
 # shellcheck shell=bash
 start_agent() {
     local ssh_env="${1}"
