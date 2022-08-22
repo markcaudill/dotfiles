@@ -1,16 +1,11 @@
-# This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
 	name = 'Mark Caudill'
-	email = mark@mrkc.me
+	email = mark@cdll.me
 	signingkey = 250113B256B542E9
-
 [core]
 	excludesFile = ~/.gitignore
-
 [init]
 	defaultBranch = main
-
 [pull]
 	rebase = false
 [commit]
