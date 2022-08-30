@@ -8,5 +8,3 @@
 	defaultBranch = main
 [pull]
 	rebase = false
-[commit]
-	gpgSign = true
