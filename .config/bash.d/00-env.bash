@@ -10,6 +10,7 @@ export HISTFILESIZE="${HISTSIZE}"
 export HISTIGNORE=" *:ls:cd:cd -:pwd:exit:date:pony:pony *"
 export HISTSIZE=2147483648
 export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S "
+export LEDGER_FILE="${HOME}/Documents/main.journal"
 export NVM_DIR="${HOME}/.nvm"
 
 GPG_TTY=$(tty)
