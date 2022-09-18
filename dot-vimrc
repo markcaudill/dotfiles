@@ -69,9 +69,6 @@ nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
-" Run goimports every save
-let g:go_fmt_command = "goimports"
-
 " Markdown preview generator using pandoc (via STDIN) and xdg-open
 " Essentially: `cat <tmp_markdown> | pandoc > <tmp_html>; xdg-open <tmp_html>`
 function MarkdownPreview()
