@@ -135,9 +135,6 @@ __git_complete gsts git_stash
 
 alias path='echo $PATH | sed "s/:/\n/g"'
 
-# Use Podman instead of Docker if it's installed
-command -v podman &>/dev/null && alias docker=podman
-
 command -v molecule &>/dev/null && alias mol='molecule'
 
 command -v trash &>/dev/null && alias rm=trash
