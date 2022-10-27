@@ -14,6 +14,7 @@ hash kind &>/dev/null && source <(kind completion bash)
 
 # shellcheck source=/dev/null
 hash kubectl &>/dev/null && source <(kubectl completion bash)
+hash kubectl &>/dev/null && complete -o default -F __start_kubectl k
 
 # shellcheck source=/dev/null
 hash molecule &>/dev/null && source <(_MOLECULE_COMPLETE=bash_source molecule)

@@ -177,3 +177,5 @@ reveal () {
 	output=$(echo "${1}" | rev | cut -c16- | rev)
 	gpg --decrypt --output "${output}" "${1}" && echo "${1} -> ${output}"
 }
+
+alias k=kubectl
