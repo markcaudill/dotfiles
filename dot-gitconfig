@@ -10,3 +10,8 @@
 	rebase = false
 [commit]
 	gpgSign = true
+[alias]
+	again = commit --allow-empty
+	co = checkout
+	nope = reset --hard HEAD
+	oops = commit --amend
