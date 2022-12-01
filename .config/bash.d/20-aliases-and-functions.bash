@@ -134,6 +134,9 @@ alias gsts='git stash save'
 __git_complete gsts git_stash
 
 alias path='echo $PATH | sed "s/:/\n/g"'
+# From bash(1): If the last character of the alias value is a blank, then the
+# next command word following the alias is also checked for alias expansion.
+alias sudo='sudo '
 alias zzz='systemctl suspend'
 
 
