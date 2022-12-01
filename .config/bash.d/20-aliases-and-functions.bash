@@ -137,6 +137,7 @@ alias path='echo $PATH | sed "s/:/\n/g"'
 # From bash(1): If the last character of the alias value is a blank, then the
 # next command word following the alias is also checked for alias expansion.
 alias sudo='sudo '
+alias update='sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean && sudo apt-get autoremove'
 alias zzz='systemctl suspend'
 
 
