@@ -134,6 +134,8 @@ alias gsts='git stash save'
 __git_complete gsts git_stash
 
 alias path='echo $PATH | sed "s/:/\n/g"'
+alias zzz='systemctl suspend'
+
 
 command -v molecule &>/dev/null && alias mol='molecule'
 
