@@ -21,6 +21,8 @@ alias df='df -hP'
 # Summarize disk usage in human-readable terms and don't jump filesystems
 alias du='du -shx'
 
+alias env='env | sort'
+
 # Start an HTTP server out of the current directory
 alias fs='python -m SimpleHTTPServer'
 
