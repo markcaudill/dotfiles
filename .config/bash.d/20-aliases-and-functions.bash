@@ -187,3 +187,24 @@ reveal () {
 }
 
 alias k=kubectl
+
+# bump_*
+#
+# $ echo 1.2.3 | bump_minor
+# 1.3.3
+# $ echo 1.2.3 | bump_z
+# 1.2.4
+bump_major() {
+	awk -F'.' '{print $1+1"."$2"."$3}'
+}
+alias bump_x=bump_major
+
+bump_minor() {
+	awk -F'.' '{print $1"."$2+1"."$3}'
+}
+alias bump_y=bump_minor
+
+bump_patch() {
+	awk -F'.' '{print $1"."$2"."$3+1}'
+}
+alias bump_z=bump_patch
