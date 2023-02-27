@@ -1,3 +1,2 @@
 SSH_ENV="$HOME/.ssh/agent-environment"
 test -f ~/.bashrc && source ~/.bashrc
-test -f ~/.cargo/env && source ~/.cargo/env
