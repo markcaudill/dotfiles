@@ -15,7 +15,7 @@ for i in "${HOME}/.config/bash.d"/*.bash; do
 done
 
 # shellcheck source=/dev/null
-test -f "${SSH_ENV}" && start_agent "${SSH_ENV}"
+test -f "${SSH_ENV}" && start_agent "${SSH_ENV}" && trap 'kill $SSH_AGENT_PID' EXIT
 
 # shellcheck source=/dev/null
 test -x /home/linuxbrew/.linuxbrew/bin/brew && source <(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
