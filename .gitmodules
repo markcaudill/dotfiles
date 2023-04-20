@@ -1,0 +1,3 @@
+[submodule "submodules/task"]
+	path = submodules/task
+	url = https://github.com/go-task/task.git

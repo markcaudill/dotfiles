@@ -6,7 +6,7 @@ MAKEFLAGS += --warn-undefined-variables
 MAKEFLAGS += --no-builtin-rules
 
 SHELLCHECK = shellcheck
-IGNORE = "(Makefile.*|README\.md|\.drone.yml|\.github|\.gitlab-ci\.yml|Jenkinsfile|LICENSE)"
+IGNORE = "(\.gitmodules|\.editorconfig|Taskfile\.y*ml|submodules|Makefile\.*|README\.md|\.drone.yml|\.github|\.gitlab-ci\.yml|Jenkinsfile|LICENSE)"
 STOW = stow -v -t $(DEST) --ignore=$(IGNORE) --no-folding --dotfiles
 ALL = $(shell git ls-files | grep -vE $(IGNORE))
 DEST = $(HOME)

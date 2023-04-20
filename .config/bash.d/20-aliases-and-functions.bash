@@ -5,7 +5,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 # Quickly copy public key
-alias pubkey='cat ${HOME}/.ssh/id_ed25519.pub | xclip -selection clipboard | echo "=> Public key copied to pasteboard."'
+alias pubkey='cat ${HOME}/.ssh/id_rsa_yubikey.pub | xclip -selection clipboard | echo "=> Public key copied to pasteboard."'
 
 # URL-encode strings
 alias urlencode='python3 -c '\''import sys, urllib.parse; print(urllib.parse.quote_plus(str(" ".join(sys.argv[1:]))));'\'''
