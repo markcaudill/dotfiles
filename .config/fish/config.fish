@@ -2,11 +2,12 @@ if status is-interactive
   # Commands to run in interactive sessions can go here
 
   # Completions (also check .config/fish/completions/)
-  command -q rtx \
-    && source (rtx completion fish | psub) \
-    && source (rtx activate fish | psub) \
-  command -q starship \
-    && source (starship init fish --print-full-init | psub)
+  command -q helm && source (helm completion fish | psub)
+  command -q kind && source (kind completion fish | psub)
+  command -q kubectl && source (kubectl completion fish | psub)
+  command -q molecule && source (_MOLECULE_COMPLETE=fish_source molecule | psub)
+  command -q rtx && source (rtx completion fish | psub)
+  command -q starship && source (starship init fish --print-full-init | psub)
 
   # Abbreviations
   command -q bat && abbr --add cat bat
