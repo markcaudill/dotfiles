@@ -32,7 +32,7 @@ if status is-interactive
   abbr --add gs git status --branch
   abbr --add mount 'mount | column -t'
   abbr --add mv mv -i
-  abbr --add path 'echo $PATH | sed "s/ /\n/g"'
+  abbr --add path 'echo $PATH | sed "s/ \//\n\//g"'
   abbr --add ping ping -c 5 -W 5
   command -q rtx && abbr --add asdf rtx
   abbr --add tf terraform
