@@ -111,3 +111,5 @@ tags
 *.code-workspace
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,vscode,sublimetext,emacs
+.project
+.settings/*.prefs

@@ -9,7 +9,7 @@
 [pull]
 	rebase = false
 [commit]
-	gpgSign = true
+	gpgSign = false
 [alias]
 	again = commit --allow-empty
 	co = checkout

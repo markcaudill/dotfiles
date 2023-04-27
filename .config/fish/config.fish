@@ -52,3 +52,6 @@ set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
 command -q rtx && source (rtx activate fish | psub)
+set -xp PATH ~/.local/share/rtx/shims
+
+set -xp PATH ~/.cargo/bin
