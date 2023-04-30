@@ -34,7 +34,6 @@ if status is-interactive
   abbr --add mv mv -i
   abbr --add path 'echo $PATH | sed "s/ \//\n\//g"'
   abbr --add ping ping -c 5 -W 5
-  command -q rtx && abbr --add asdf rtx
   abbr --add tf terraform
   abbr --add update 'sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean && sudo apt-get autoremove'
   abbr --add wget wget -c
@@ -42,8 +41,8 @@ if status is-interactive
 end
 
 set -x GOPATH ~/.local/share/go
-set -xp PATH $GOPATH
 set -x GOBIN $GOPATH/bin
+set -xp PATH $GOBIN
 set -x NVM_DIR ~/.nvm
 
 
