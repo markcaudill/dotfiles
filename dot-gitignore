@@ -1,6 +1,71 @@
+# Created by https://www.toptal.com/developers/gitignore/api/vim,emacs,visualstudiocode,eclipse,netbeans,sublimetext,notepadpp
+# Edit at https://www.toptal.com/developers/gitignore?templates=vim,emacs,visualstudiocode,eclipse,netbeans,sublimetext,notepadpp
 
-# Created by https://www.toptal.com/developers/gitignore/api/vim,vscode,sublimetext,emacs
-# Edit at https://www.toptal.com/developers/gitignore?templates=vim,vscode,sublimetext,emacs
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# PyDev specific (Python IDE for Eclipse)
+*.pydevproject
+
+# CDT-specific (C/C++ Development Tooling)
+.cproject
+
+# CDT- autotools
+.autotools
+
+# Java annotation processor (APT)
+.factorypath
+
+# PDT-specific (PHP Development Tools)
+.buildpath
+
+# sbteclipse plugin
+.target
+
+# Tern plugin
+.tern-project
+
+# TeXlipse plugin
+.texlipse
+
+# STS (Spring Tool Suite)
+.springBeans
+
+# Code Recommenders
+.recommenders/
+
+# Annotation Processing
+.apt_generated/
+.apt_generated_test/
+
+# Scala IDE specific (Scala & Java development for Eclipse)
+.cache-main
+.scala_dependencies
+.worksheet
+
+# Uncomment this line if you wish to ignore the project description file.
+# Typically, this file would be tracked if it contains build/dependency configurations:
+#.project
+
+### Eclipse Patch ###
+# Spring Boot Tooling
+.sts4-cache/
 
 ### Emacs ###
 # -*- mode: gitignore; -*-
@@ -16,7 +81,6 @@ tramp
 # Org-mode
 .org-id-locations
 *_archive
-ltximg/**
 
 # flymake-mode
 *_flymake.*
@@ -54,6 +118,18 @@ flycheck_*.el
 /network-security.data
 
 
+### NetBeans ###
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+nbdist/
+.nb-gradle/
+
+### NotepadPP ###
+# Notepad++ backups #
+
 ### SublimeText ###
 # Cache files for Sublime Text
 *.tmlanguage.cache
@@ -69,6 +145,7 @@ flycheck_*.el
 
 # SFTP configuration file
 sftp-config.json
+sftp-config-alt*.json
 
 # Package control specific files
 Package Control.last-run
@@ -106,10 +183,23 @@ tags
 # Persistent undo
 [._]*.un~
 
-### vscode ###
+### VisualStudioCode ###
 .vscode/*
-*.code-workspace
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
 
-# End of https://www.toptal.com/developers/gitignore/api/vim,vscode,sublimetext,emacs
-.project
-.settings/*.prefs
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+# End of https://www.toptal.com/developers/gitignore/api/vim,emacs,visualstudiocode,eclipse,netbeans,sublimetext,notepadpp
