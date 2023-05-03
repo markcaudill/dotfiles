@@ -1,3 +1,19 @@
+set -xp PATH ~/.local/bin
+
+set -x GOPATH ~/.local/share/go
+set -xp PATH $GOPATH
+set -x GOBIN $GOPATH/bin
+
+set -x NVM_DIR ~/.nvm
+
+set -xp PATH ~/.cargo/bin
+
+set -x GPG_TTY (tty)
+set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
+command -q rtx && source (rtx activate fish | psub)
+
 if status is-interactive
   # Commands to run in interactive sessions can go here
 
