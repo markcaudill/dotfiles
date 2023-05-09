@@ -28,11 +28,4 @@ test -s "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh" # This loads nvm
 
 command -v starship &>/dev/null && eval "$(starship init bash)"
 
-# shellcheck source=/dev/null
-test -f ~/.asdf/asdf.sh && source ~/.asdf/asdf.sh
-# shellcheck source=/dev/null
-test -f ~/.asdf/completions/asdf.bash && source ~/.asdf/completions/asdf.bash
-
-# shellcheck source=/dev/null
-command -v task.bash &>/dev/null && source $(command -v task.bash)
 . "$HOME/.cargo/env"

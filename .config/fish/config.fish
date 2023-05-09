@@ -30,7 +30,9 @@ if status is-interactive
   abbr --add cp cp -i
   abbr --add df df -hP
   abbr --add du du -shx
-  command -q exa && abbr --add ls exa
+  command -q exa \
+    && abbr --add ls exa \
+    && abbr --add ll exa -l
   abbr --add fs python -m SimpleHTTPServer
   abbr --add g git
   abbr --add ga git add
