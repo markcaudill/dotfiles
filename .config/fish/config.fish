@@ -57,18 +57,3 @@ if status is-interactive
   abbr --add wget wget -c
   abbr --add zzz systemctl suspend
 end
-
-set -x GOPATH ~/.local/share/go
-set -x GOBIN $GOPATH/bin
-set -xp PATH $GOBIN
-set -x NVM_DIR ~/.nvm
-
-
-set -x GPG_TTY (tty)
-set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
-
-command -q rtx && source (rtx activate fish | psub)
-set -xp PATH ~/.local/share/rtx/shims
-
-set -xp PATH ~/.cargo/bin
