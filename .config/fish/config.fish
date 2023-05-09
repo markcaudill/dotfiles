@@ -24,6 +24,7 @@ if status is-interactive
   command -q molecule && source (_MOLECULE_COMPLETE=fish_source molecule | psub)
   command -q rtx && source (rtx completion fish | psub)
   command -q starship && source (starship init fish --print-full-init | psub)
+  command -q zellij && source (zellij setup --generate-completion fish | psub)
 
   # Abbreviations
   command -q bat && abbr --add cat bat
