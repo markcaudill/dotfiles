@@ -55,6 +55,7 @@ if status is-interactive
   abbr --add gc git commit
   abbr --add gca git commit --all --message
   abbr --add gcm git commit --message
+  abbr --add gco git checkout
   abbr --add gcob git checkout -b
   abbr --add gd git diff
   abbr --add gl git log
