@@ -1,8 +1,14 @@
-set -xp PATH ~/.local/bin
+fish_add_path -g ~/.local/bin
 
-set -x GOPATH ~/.local/share/go
-set -xp PATH $GOPATH
+command -q rtx && source (rtx activate fish | psub)
+
+if command -q rtx
+  set -x GOPATH (rtx where go)/go
+else
+  set -x GOPATH ~/.local/share/go
+end
 set -x GOBIN $GOPATH/bin
+fish_add_path -g $GOBIN
 
 set -x NVM_DIR ~/.nvm
 
@@ -12,7 +18,15 @@ set -x GPG_TTY (tty)
 set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
-command -q rtx && source (rtx activate fish | psub)
+# Perl
+set -x PERL_HOME $HOME/perl5
+set -x PATH $PERL_HOME/bin $PATH 2>/dev/null;
+set -q PERL5LIB; and set -x PERL5LIB $PERL_HOME/lib/perl5:$PERL5LIB;
+set -q PERL5LIB; or set -x PERL5LIB $PERL_HOME/lib/perl5;
+set -q PERL_LOCAL_LIB_ROOT; and set -x PERL_LOCAL_LIB_ROOT $PERL_HOME:$PERL_LOCAL_LIB_ROOT;
+set -q PERL_LOCAL_LIB_ROOT; or set -x PERL_LOCAL_LIB_ROOT $PERL_HOME;
+set -x PERL_MB_OPT --install_base $PERL_HOME;
+set -x PERL_MM_OPT INSTALL_BASE=$PERL_HOME;
 
 if status is-interactive
   # Commands to run in interactive sessions can go here
