@@ -33,9 +33,11 @@ if status is-interactive
 
   # Completions (also check .config/fish/completions/)
   command -q helm && source (helm completion fish | psub)
+  command -q just && source (just --completions fish | psub)
   command -q kind && source (kind completion fish | psub)
   command -q kubectl && source (kubectl completion fish | psub)
   command -q molecule && source (_MOLECULE_COMPLETE=fish_source molecule | psub)
+  command -q pulumi && source (pulumi gen-completion fish | psub)
   command -q rtx && source (rtx completion fish | psub)
   command -q starship && source (starship init fish --print-full-init | psub)
   command -q zellij && source (zellij setup --generate-completion fish | psub)
