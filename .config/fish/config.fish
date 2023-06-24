@@ -1,26 +1,24 @@
-fish_add_path -g ~/.local/bin
+# Most local progs are in ~/.local/bin so add it to fish_user_paths (PATH ...
+# kinda) early
+contains ~/.local/bin $fish_user_paths; or set -Up fish_user_paths ~/.local/bin
 
-command -q rtx && source (rtx activate fish | psub)
-
-if command -q rtx
-  set -x GOROOT (rtx where go)/go
-else
-  set -x GOROOT ~/.local/share/go
-end
-set -x GOBIN $GOROOT/bin
-fish_add_path -g $GOBIN
+# Activate rtx really early
+test -f ~/.cargo/bin/rtx \
+  && source (~/.cargo/bin/rtx activate fish | psub) \
+  && for path in (rtx bin-paths)
+       contains $path $fish_user_paths; or set -Up fish_user_paths $path
+     end
 
 set -x NVM_DIR ~/.nvm
 
-set -xp PATH ~/.cargo/bin
-
+# GPG/SSH agent
 set -x GPG_TTY (tty)
 set -x SSH_AUTH_SOCK (gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
 # Perl
 set -x PERL_HOME $HOME/perl5
-set -x PATH $PERL_HOME/bin $PATH 2>/dev/null;
+contains $PERL_HOME/bin $fish_user_paths; or set -Up fish_user_paths $PERL_HOME/bin
 set -q PERL5LIB; and set -x PERL5LIB $PERL_HOME/lib/perl5:$PERL5LIB;
 set -q PERL5LIB; or set -x PERL5LIB $PERL_HOME/lib/perl5;
 set -q PERL_LOCAL_LIB_ROOT; and set -x PERL_LOCAL_LIB_ROOT $PERL_HOME:$PERL_LOCAL_LIB_ROOT;
