@@ -3,11 +3,11 @@ fish_add_path -g ~/.local/bin
 command -q rtx && source (rtx activate fish | psub)
 
 if command -q rtx
-  set -x GOPATH (rtx where go)/go
+  set -x GOROOT (rtx where go)/go
 else
-  set -x GOPATH ~/.local/share/go
+  set -x GOROOT ~/.local/share/go
 end
-set -x GOBIN $GOPATH/bin
+set -x GOBIN $GOROOT/bin
 fish_add_path -g $GOBIN
 
 set -x NVM_DIR ~/.nvm
