@@ -68,6 +68,8 @@ if status is-interactive
   abbr --add mv mv -i
   abbr --add path 'echo $PATH | sed "s/ \//\n\//g"'
   abbr --add ping ping -c 5 -W 5
+  command -q trash && \
+    abbr --add rm trash
   abbr --add tf terraform
   abbr --add update 'sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean && sudo apt-get autoremove'
   abbr --add wget wget -c
