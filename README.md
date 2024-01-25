@@ -13,16 +13,16 @@ Install/Update
 
 2. Install
 
-	1. Using `install` (copies files into place)
+    1. Using `install` (copies files into place)
 
-		```bash
-		make install
-		```
+        ```bash
+        make install
+        ```
 
-	2. Using `stow` (symlink files instead of copy)
+    2. Using `stow` (symlink files instead of copy)
 
-		```bash
-		make stow
-		```
+        ```bash
+        make stow
+        ```
 
 3. Uninstall using `make uninstall` or `make unstow` (as applicable)
