@@ -11,7 +11,10 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.fish]
+[*.bash,*.sh]
+indent_size = 2
+
+[dot-bashrc]
 indent_size = 2
 
 [*.md]

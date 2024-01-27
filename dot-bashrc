@@ -1,31 +1,216 @@
 # shellcheck shell=bash
 
+#######################################
+##
+## Utility Functions
+##
+#######################################
+stderr() {
+  echo -e "$*" >&2
+}
+
+stdout() {
+  echo -e "$*"
+}
+
+debug() {
+  test -n "${BASHRC_DEBUG}" && stderr "[DEBUG] ${FUNCNAME[1]}() ${*}"
+}
+
+#######################################
+##
+## Configuration
+##
+#######################################
+
+## Bash
 set -o vi
-
-# shellcheck disable=SC1091
-test -f /etc/profile && source /etc/profile
-
-shopt -s checkwinsize histappend hostcomplete
-
+shopt -s \
+  checkwinsize \
+  histappend \
+  hostcomplete
 umask 0027
 
-for i in "${HOME}/.config/bash.d"/*.bash; do
-    # shellcheck source=/dev/null
-    . "${i}"
+# Default prompts
+PS1='\n\W\$ '
+export PS1
+
+PS2="; "
+export PS2
+
+# History control
+export HISTCONTROL=ignoredups:ignorespace
+export HISTFILESIZE=2147483648
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:pass *"
+export HISTSIZE=2147483648
+export HISTTIMEFORMAT="%Y-%m-%dT%H:%M:%S%z "
+
+# Search path for the cd command
+export CDPATH=".:~:~/src"
+
+# General
+export VISUAL=vim
+
+# PATH
+POTENTIAL_PATHS=(
+  ~/.krew/bin
+  ~/.local/bin
+  ~/bin
+  ~/.cargo/bin
+  ~/.pulumi/bin/
+  ~linuxbrew/.linuxbrew/bin/
+  /snap/bin
+  /usr/local/go/bin
+  /cygdrive/c/Go/bin
+  /usr/local/bin
+  /usr/local/sbin
+  /usr/bin
+  /usr/sbin
+  /bin
+  /sbin
+  /usr/games
+  /cygdrive/c/Program Files/Git/cmd
+)
+VALID_PATHS=
+# Only add a path to PATH if it it exists and isn't already in PATH. VALID_PATHS is used as intermediary variable
+for p in "${POTENTIAL_PATHS[@]}"; do
+    if [[ -d "${p}" ]]; then
+        if [[ ":${VALID_PATHS}:" != *":${p}:"* ]]; then
+            debug "Adding ${p} to VALID_PATHS"
+            VALID_PATHS="${VALID_PATHS:+"${VALID_PATHS}:"}${p}"
+        fi
+    fi
 done
+export PATH="${VALID_PATHS}"
 
-# shellcheck source=/dev/null
-test -f "${SSH_ENV}" && start_agent "${SSH_ENV}" && trap 'kill $SSH_AGENT_PID' EXIT
+# Environment Activations
 
-# shellcheck source=/dev/null
-test -x /home/linuxbrew/.linuxbrew/bin/brew && source <(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+# Mise - https://mise.jdx.dev/
+# Intentionally activated early so it can be a dependency
+# shellcheck disable=SC1090
+hash mise 2>/dev/null && source <(mise activate bash)
 
-# shellcheck source=/dev/null
-test -f ~/.cargo/env && source ~/.cargo/env
+# SSH Agent
+export SSH_ENV=~/.ssh/environment
+# Prefer GPG SSH Agent
+if grep '^enable-ssh-support$' ~/.gnupg/gpg-agent.conf &>/dev/null; then
+    GPG_TTY=$(tty)
+    export GPG_TTY
+    SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+    export SSH_AUTH_SOCK
+    gpgconf --launch gpg-agent
+else
+    # shellcheck disable=SC1090
+    test -r "${SSH_ENV}" && source "${SSH_ENV}"
+    if [[ "$(ps -q "${SSH_AGENT_PID}" -o comm=)" != "ssh-agent" ]]; then
+        ssh-agent -t $((60 * 60 * 6)) | head -n-1 > "${SSH_ENV}"
+    fi
+fi
 
-# shellcheck source=/dev/null
-test -s "${NVM_DIR}/nvm.sh" && source "${NVM_DIR}/nvm.sh" # This loads nvm
+# Starship - https://starship.rs/
+# shellcheck disable=SC1090
+hash starship 2>/dev/null && eval "$(starship init bash)"
 
-command -v starship &>/dev/null && eval "$(starship init bash)"
 
-. "$HOME/.cargo/env"
+# Completions
+
+# Helm - https://helm.sh/docs/helm/helm_completion_bash/
+# shellcheck disable=SC1090
+hash helm 2>/dev/null && source <(helm completion bash)
+
+# Homebrew - https://docs.brew.sh/Homebrew-on-Linux
+[[ -x ~linuxbrew/.linuxbrew/bin/brew ]] && \
+  eval "$(~linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Just - https://just.systems/
+# shellcheck disable=SC1090
+hash just 2>/dev/null && source <(just --completions bash)
+
+# Kind - https://kind.sigs.k8s.io/
+# shellcheck disable=SC1090
+hash kind 2>/dev/null && source <(kind completion bash)
+
+# Kubectl - https://kubernetes.io/docs/reference/kubectl/kubectl/
+# shellcheck disable=SC1090
+hash kubectl 2>/dev/null && source <(kubectl completion bash)
+
+# Pulumi - https://www.pulumi.com/
+# shellcheck disable=SC1090
+hash pulumi 2>/dev/null && source <(pulumi gen-completion bash)
+
+# Zellij - https://zellij.dev/
+# shellcheck disable=SC1090
+hash zellij 2>/dev/null && source <(zellij setup --generate-completion bash)
+
+
+# Aliases
+
+# Bat - https://github.com/sharkdp/bat
+hash bat 2>/dev/null && alias cat="bat"
+alias cp="cp -i"
+alias df="df -hP"
+alias du="du -shx"
+# Exa - https://the.exa.website/
+hash exa 2>/dev/null && alias ls="exa"
+alias ll="ls -l"
+alias fs="python -m SimpleHTTPServer"
+# Git - https://git-scm.com/
+alias g="git"
+alias ga="git add"
+alias gb="git branch"
+alias gc="git commit"
+alias gca="git commit --all --message"
+alias gcm="git commit --message"
+alias gco="git checkout"
+alias gcob="git checkout -b"
+alias gd="git diff"
+alias gdc="git diff --check"
+alias gl="git log"
+alias gld="git log --pretty=format:\"%h %ad %s\" --date=short--all"
+alias glg="git log --graph --oneline --decorate --all"
+alias gm="git merge"
+alias gp="git pull"
+alias gs="git status --branch"
+alias mount="mount | column -t"
+alias mv="mv -i"
+alias path="printenv PATH | sed 's/:/\n/g'"
+alias ping="ping -c 5 -W 5"
+# Quickly copy public key
+alias pubkey='cat ${HOME}/.ssh/*.pub | sort | uniq | xclip -selection clipboard | echo -e "\e[32m🛈\e[0m Public keys copied to clipboard"'
+# From bash(1): If the last character of the alias value is a blank, then the
+# next command word following the alias is also checked for alias expansion.
+alias sudo='sudo '
+# trash-cli - https://github.com/andreafrancia/trash-cli
+hash trash 2>/dev/null && alias rm="trash"
+alias update="sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean && sudo apt-get autoremove"
+# URL-encode strings
+alias urlencode='python3 -c '\''import sys, urllib.parse; print(urllib.parse.quote_plus(str(" ".join(sys.argv[1:]))));'\'''
+alias wget="wget -c"
+alias zzz="systemctl suspend"
+
+
+# bump_*
+#
+# $ echo 1.2.3 | bump_minor
+# 1.3.3
+# $ echo 1.2.3 | bump_z
+# 1.2.4
+bump_major() {
+  awk -F'.' '{print $1+1"."$2"."$3}'
+}
+alias bump_x=bump_major
+
+bump_minor() {
+  awk -F'.' '{print $1"."$2+1"."$3}'
+}
+alias bump_y=bump_minor
+
+bump_patch() {
+  awk -F'.' '{print $1"."$2"."$3+1}'
+}
+alias bump_z=bump_patch
+
+
+# Include local, non-checked-in config/overrides
+# shellcheck disable=SC1090
+[[ -r ~/.local/config.bash ]] && source ~/.local/config.bash
