@@ -1,5 +1,13 @@
 # shellcheck shell=bash
 
+# From man 1 bash:
+# When an interactive shell that is not a login shell is started, bash reads
+# and executes commands from /etc/bash.bashrc and ~/.bashrc, if these
+# files exist.
+
+# shellcheck disable=SC1090
+[[ -f ~/.bash_profile ]] && source ~/.bash_profile
+
 #######################################
 ##
 ## Utility Functions
@@ -51,37 +59,6 @@ export CDPATH=".:~:~/src"
 # General
 export VISUAL=vim
 
-# PATH
-POTENTIAL_PATHS=(
-  ~/.krew/bin
-  ~/.local/bin
-  ~/bin
-  ~/.cargo/bin
-  ~/.pulumi/bin/
-  ~linuxbrew/.linuxbrew/bin/
-  /snap/bin
-  /usr/local/go/bin
-  /cygdrive/c/Go/bin
-  /usr/local/bin
-  /usr/local/sbin
-  /usr/bin
-  /usr/sbin
-  /bin
-  /sbin
-  /usr/games
-  /cygdrive/c/Program Files/Git/cmd
-)
-VALID_PATHS=
-# Only add a path to PATH if it it exists and isn't already in PATH. VALID_PATHS is used as intermediary variable
-for p in "${POTENTIAL_PATHS[@]}"; do
-    if [[ -d "${p}" ]]; then
-        if [[ ":${VALID_PATHS}:" != *":${p}:"* ]]; then
-            debug "Adding ${p} to VALID_PATHS"
-            VALID_PATHS="${VALID_PATHS:+"${VALID_PATHS}:"}${p}"
-        fi
-    fi
-done
-export PATH="${VALID_PATHS}"
 
 # Environment Activations
 

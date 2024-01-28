@@ -1,3 +1,39 @@
 # shellcheck shell=bash
-# shellcheck disable=SC1090
-test -f ~/.bashrc && source ~/.bashrc
+
+# From man 1 bash:
+# When bash is invoked as an interactive login shell, or as a non-interactive
+# shell with the --login option, it first reads and executes commands from the
+# file /etc/profile, if that file exists.  After reading that file, it looks
+# for ~/.bash_profile, ~/.bash_login, and ~/.profile, in that order, and reads
+# and executes commands from the first one that exists and is readable.
+
+# PATH
+POTENTIAL_PATHS=(
+  ~/.krew/bin
+  ~/.local/bin
+  ~/bin
+  ~/.cargo/bin
+  ~/.pulumi/bin/
+  ~linuxbrew/.linuxbrew/bin/
+  /snap/bin
+  /usr/local/go/bin
+  /cygdrive/c/Go/bin
+  /usr/local/bin
+  /usr/local/sbin
+  /usr/bin
+  /usr/sbin
+  /bin
+  /sbin
+  /usr/games
+  /cygdrive/c/Program Files/Git/cmd
+)
+VALID_PATHS=
+# Only add a path to PATH if it it exists and isn't already in PATH. VALID_PATHS is used as intermediary variable
+for p in "${POTENTIAL_PATHS[@]}"; do
+    if [[ -d "${p}" ]]; then
+        if [[ ":${VALID_PATHS}:" != *":${p}:"* ]]; then
+            VALID_PATHS="${VALID_PATHS:+"${VALID_PATHS}:"}${p}"
+        fi
+    fi
+done
+export PATH="${VALID_PATHS}"
