@@ -62,10 +62,89 @@ export VISUAL=vim
 
 # Environment Activations
 
-# Mise - https://mise.jdx.dev/
-# Intentionally activated early so it can be a dependency
+# Starship - https://starship.rs/
+# Intentionally loaded early
 # shellcheck disable=SC1090
-hash mise 2>/dev/null && source <(mise activate bash)
+hash starship 2>/dev/null && eval "$(starship init bash)"
+
+# Mise - https://mise.jdx.dev/
+# Intentionally activated early so it can be a dependency. It has to be *after*
+# the prompt is initialized though due to how it manipulates PATH.
+# shellcheck disable=SC1090
+hash mise 2>/dev/null && (
+  eval "$(mise activate bash)"
+  eval "$(mise completion bash)"
+)
+
+
+# Bat - https://github.com/sharkdp/bat
+hash bat 2>/dev/null && alias cat="bat"
+
+# Exa - https://the.exa.website/
+hash exa 2>/dev/null && alias ls="exa"
+
+# Git - https://git-scm.com/
+# shellcheck disable=SC1091
+[[ -r /usr/share/bash-completion/completions/git ]] && {
+  source /usr/share/bash-completion/completions/git
+
+  alias g="git"
+  __git_complete g git
+  alias ga="git add"
+  __git_complete ga git_add
+  alias gb="git branch"
+  __git_complete gb git_branch
+  alias gc="git commit"
+  __git_complete gc git_commit
+  alias gca="git commit --all --message"
+  __git_complete gca git_commit
+  alias gcm="git commit --message"
+  __git_complete gcm git_commit
+  alias gco="git checkout"
+  __git_complete gco git_checkout
+  alias gcob="git checkout -b"
+  __git_complete gco git_checkout
+  alias gd="git diff"
+  __git_complete gd git_diff
+  alias gdc="git diff --check"
+  __git_complete gd git_diff
+  alias gl="git log"
+  __git_complete gl git_log
+  alias gld="git log --pretty=format:\"%h %ad %s\" --date=short--all"
+  __git_complete gl git_log
+  alias glg="git log --graph --oneline --decorate --all"
+  __git_complete gl git_log
+  alias gm="git merge"
+  __git_complete gm git_merge
+  alias gp="git pull"
+  __git_complete gp git_pull
+  alias gs="git status --branch"
+  __git_complete gs git_status
+}
+
+# Helm - https://helm.sh/docs/helm/helm_completion_bash/
+# shellcheck disable=SC1090
+hash helm 2>/dev/null && eval "$(helm completion bash)"
+
+# Homebrew - https://docs.brew.sh/Homebrew-on-Linux
+[[ -x ~linuxbrew/.linuxbrew/bin/brew ]] && \
+  eval "$(~linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Just - https://just.systems/
+# shellcheck disable=SC1090
+hash just 2>/dev/null && eval "$(just --completions bash)"
+
+# Kind - https://kind.sigs.k8s.io/
+# shellcheck disable=SC1090
+hash kind 2>/dev/null && eval "$(kind completion bash)"
+
+# Kubectl - https://kubernetes.io/docs/reference/kubectl/kubectl/
+# shellcheck disable=SC1090
+hash kubectl 2>/dev/null && eval "$(kubectl completion bash)"
+
+# Pulumi - https://www.pulumi.com/
+# shellcheck disable=SC1090
+hash pulumi 2>/dev/null && eval "$(pulumi gen-completion bash)"
 
 # SSH Agent
 export SSH_ENV=~/.ssh/environment
@@ -84,85 +163,46 @@ else
     fi
 fi
 
-# Starship - https://starship.rs/
-# shellcheck disable=SC1090
-hash starship 2>/dev/null && eval "$(starship init bash)"
-
-
-# Completions
-
-# Helm - https://helm.sh/docs/helm/helm_completion_bash/
-# shellcheck disable=SC1090
-hash helm 2>/dev/null && source <(helm completion bash)
-
-# Homebrew - https://docs.brew.sh/Homebrew-on-Linux
-[[ -x ~linuxbrew/.linuxbrew/bin/brew ]] && \
-  eval "$(~linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-# Just - https://just.systems/
-# shellcheck disable=SC1090
-hash just 2>/dev/null && source <(just --completions bash)
-
-# Kind - https://kind.sigs.k8s.io/
-# shellcheck disable=SC1090
-hash kind 2>/dev/null && source <(kind completion bash)
-
-# Kubectl - https://kubernetes.io/docs/reference/kubectl/kubectl/
-# shellcheck disable=SC1090
-hash kubectl 2>/dev/null && source <(kubectl completion bash)
-
-# Pulumi - https://www.pulumi.com/
-# shellcheck disable=SC1090
-hash pulumi 2>/dev/null && source <(pulumi gen-completion bash)
-
 # Zellij - https://zellij.dev/
 # shellcheck disable=SC1090
-hash zellij 2>/dev/null && source <(zellij setup --generate-completion bash)
+hash zellij 2>/dev/null && eval "$(zellij setup --generate-completion bash)"
 
-
-# Aliases
-
-# Bat - https://github.com/sharkdp/bat
-hash bat 2>/dev/null && alias cat="bat"
+# Misc.
 alias cp="cp -i"
+
 alias df="df -hP"
+
 alias du="du -shx"
-# Exa - https://the.exa.website/
-hash exa 2>/dev/null && alias ls="exa"
+
 alias ll="ls -l"
+
 alias fs="python -m SimpleHTTPServer"
-# Git - https://git-scm.com/
-alias g="git"
-alias ga="git add"
-alias gb="git branch"
-alias gc="git commit"
-alias gca="git commit --all --message"
-alias gcm="git commit --message"
-alias gco="git checkout"
-alias gcob="git checkout -b"
-alias gd="git diff"
-alias gdc="git diff --check"
-alias gl="git log"
-alias gld="git log --pretty=format:\"%h %ad %s\" --date=short--all"
-alias glg="git log --graph --oneline --decorate --all"
-alias gm="git merge"
-alias gp="git pull"
-alias gs="git status --branch"
+
 alias mount="mount | column -t"
+
 alias mv="mv -i"
+
 alias path="printenv PATH | sed 's/:/\n/g'"
+
 alias ping="ping -c 5 -W 5"
+
 # Quickly copy public key
 alias pubkey='cat ${HOME}/.ssh/*.pub | sort | uniq | xclip -selection clipboard | echo -e "\e[32m🛈\e[0m Public keys copied to clipboard"'
+
 # From bash(1): If the last character of the alias value is a blank, then the
 # next command word following the alias is also checked for alias expansion.
 alias sudo='sudo '
+
 # trash-cli - https://github.com/andreafrancia/trash-cli
 hash trash 2>/dev/null && alias rm="trash"
+
 alias update="sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean && sudo apt-get autoremove"
+
 # URL-encode strings
 alias urlencode='python3 -c '\''import sys, urllib.parse; print(urllib.parse.quote_plus(str(" ".join(sys.argv[1:]))));'\'''
+
 alias wget="wget -c"
+
 alias zzz="systemctl suspend"
 
 
