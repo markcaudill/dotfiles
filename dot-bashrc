@@ -76,6 +76,10 @@ hash mise 2>/dev/null && (
   eval "$(mise completion bash)"
 )
 
+# Builtins
+# shellcheck disable=SC1091
+[[ -r /etc/bash_completion ]] && \
+  source /etc/bash_completion
 
 # Bat - https://github.com/sharkdp/bat
 hash bat 2>/dev/null && alias cat="bat"
