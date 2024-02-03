@@ -88,41 +88,41 @@ hash bat 2>/dev/null && alias cat="bat"
 hash exa 2>/dev/null && alias ls="exa"
 
 # Git - https://git-scm.com/
+alias g="git"
+alias ga="git add"
+alias gb="git branch"
+alias gc="git commit"
+alias gca="git commit --all --message"
+alias gcm="git commit --message"
+alias gco="git checkout"
+alias gcob="git checkout -b"
+alias gd="git diff"
+alias gdc="git diff --check"
+alias gl="git log"
+alias gld="git log --pretty=format:\"%h %ad %s\" --date=short--all"
+alias glg="git log --graph --oneline --decorate --all"
+alias gm="git merge"
+alias gp="git pull"
+alias gs="git status --branch"
 # shellcheck disable=SC1091
 [[ -r /usr/share/bash-completion/completions/git ]] && {
   source /usr/share/bash-completion/completions/git
 
-  alias g="git"
   __git_complete g git
-  alias ga="git add"
   __git_complete ga git_add
-  alias gb="git branch"
   __git_complete gb git_branch
-  alias gc="git commit"
   __git_complete gc git_commit
-  alias gca="git commit --all --message"
   __git_complete gca git_commit
-  alias gcm="git commit --message"
   __git_complete gcm git_commit
-  alias gco="git checkout"
   __git_complete gco git_checkout
-  alias gcob="git checkout -b"
   __git_complete gco git_checkout
-  alias gd="git diff"
   __git_complete gd git_diff
-  alias gdc="git diff --check"
   __git_complete gd git_diff
-  alias gl="git log"
   __git_complete gl git_log
-  alias gld="git log --pretty=format:\"%h %ad %s\" --date=short--all"
   __git_complete gl git_log
-  alias glg="git log --graph --oneline --decorate --all"
   __git_complete gl git_log
-  alias gm="git merge"
   __git_complete gm git_merge
-  alias gp="git pull"
   __git_complete gp git_pull
-  alias gs="git status --branch"
   __git_complete gs git_status
 }
 
